@@ -1,0 +1,57 @@
+[2J[01;01H[=3h[2J[01;01H[2J[01;01H[=3h[2J[01;01H[2J[01;01H[=3h[2J[01;01HBdsDxe: loading Boot0001 "UEFI QEMU HARDDISK QM00001 " from PciRoot(0x0)/Pci(0x1,0x1)/Ata(Primary,Master,0x0)
+BdsDxe: starting Boot0001 "UEFI QEMU HARDDISK QM00001 " from PciRoot(0x0)/Pci(0x1,0x1)/Ata(Primary,Master,0x0)
+Raiz OS 0.1 - carregador proprio em Rust
+ELF validado; segmentos e pilha preparados.
+Encerrando servicos de boot do UEFI...
+
+[boot] EXIT_BOOT_SERVICES_OK
+[microkernel] Raiz OS: nucleo proprio Rust.
+[microkernel] PCI atribuido ao servico 2: BDF=0x300 MMIO=0x81040000
+[microkernel] SERVICO_CARREGADO id=1 ELF=41032 bytes fisico=0x2080000 CR3=0x2480000
+[microkernel] SERVICO_CARREGADO id=2 ELF=103040 bytes fisico=0x2280000 CR3=0x2490000
+[microkernel] PRONTO: 2 processos CPL3; CR3 distintos; W^X/NX; IPC; PIT 100Hz.
+RAIZ OS / 0.1.0 / MICROKERNEL / x86_64
+Sistema operacional proprio, escrito em Rust.
+[terminal] Servico isolado iniciado: CPL=3
+[ok] Console, framebuffer e teclado fora do kernel.
+[ok] IPC int80; paginas por processo; privilegios por servico.
+Digite ajuda. Use ping 10.0.2.2 para testar a rede.
+[teste] TERMINAL_PRONTO
+raiz> 
+[rede] SERVICO_PRONTO CPL=3 IPv4=10.0.2.15 UDP=7777
+raiz> sobre
+Raiz OS 0.1.0 - microkernel proprio em Rust.
+Terminal PID=1 CPL=3 / rede PID=2 / nucleo CPL=0
+Nucleo: memoria, processos, IPC, interrupcoes e permissoes fixas.
+Servicos: terminal+drivers de console; rede+driver e1000.
+Ainda sem arquivos persistentes, TCP, reinicio de servicos ou IOMMU.
+raiz> memoria
+Memoria convencional recebida: 203 MiB.
+Imagem deste processo: VA 0x40000000, segmentos 40 KiB.
+Reserva fisica: 2 MiB; paginas atribuidas conforme segmentos/pilha.
+Pilha propria; texto RX; dados RW+NX; nucleo supervisor.
+Os dois servicos usam o mesmo VA com memoria fisica distinta.
+raiz> ping 10.0.2.2
+Solicitando ping a 10.0.2.2 por IPC...
+raiz> 
+[rede] PING OK 10.0.2.2 seq=1
+raiz> rede
+raiz> 
+IPv4=10.0.2.15/24 gateway=10.0.2.2 / servico ring 3
+RX=86 TX=86 ping_ok=1 udp_eco=84
+raiz> teste-cap
+[teste] CAPACIDADE_NEGADA_OK
+raiz> falhar-rede
+Solicitando falha controlada ao servico de rede...
+raiz> 
+[microkernel] SERVICO_FALHOU id=2 vetor=6 erro=0x0 RIP=0x40001559 CR2=0x0
+eco TERMINAL_VIVO_APOS_FALHA
+TERMINAL_VIVO_APOS_FALHA
+raiz> processos
+terminal=1 rede=2 tiques=102
+Estados: 1=executavel 2=falhou 3=finalizado 0=inexistente.
+raiz> ping 10.0.2.2
+Solicitando ping a 10.0.2.2 por IPC...
+Servico de rede indisponivel; terminal continua ativo.
+[teste] IPC_SERVICO_INDISPONIVEL_OK
+raiz> 

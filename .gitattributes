@@ -1,0 +1,8 @@
+* text=auto eol=lf
+# Evidências são conservadas byte a byte, inclusive finais de linha da serial.
+evidencias/** -text
+*.img binary
+*.EFI binary
+*.efi binary
+*.zip binary
+*.bundle binary

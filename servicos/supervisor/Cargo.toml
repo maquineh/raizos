@@ -1,0 +1,9 @@
+[package]
+name = "servico-supervisor"
+version.workspace = true
+edition.workspace = true
+publish = false
+
+[dependencies]
+contrato-sistema = { path = "../../contrato-sistema" }
+apoio-servicos = { path = "../../apoio-servicos" }

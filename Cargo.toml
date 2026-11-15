@@ -1,0 +1,19 @@
+[workspace]
+members = ["contrato-boot", "contrato-sistema", "apoio-servicos", "inicializador", "nucleo", "protocolos", "ferramentas", "servicos/terminal", "servicos/rede", "servicos/supervisor"]
+default-members = ["ferramentas", "contrato-boot", "contrato-sistema", "protocolos"]
+resolver = "2"
+
+[workspace.package]
+version = "0.2.0"
+edition = "2021"
+
+[profile.release]
+panic = "abort"
+opt-level = 2
+lto = true
+codegen-units = 1
+debug = 2
+
+[profile.dev]
+panic = "abort"
+

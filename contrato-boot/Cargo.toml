@@ -1,0 +1,5 @@
+[package]
+name = "contrato-boot"
+version.workspace = true
+edition.workspace = true
+

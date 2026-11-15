@@ -1,0 +1,10 @@
+[package]
+name = "servico-terminal"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+contrato-boot = { path = "../../contrato-boot" }
+contrato-sistema = { path = "../../contrato-sistema" }
+apoio-servicos = { path = "../../apoio-servicos" }
+

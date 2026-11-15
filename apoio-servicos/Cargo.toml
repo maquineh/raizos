@@ -1,0 +1,8 @@
+[package]
+name = "apoio-servicos"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+contrato-sistema = { path = "../contrato-sistema" }
+

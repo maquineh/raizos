@@ -1,0 +1,8 @@
+[package]
+name = "contrato-sistema"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+contrato-boot = { path = "../contrato-boot" }
+
