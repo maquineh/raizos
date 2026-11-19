@@ -10,6 +10,26 @@ path = "src/main.rs"
 test = false
 bench = false
 
+[features]
+teste-idle = []
+teste-ipc-bloqueante = []
+teste-receber-bloqueante = []
+teste-prazo = []
+teste-prazo-idle = ["teste-prazo", "teste-receber-bloqueante"]
+teste-ciclo-espera = ["teste-prazo"]
+teste-vida = []
+teste-irq = []
+teste-uart = []
+teste-irq-ipc = []
+teste-seletor-irq-ipc = []
+teste-irq-morte = []
+teste-rz024 = []
+teste-falha-preparacao = []
+teste-irq-fifo-cheia = []
+teste-rz022 = []
+teste-prazo-empate = []
+teste-rx-quota = []
+
 [dependencies]
 contrato-boot = { path = "../contrato-boot" }
 contrato-sistema = { path = "../contrato-sistema" }

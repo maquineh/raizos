@@ -1,0 +1,61 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.04s
+     Running unittests src\lib.rs (target\debug\deps\contrato_boot-72243111d31035ae.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src\lib.rs (target\debug\deps\contrato_sistema-ed7e635ed28eb277.exe)
+
+running 3 tests
+test testes::layout_binario_da_abi_dois_e_estavel ... ok
+test testes::referencias_invalidas_e_codigos_de_erro_sao_recusados ... ok
+test testes::referencias_preservam_identidade_e_geracao_sem_colisoes ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+     Running unittests src\main.rs (target\debug\deps\ferramentas-0d43a96e11208712.exe)
+
+running 6 tests
+test testes::crc32_vetor_conhecido ... ok
+test testes::estado_exige_linha_completa_sem_confundir_eco_do_comando ... ok
+test testes::ipc_exige_despertar_antes_da_resposta_em_linhas_completas ... ok
+test testes::log_de_arenas_rejeita_reuso_cadeia_quebrada_e_reboot ... ok
+test testes::rejeita_arquivo_vazio ... ok
+test testes::imagem_preserva_arquivo_e_detecta_corrupcao_gpt ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.08s
+
+     Running unittests src\lib.rs (target\debug\deps\protocolos-71aa4c22d937e2db.exe)
+
+running 9 tests
+test testes::checksum_vetor_conhecido_e_comprimento_impar ... ok
+test testes::ipv4_rejeita_checksum_incorreto ... ok
+test testes::ipv4_rejeita_fragmentos_e_opcoes ... ok
+test testes::ipv4_rejeita_truncamento_em_todos_os_pontos ... ok
+test testes::ipv4_remove_padding_ethernet ... ok
+test testes::saida_curta_e_recusada_sem_escrever ... ok
+test testes::udp_aceita_checksum_zero_em_ipv4 ... ok
+test testes::udp_rejeita_comprimento_falso ... ok
+test testes::udp_verifica_checksum_incluindo_origem ... ok
+
+test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests contrato_boot
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests contrato_sistema
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests protocolos
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

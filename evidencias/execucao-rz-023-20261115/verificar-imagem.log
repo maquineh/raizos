@@ -1,0 +1,3 @@
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.03s
+     Running `target\debug\ferramentas.exe verificar-imagem`
+Imagem íntegra: GPT principal/reserva, ESP FAT32 e BOOTX64.EFI conferidos.

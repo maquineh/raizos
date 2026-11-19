@@ -1,0 +1,5 @@
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.03s
+     Running `target\debug\ferramentas.exe testar-prazo-empate`
+Evidências: <raiz-os>\evidencias/teste-prazo-empate-1794748969907907600
+Erro: Sequência de feature, armação, registro e sonda diverge
+error: process didn't exit successfully: `target\debug\ferramentas.exe testar-prazo-empate` (exit code: 1)

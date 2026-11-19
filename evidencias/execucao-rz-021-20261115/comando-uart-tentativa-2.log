@@ -1,0 +1,3 @@
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.05s
+     Running `target\debug\ferramentas.exe testar-uart --instrumentado`
+Evidencias: <raiz-os>\evidencias/teste-uart-1794726718052693100

@@ -1,0 +1,42 @@
+   Compiling nucleo v0.2.0 (<raiz-os>\nucleo)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.90s
+     Running unittests src\lib.rs (target\debug\deps\nucleo-82fdc5a55635ef93.exe)
+
+running 34 tests
+test agendamento::testes::bloqueio_nao_altera_vida_e_despertar_so_ocorre_uma_vez ... ok
+test agendamento::testes::espera_cancelada_na_morte_nao_acorda_nova_instancia ... ok
+test agendamento::testes::espera_observa_fila_e_conclui_uma_unica_vez ... ok
+test agendamento::testes::expiracao_nao_modifica_nova_instancia_ou_resultado_ja_concluido ... ok
+test agendamento::testes::fila_admitida_acorda_sem_consumir_e_purga_ainda_pode_revogar ... ok
+test agendamento::testes::morte_cancela_disponibilidade_e_impede_despertar ... ok
+test agendamento::testes::prazo_valida_modos_limites_e_volta_do_contador ... ok
+test agendamento::testes::timeout_conclui_uma_vez_mesmo_apos_despertar_por_mensagem ... ok
+test controle::testes::admissao_desperta_somente_depois_de_inserir_e_preserva_fifo ... ok
+test controle::testes::arenas_sao_exclusivas_por_servico_e_encarnacao ... ok
+test controle::testes::empate_vence_prazo_sem_consumir_fifo_e_conclusao_anterior_persiste ... ok
+test controle::testes::falhas_de_preparacao_ou_quota_preservam_espera_publicada ... ok
+test controle::testes::fila_cheia_recusa_sem_substituir_mensagens ... ok
+test controle::testes::fila_preserva_fifo_apos_volta_do_anel ... ok
+test controle::testes::gerenciamento_exige_supervisor_e_referencia_atual_da_rede ... ok
+test controle::testes::grafo_ipc_isola_supervisor_do_driver ... ok
+test controle::testes::limpar_remove_pedidos_destinados_instancia_antiga ... ok
+test controle::testes::observacao_one_shot_respeita_geracao_prazo_e_fifo ... ok
+test controle::testes::purga_remove_apenas_origem_revogada_em_fila_circular ... ok
+test controle::testes::quota_terminal_anel_envolvido_e_ambas_origens_sem_despertar_na_recusa ... ok
+test controle::testes::quota_terminal_preserva_espaco_e_recupera_por_instancia_exata ... ok
+test controle::testes::recepcao_ignora_geracao_antiga_e_preserva_mensagens_atuais ... ok
+test controle::testes::recepcao_pendente_rearma_apos_revogacao_e_mantem_fifo_valida ... ok
+test controle::testes::reinicio_nao_transborda_o_limite_de_encarnacoes ... ok
+test controle::testes::validacao_recusa_referencias_de_outra_encarnacao ... ok
+test irq::testes::coalescencia_autoridade_e_sequencia ... ok
+test irq::testes::exaustao_nao_reutiliza_sequencia ... ok
+test irq::testes::irq_coalescida_permanece_separada_de_ipc_quando_a_fila_esta_cheia ... ok
+test irq::testes::prazo_vencido_precede_irq_e_ipc_sem_consumir_nenhuma_fonte ... ok
+test irq::testes::revogacao_rejeita_sequencia_irq_antiga_e_filtra_ipc_por_geracao ... ok
+test observacao::testes::cancelamento_exato_libera_slot_ate_para_referencia_antiga ... ok
+test observacao::testes::estado_inicial_coalescencia_e_invalidez_terminal ... ok
+test observacao::testes::timeout_preserva_ambas_fontes_e_ultima_vida_antes_da_troca ... ok
+test observacao::testes::vida_nao_compete_por_espaco_e_classes_alternam ... ok
+
+test result: ok. 34 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+

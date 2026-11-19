@@ -1,0 +1,4 @@
+   Compiling ferramentas v0.2.0 (<raiz-os>\ferramentas)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 1.09s
+     Running `target\debug\ferramentas.exe testar-irq-fifo-cheia`
+Evidências: <raiz-os>\evidencias/teste-irq-fifo-cheia-1794744539244129100

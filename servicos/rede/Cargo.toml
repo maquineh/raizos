@@ -8,3 +8,18 @@ publish = false
 contrato-sistema = { path = "../../contrato-sistema" }
 apoio-servicos = { path = "../../apoio-servicos" }
 protocolos = { path = "../../protocolos" }
+
+[features]
+teste-irq = []
+teste-quota = []
+teste-prazo-idle = []
+teste-ciclo-espera = []
+teste-observacao = []
+teste-rz022-rede = []
+teste-irq-ipc = []
+teste-seletor-irq-ipc = []
+teste-rx-orcamento = []
+teste-cancelamento-aplicacao = []
+teste-irq-fifo-cheia = []
+teste-prazo-empate = []
+teste-rx-quota = []

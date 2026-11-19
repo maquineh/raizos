@@ -1,0 +1,5 @@
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.03s
+     Running `target\debug\ferramentas.exe testar-rx-orcamento`
+Evidências: <raiz-os>\evidencias/teste-rx-orcamento-1794734221237766300
+Erro: Tempo esgotado aguardando "[teste-rx-orcamento] CONTINUOU descritores=1 teste=1 mascara=0x10000 esgotado=0" após 10 segundos
+error: process didn't exit successfully: `target\debug\ferramentas.exe testar-rx-orcamento` (exit code: 1)

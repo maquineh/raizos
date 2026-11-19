@@ -1,0 +1,5 @@
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.03s
+     Running `target\debug\ferramentas.exe testar-rz022`
+Testando polling RX da rede, recuperação manual e backoff automático RZ-022...
+Erro: Tempo esgotado aguardando "[teste-rz022] REDE_BLOQUEADA referencia=0x100000002 prazo=10 (linha completa)" após 10 segundos
+error: process didn't exit successfully: `target\debug\ferramentas.exe testar-rz022` (exit code: 1)

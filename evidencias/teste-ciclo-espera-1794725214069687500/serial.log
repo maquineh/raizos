@@ -1,0 +1,157 @@
+[2J[01;01H[=3h[2J[01;01H[2J[01;01H[=3h[2J[01;01H[2J[01;01H[=3h[2J[01;01HBdsDxe: loading Boot0001 "UEFI QEMU HARDDISK QM00001 " from PciRoot(0x0)/Pci(0x1,0x1)/Ata(Primary,Master,0x0)
+BdsDxe: starting Boot0001 "UEFI QEMU HARDDISK QM00001 " from PciRoot(0x0)/Pci(0x1,0x1)/Ata(Primary,Master,0x0)
+Raiz OS 0.2.0 - carregador proprio em Rust
+ELF validado; segmentos e pilha preparados.
+Encerrando servicos de boot do UEFI...
+
+[boot] EXIT_BOOT_SERVICES_OK
+[microkernel] Raiz OS: nucleo proprio Rust.
+[microkernel] PCI atribuido ao servico 2: BDF=0x300 MMIO=0x81040000
+[microkernel] SERVICO_CARREGADO id=1 referencia=0x100000001 ELF=45128 bytes fisico=0x20a2000 CR3=0x2ca2000
+[microkernel] SERVICO_CARREGADO id=2 referencia=0x100000002 ELF=103040 bytes fisico=0x24a2000 CR3=0x2cc2000
+[microkernel] SERVICO_CARREGADO id=3 referencia=0x100000003 ELF=8280 bytes fisico=0x22a2000 CR3=0x2cb2000
+[microkernel] PRONTO: 3 processos CPL3; CR3 distintos; W^X/NX; IPC; PIT 100Hz; ABI 2.
+[teste-ciclo-espera] BLOQUEADA referencia=0x100000002 prazo=1001
+[teste-prazo] BLOQUEADO id=2
+RAIZ OS / 0.2.0 / MICROKERNEL / x86_64
+Sistema operacional proprio, escrito em Rust.
+[terminal] Servico isolado iniciado: CPL=3
+[ok] Console, framebuffer e teclado fora do kernel.
+[ok] IPC int80; paginas por processo; privilegios por servico.
+Digite ajuda. Use ping 10.0.2.2 para testar a rede.
+[teste] TERMINAL_PRONTO
+raiz> 
+[supervisor] SERVICO_PRONTO CPL=3 modo=manual limite=4
+raiz> parar-rede
+raiz> [teste-ciclo-espera] CANCELADA referencia=0x100000002
+[microkernel] SERVICO_ENCERRADO id=2 referencia=0x100000002 purgadas=0
+
+[supervisor] REDE_PARADA geracao=1
+raiz> 
+[supervisor] MODO manual reinicios=0 ultimo_erro=0x0 limite=4
+raiz> reiniciar-rede
+raiz> [microkernel] SERVICO_REINICIADO id=2 antiga=0x100000002 nova=0x200000002 arena_antiga=0x24a2000 arena_nova=0x26a2000 purgadas=0
+[microkernel] DMA_QUARENTENA referencia=0x100000002 arena=0x24a2000 bytes=2097152
+
+[supervisor] REDE_REINICIADA geracao_antiga=1 geracao_nova=2 automatico=0 referencia_antiga=0x100000002 referencia_nova=0x200000002
+Nova instancia criada; aguardando inicializacao do driver.
+raiz> [teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=5128
+[teste-prazo] BLOQUEADO id=2
+processos
+terminal=1 rede=1 tiques=178
+supervisor=1 geracao_rede=2 referencia_rede=0x200000002 referencia_terminal=0x100000001
+Estados: 1=executavel 2=falhou 3=finalizado 0=inexistente.
+raiz> processos
+terminal=1 rede=1 tiques=229
+supervisor=1 geracao_rede=2 referencia_rede=0x200000002 referencia_terminal=0x100000001
+Estados: 1=executavel 2=falhou 3=finalizado 0=inexistente.
+raiz> processos
+terminal=1 rede=1 tiques=279
+supervisor=1 geracao_rede=2 referencia_rede=0x200000002 referencia_terminal=0x100000001
+Estados: 1=executavel 2=falhou 3=finalizado 0=inexistente.
+raiz> processos
+terminal=1 rede=1 tiques=330
+supervisor=1 geracao_rede=2 referencia_rede=0x200000002 referencia_terminal=0x100000001
+Estados: 1=executavel 2=falhou 3=finalizado 0=inexistente.
+raiz> processos
+terminal=1 rede=1 tiques=380
+supervisor=1 geracao_rede=2 referencia_rede=0x200000002 referencia_terminal=0x100000001
+Estados: 1=executavel 2=falhou 3=finalizado 0=inexistente.
+raiz> processos
+terminal=1 rede=1 tiques=430
+supervisor=1 geracao_rede=2 referencia_rede=0x200000002 referencia_terminal=0x100000001
+Estados: 1=executavel 2=falhou 3=finalizado 0=inexistente.
+raiz> processos
+terminal=1 rede=1 tiques=481
+supervisor=1 geracao_rede=2 referencia_rede=0x200000002 referencia_terminal=0x100000001
+Estados: 1=executavel 2=falhou 3=finalizado 0=inexistente.
+raiz> processos
+terminal=1 rede=1 tiques=531
+supervisor=1 geracao_rede=2 referencia_rede=0x200000002 referencia_terminal=0x100000001
+Estados: 1=executavel 2=falhou 3=finalizado 0=inexistente.
+raiz> processos
+terminal=1 rede=1 tiques=582
+supervisor=1 geracao_rede=2 referencia_rede=0x200000002 referencia_terminal=0x100000001
+Estados: 1=executavel 2=falhou 3=finalizado 0=inexistente.
+raiz> processos
+terminal=1 rede=1 tiques=632
+supervisor=1 geracao_rede=2 referencia_rede=0x200000002 referencia_terminal=0x100000001
+Estados: 1=executavel 2=falhou 3=finalizado 0=inexistente.
+raiz> processos
+terminal=1 rede=1 tiques=682
+supervisor=1 geracao_rede=2 referencia_rede=0x200000002 referencia_terminal=0x100000001
+Estados: 1=executavel 2=falhou 3=finalizado 0=inexistente.
+raiz> processos
+terminal=1 rede=1 tiques=733
+supervisor=1 geracao_rede=2 referencia_rede=0x200000002 referencia_terminal=0x100000001
+Estados: 1=executavel 2=falhou 3=finalizado 0=inexistente.
+raiz> processos
+terminal=1 rede=1 tiques=783
+supervisor=1 geracao_rede=2 referencia_rede=0x200000002 referencia_terminal=0x100000001
+Estados: 1=executavel 2=falhou 3=finalizado 0=inexistente.
+raiz> processos
+terminal=1 rede=1 tiques=834
+supervisor=1 geracao_rede=2 referencia_rede=0x200000002 referencia_terminal=0x100000001
+Estados: 1=executavel 2=falhou 3=finalizado 0=inexistente.
+raiz> processos
+terminal=1 rede=1 tiques=884
+supervisor=1 geracao_rede=2 referencia_rede=0x200000002 referencia_terminal=0x100000001
+Estados: 1=executavel 2=falhou 3=finalizado 0=inexistente.
+raiz> processos
+terminal=1 rede=1 tiques=935
+supervisor=1 geracao_rede=2 referencia_rede=0x200000002 referencia_terminal=0x100000001
+Estados: 1=executavel 2=falhou 3=finalizado 0=inexistente.
+raiz> processos
+terminal=1 rede=1 tiques=985
+supervisor=1 geracao_rede=2 referencia_rede=0x200000002 referencia_terminal=0x100000001
+Estados: 1=executavel 2=falhou 3=finalizado 0=inexistente.
+raiz> processos
+terminal=1 rede=1 tiques=1035
+supervisor=1 geracao_rede=2 referencia_rede=0x200000002 referencia_terminal=0x100000001
+Estados: 1=executavel 2=falhou 3=finalizado 0=inexistente.
+raiz> teste-ciclo-liberar
+raiz> [teste-prazo] MENSAGEM id=2
+
+[teste-ciclo] REDE_LIBERADA geracao=2
+
+[rede] SERVICO_PRONTO CPL=3 IPv4=10.0.2.15 UDP=7777 geracao=2
+raiz> ping 10.0.2.2
+Solicitando ping a 10.0.2.2 por IPC...
+raiz> 
+[rede] PING OK 10.0.2.2 seq=1
+raiz> reiniciar-rede
+raiz> [microkernel] SERVICO_REINICIADO id=2 antiga=0x200000002 nova=0x300000002 arena_antiga=0x26a2000 arena_nova=0x28a2000 purgadas=0
+[microkernel] DMA_QUARENTENA referencia=0x200000002 arena=0x26a2000 bytes=2097152
+[teste-ciclo-espera] BLOQUEADA referencia=0x300000002 prazo=6312
+[teste-prazo] BLOQUEADO id=2
+
+[supervisor] REDE_REINICIADA geracao_antiga=2 geracao_nova=3 automatico=0 referencia_antiga=0x200000002 referencia_nova=0x300000002
+Nova instancia criada; aguardando inicializacao do driver.
+raiz> reiniciar-rede
+raiz> [teste-ciclo-espera] CANCELADA referencia=0x300000002
+[microkernel] SERVICO_REINICIADO id=2 antiga=0x300000002 nova=0x400000002 arena_antiga=0x28a2000 arena_nova=0x2aa2000 purgadas=0
+[microkernel] DMA_QUARENTENA referencia=0x300000002 arena=0x28a2000 bytes=2097152
+
+[supervisor] REDE_REINICIADA geracao_antiga=3 geracao_nova=4 automatico=0 referencia_antiga=0x300000002 referencia_nova=0x400000002
+[teste-ciclo-espera] BLOQUEADA referencia=0x400000002 prazo=2388
+[teste-prazo] BLOQUEADO id=2
+Nova instancia criada; aguardando inicializacao do driver.
+raiz> reiniciar-rede
+raiz> 
+[supervisor] RECURSOS_ESGOTADOS operacao=9 geracao=4
+Limite de arenas/recuperacoes do boot atingido; consulte processos.
+raiz> processos
+terminal=1 rede=1 tiques=1513
+supervisor=1 geracao_rede=4 referencia_rede=0x400000002 referencia_terminal=0x100000001
+Estados: 1=executavel 2=falhou 3=finalizado 0=inexistente.
+raiz> [teste-ciclo-espera] TIMEOUT referencia=0x400000002 tiques=2388
+[teste-prazo] TIMEOUT id=2
+
+[teste-ciclo] REDE_TEMPO geracao=4 tiques=2388
+
+[rede] SERVICO_PRONTO CPL=3 IPv4=10.0.2.15 UDP=7777 geracao=4
+raiz> ping 10.0.2.2
+Solicitando ping a 10.0.2.2 por IPC...
+raiz> 
+[rede] PING OK 10.0.2.2 seq=1
+raiz> 

@@ -1,0 +1,13 @@
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.03s
+     Running `target\debug\ferramentas.exe testar-rz024`
+Compilando serviços de terminal, rede e supervisão...
+    Finished `release` profile [optimized + debuginfo] target(s) in 0.04s
+Compilando microkernel com os ELFs dos serviços incorporados...
+    Finished `release` profile [optimized + debuginfo] target(s) in 0.03s
+Compilando carregador UEFI com o kernel incorporado...
+    Finished `release` profile [optimized + debuginfo] target(s) in 0.03s
+Pronto: <raiz-os>\saida/teste-rz024-irq\raiz-os.img (128 MiB; carregador de 957952 bytes).
+GPT, FAT32 e bytes do carregador foram conferidos após a gravação.
+Evidências: <raiz-os>\evidencias/teste-rz024-1794741842151523900
+Erro: Serial terminou com linha incompleta
+error: process didn't exit successfully: `target\debug\ferramentas.exe testar-rz024` (exit code: 1)

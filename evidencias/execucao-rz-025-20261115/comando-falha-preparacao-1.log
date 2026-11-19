@@ -1,0 +1,5 @@
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.03s
+     Running `target\debug\ferramentas.exe testar-falha-preparacao`
+Erro: Tempo esgotado aguardando "[teste-falha-preparacao] ERRO_REAL_LOADER antiga=0x100000002 nova=0x200000002 motivo=ELF_INVALIDO" após 10 segundos
+Evidências: <raiz-os>\evidencias/teste-falha-preparacao-1794742892087494800
+error: process didn't exit successfully: `target\debug\ferramentas.exe testar-falha-preparacao` (exit code: 1)

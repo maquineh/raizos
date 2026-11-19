@@ -1,0 +1,5 @@
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.05s
+     Running `target\debug\ferramentas.exe testar-uart --instrumentado`
+Evidencias: <raiz-os>\evidencias/teste-uart-1794726671224390100
+Erro: Tempo esgotado aguardando "[teste-uart] RECHECAGEM_COM_DADOS" após 10 segundos
+error: process didn't exit successfully: `target\debug\ferramentas.exe testar-uart --instrumentado` (exit code: 1)

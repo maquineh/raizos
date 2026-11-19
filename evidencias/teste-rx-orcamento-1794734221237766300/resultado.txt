@@ -1,0 +1,7 @@
+# Ensaio T03-22 — orçamento RX
+
+Imagem opt-in; QEMU/TCG, pc/i440fx, 1 CPU, 256 MiB, OVMF e e1000. Este comando não reutiliza a imagem normal.
+
+Resultado: **FALHOU**. `Tempo esgotado aguardando "[teste-rx-orcamento] CONTINUOU descritores=1 teste=1 mascara=0x10000 esgotado=0" após 10 segundos`
+
+Pré-condicionamento: o ensaio observa a resposta ao ping do gateway e confirma um eco UDP comum antes da amostra. O host envia todos os datagramas antes de enviar o comando de liberação IPC. O marcador ARMADA indica prontidão da fixture; não é um marcador do kernel de bloqueio. O ensaio cobre esta rajada controlada e não mede desempenho, pressão contínua, perda geral, ou o comportamento de hardware físico. Logs: `serial.log` e `qemu-stderr.log`.

@@ -1,0 +1,4 @@
+   Compiling ferramentas v0.2.0 (<raiz-os>\ferramentas)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 1.91s
+     Running `target\debug\ferramentas.exe testar-prazo-empate`
+Evidências: <raiz-os>\evidencias/teste-prazo-empate-1794749258177448900

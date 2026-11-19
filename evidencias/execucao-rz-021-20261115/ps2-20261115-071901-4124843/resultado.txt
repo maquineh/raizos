@@ -1,0 +1,1 @@
+FALHOU: Exception calling "ReadAllText" with "1" argument(s): "The process cannot access the file '<raiz-os>\evidencias\execucao-rz-021-20261115\ps2-20261115-071901-4124843\serial.log' because it is being used by another process."

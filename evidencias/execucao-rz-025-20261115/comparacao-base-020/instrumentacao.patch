@@ -1,0 +1,632 @@
+diff --git a/ferramentas/src/main.rs b/ferramentas/src/main.rs
+index 586f402..c81a792 100644
+--- a/ferramentas/src/main.rs
++++ b/ferramentas/src/main.rs
+@@ -49,7 +49,13 @@ fn executar_comando() -> Resultado<()> {
+         .to_path_buf();
+     let argumentos: Vec<String> = env::args().skip(1).collect();
+     match argumentos.first().map(String::as_str).unwrap_or("ajuda") {
+-        "compilar" if argumentos.len() == 1 => compilar(&raiz),
++        "compilar" if argumentos.len() == 1 => compilar(&raiz, false),
++        "compilar" if argumentos.len() == 2 && argumentos[1] == "--comparacao-vazia" => {
++            compilar(&raiz, true)
++        }
++        "testar-comparacao-vazia" if argumentos.len() == 1 => {
++            testar_comparacao_vazia(&raiz)
++        }
+         "executar" if argumentos.len() == 1 ||
+             (argumentos.len() == 2 && argumentos[1] == "--grafico") => {
+             executar_qemu(&raiz, argumentos.len() == 2)
+@@ -66,17 +72,19 @@ fn executar_comando() -> Resultado<()> {
+         }
+         "ajuda" | "--help" | "-h" => {
+             println!("Raiz OS — ferramentas em Rust\n\n  cargo run -p ferramentas -- compilar\n  cargo run -p ferramentas -- verificar-imagem\n  cargo run -p ferramentas -- executar [--grafico]\n  cargo run -p ferramentas -- testar\n  cargo run -p ferramentas -- testar-isolamento\n  cargo run -p ferramentas -- testar-recuperacao\n  cargo run -p ferramentas -- eco-udp TEXTO\n\nVariáveis opcionais:\n  RAIZ_QEMU        executável qemu-system-x86_64\n  RAIZ_QEMU_DADOS  diretório de ROMs/dados do QEMU (-L)\n  RAIZ_OVMF        arquivo OVMF_CODE.fd / OVMF_CODE_4M.fd\n  RAIZ_OVMF_VARS   arquivo OVMF_VARS.fd correspondente\n\nA imagem gerada é saida/raiz-os.img (128 MiB). Ctrl+C encerra o emulador.");
++            println!("Comparação opt-in: `cargo raiz compilar --comparacao-vazia`, depois `cargo raiz testar-comparacao-vazia`.");
+             Ok(())
+         }
+-        _ => Err("Comando inválido. Use: compilar, executar [--grafico], testar, testar-isolamento, testar-recuperacao, eco-udp TEXTO, verificar-imagem ou ajuda".into()),
++        _ => Err("Comando inválido. Use: compilar [--comparacao-vazia], executar [--grafico], testar, testar-isolamento, testar-recuperacao, testar-comparacao-vazia, eco-udp TEXTO, verificar-imagem ou ajuda".into()),
+     }
+ }
+ 
+-fn compilar(raiz: &Path) -> Resultado<()> {
++fn compilar(raiz: &Path, comparacao_vazia: bool) -> Resultado<()> {
+     let cargo = env::var_os("CARGO").unwrap_or_else(|| "cargo".into());
+     let destino = raiz.join("target");
+     println!("Compilando serviços de terminal, rede e supervisão...");
+-    let estado = Command::new(&cargo)
++    let mut comando_servicos = Command::new(&cargo);
++    comando_servicos
+         .current_dir(raiz)
+         .args([
+             "build",
+@@ -91,8 +99,11 @@ fn compilar(raiz: &Path) -> Resultado<()> {
+             "--release",
+             "--target-dir",
+         ])
+-        .arg(&destino)
+-        .status()?;
++        .arg(&destino);
++    if comparacao_vazia {
++        comando_servicos.args(["--features", "servico-terminal/comparacao-consultas-vazias"]);
++    }
++    let estado = comando_servicos.status()?;
+     if !estado.success() {
+         return Err("A compilação dos serviços falhou".into());
+     }
+@@ -183,7 +194,7 @@ fn executar_qemu(raiz: &Path, grafico: bool) -> Resultado<()> {
+ fn preparar_qemu(raiz: &Path, grafico: bool, teste: bool) -> Resultado<Command> {
+     let imagem = raiz.join("saida/raiz-os.img");
+     if !imagem.is_file() {
+-        compilar(raiz)?;
++        compilar(raiz, false)?;
+     }
+     let efi = fs::read(raiz.join("saida/esp/EFI/BOOT/BOOTX64.EFI"))?;
+     verificar_imagem(&imagem, &efi)?;
+@@ -266,6 +277,15 @@ struct Captura {
+     arquivo_erros: File,
+ }
+ 
++#[derive(Clone, Copy, Debug, PartialEq, Eq)]
++struct ResultadoComparacaoVazia {
++    inicio: u64,
++    fim: u64,
++    decorrido: u64,
++    consultas_ipc_vazias: u64,
++    voltas_sem_trabalho: u64,
++}
++
+ impl Captura {
+     fn registrar(&mut self, evento: EventoSaida) -> Resultado<()> {
+         match evento {
+@@ -365,6 +385,297 @@ impl Captura {
+     }
+ }
+ 
++fn testar_comparacao_vazia(raiz: &Path) -> Resultado<()> {
++    let instante = std::time::SystemTime::now()
++        .duration_since(std::time::UNIX_EPOCH)?
++        .as_nanos();
++    let pasta = raiz
++        .join("evidencias")
++        .join(format!("teste-comparacao-vazia-{instante}"));
++    fs::create_dir_all(&pasta)?;
++    fs::write(
++        pasta.join("comando.log"),
++        "cargo raiz compilar --comparacao-vazia\ncargo raiz testar-comparacao-vazia\ncomando serial: medir-vazio\n",
++    )?;
++    let inicio_execucao = Instant::now();
++    let resultado = executar_comparacao_vazia(
++        raiz,
++        File::create(pasta.join("serial.log"))?,
++        File::create(pasta.join("qemu-stderr.log"))?,
++    );
++    let relatorio = match &resultado {
++        Ok(medicao) => format!(
++            "# Comparação de consultas vazias — base 0.2\n\nResultado: **APROVADO**.\n\nPerfil: QEMU/TCG, `pc`/i440fx, 1 CPU, 256 MiB, OVMF e e1000. A imagem deve ter sido criada previamente com `cargo raiz compilar --comparacao-vazia`; o harness não recompila nem substitui a imagem.\n\nSincronização: aguardou prontidão do terminal, rede e supervisor; enviou `medir-vazio` pela UART serial. A janela observada foi de {} tiques (`inicio={}`, `fim={}`, `decorrido={}`).\n\nMétricas do terminal CPL3: {} chamadas `receber()` sem mensagem e {} voltas completas sem IPC consumido nem byte serial/PS2 lido. Na wrapper 0.2, `receber()` retorna `None` para consulta sem mensagem e não distingue essa condição de outros retornos não decodificados como mensagem.\n\nEstas contagens descrevem somente o intervalo e os pontos instrumentados. Não medem ciclos de CPU, utilização, energia, taxa de economia, latência ou desempenho de hardware físico.\n\nEvidências: `serial.log`, `qemu-stderr.log` e `comando.log`. Duração do harness: {:.3} s.\n",
++            medicao.decorrido,
++            medicao.inicio,
++            medicao.fim,
++            medicao.decorrido,
++            medicao.consultas_ipc_vazias,
++            medicao.voltas_sem_trabalho,
++            inicio_execucao.elapsed().as_secs_f64()
++        ),
++        Err(erro) => format!(
++            "# Comparação de consultas vazias — base 0.2\n\nResultado: **FALHOU**.\n\nHarness: `cargo raiz testar-comparacao-vazia`; a imagem não foi recompilada.\n\nFalha: `{erro}`\n\nEvidências parciais, se houve boot: `serial.log`, `qemu-stderr.log` e `comando.log`. A execução não sustenta métricas comparáveis. Duração do harness: {:.3} s.\n",
++            inicio_execucao.elapsed().as_secs_f64()
++        ),
++    };
++    fs::write(pasta.join("resultado.txt"), relatorio)?;
++    println!("Evidências: {}", pasta.display());
++    resultado.map(|_| ())
++}
++
++fn executar_comparacao_vazia(
++    raiz: &Path,
++    arquivo_serial: File,
++    arquivo_erros: File,
++) -> Resultado<ResultadoComparacaoVazia> {
++    conferir(
++        raiz.join("saida/raiz-os.img").is_file()
++            && raiz.join("saida/esp/EFI/BOOT/BOOTX64.EFI").is_file(),
++        "Imagem opt-in ausente; compile primeiro com `cargo raiz compilar --comparacao-vazia`",
++    )?;
++    let reserva_porta = UdpSocket::bind("127.0.0.1:17777").map_err(|e| {
++        format!("UDP 127.0.0.1:17777 indisponível; encerre outra VM antes do teste: {e}")
++    })?;
++    let mut comando = preparar_qemu(raiz, false, true)?;
++    comando
++        .stdin(Stdio::piped())
++        .stdout(Stdio::piped())
++        .stderr(Stdio::piped());
++    drop(reserva_porta);
++    let mut processo = ProcessoQemu(comando.spawn()?);
++    let mut entrada = processo
++        .0
++        .stdin
++        .take()
++        .ok_or("stdin do emulador indisponível")?;
++    let saida = processo
++        .0
++        .stdout
++        .take()
++        .ok_or("stdout do emulador indisponível")?;
++    let erros = processo
++        .0
++        .stderr
++        .take()
++        .ok_or("stderr do emulador indisponível")?;
++    let (emissor, receptor) = mpsc::channel();
++    let leitores = [
++        leitor_saida(saida, true, emissor.clone()),
++        leitor_saida(erros, false, emissor),
++    ];
++    let mut captura = Captura {
++        eventos: receptor,
++        serial: Vec::new(),
++        erros: Vec::new(),
++        arquivo_serial,
++        arquivo_erros,
++    };
++    let resultado = (|| -> Resultado<ResultadoComparacaoVazia> {
++        captura.aguardar_linha(
++            &mut processo,
++            "[teste] TERMINAL_PRONTO",
++            0,
++            Duration::from_secs(30),
++        )?;
++        captura.aguardar_condicao(
++            &mut processo,
++            "[rede] SERVICO_PRONTO CPL=3",
++            0,
++            Duration::from_secs(15),
++            |bytes| serial_contem_prefixo_linha(bytes, "[rede] SERVICO_PRONTO CPL=3"),
++        )?;
++        captura.aguardar_condicao(
++            &mut processo,
++            "[supervisor] SERVICO_PRONTO CPL=3",
++            0,
++            Duration::from_secs(15),
++            |bytes| serial_contem_prefixo_linha(bytes, "[supervisor] SERVICO_PRONTO CPL=3"),
++        )?;
++        conferir(
++            captura
++                .serial
++                .windows(b"EXIT_BOOT_SERVICES_OK".len())
++                .any(|w| w == b"EXIT_BOOT_SERVICES_OK"),
++            "O boot não mostrou EXIT_BOOT_SERVICES_OK",
++        )?;
++        captura.drenar()?;
++        let inicio_comando = captura.serial.len();
++        entrada.write_all(b"medir-vazio\n")?;
++        entrada.flush()?;
++        captura.aguardar_condicao(
++            &mut processo,
++            "[medicao-vazia] ARMADA completa",
++            inicio_comando,
++            Duration::from_secs(15),
++            |bytes| {
++                serial_contem_prefixo_linha(bytes, "[medicao-vazia] ARMADA")
++                    || serial_contem_prefixo_linha(bytes, "[medicao-vazia] FALHA")
++            },
++        )?;
++        captura.aguardar_condicao(
++            &mut processo,
++            "[medicao-vazia] RESULTADO/FALHA_JANELA completa",
++            inicio_comando,
++            Duration::from_secs(15),
++            |bytes| {
++                serial_contem_prefixo_linha(bytes, "[medicao-vazia] RESULTADO")
++                    || serial_contem_prefixo_linha(bytes, "[medicao-vazia] FALHA")
++                    || serial_contem_prefixo_linha(bytes, "[microkernel] FALHA_NUCLEO")
++                    || serial_contem_prefixo_linha(bytes, "[microkernel] SERVICO_FALHOU")
++                    || serial_contem_prefixo_linha(bytes, "[microkernel] SERVICO_FINALIZADO")
++            },
++        )?;
++        captura.drenar()?;
++        validar_log_comparacao_vazia(&captura.serial)
++    })();
++    drop(entrada);
++    processo.encerrar();
++    let mut erro_finalizacao = None;
++    for leitor in leitores {
++        if leitor.join().is_err() {
++            erro_finalizacao = Some("Falha na thread de captura do emulador".to_owned());
++        }
++    }
++    if let Err(erro) = captura.drenar() {
++        erro_finalizacao = Some(erro.to_string());
++    }
++    captura.arquivo_serial.flush()?;
++    captura.arquivo_erros.flush()?;
++    match resultado {
++        Err(erro) => Err(erro),
++        Ok(medicao) => match erro_finalizacao {
++            Some(erro) => Err(erro.into()),
++            None => Ok(medicao),
++        },
++    }
++}
++
++fn serial_linhas_completas(bytes: &[u8]) -> Result<Vec<&str>, String> {
++    let texto = std::str::from_utf8(bytes).map_err(|erro| format!("Serial não UTF-8: {erro}"))?;
++    let mut linhas = Vec::new();
++    for registro in texto.split_inclusive('\n') {
++        let Some(linha) = registro.strip_suffix('\n') else {
++            if registro.starts_with("[medicao-vazia]") {
++                return Err("Log terminou com marcador de medição incompleto".into());
++            }
++            continue;
++        };
++        linhas.push(linha.strip_suffix('\r').unwrap_or(linha));
++    }
++    Ok(linhas)
++}
++
++fn serial_contem_prefixo_linha(bytes: &[u8], prefixo: &str) -> bool {
++    serial_linhas_completas(bytes)
++        .is_ok_and(|linhas| linhas.iter().any(|linha| linha.starts_with(prefixo)))
++}
++
++fn validar_log_comparacao_vazia(bytes: &[u8]) -> Resultado<ResultadoComparacaoVazia> {
++    let linhas = serial_linhas_completas(bytes).map_err(|erro| format!("{erro}"))?;
++    let mut armadas = Vec::new();
++    let mut resultados = Vec::new();
++    for linha in &linhas {
++        if linha.starts_with("[medicao-vazia]") {
++            if linha.starts_with("[medicao-vazia] FALHA") {
++                return Err(format!("A fixture recusou a janela: {linha}").into());
++            } else if linha.starts_with("[medicao-vazia] ARMADA") {
++                armadas.push(*linha);
++            } else if linha.starts_with("[medicao-vazia] RESULTADO") {
++                resultados.push(*linha);
++            } else {
++                return Err(format!("Marcador desconhecido da medição: {linha}").into());
++            }
++        }
++        if linha.contains("SERVICO_FALHOU") || linha.contains("panic") {
++            return Err(format!("Falha de serviço/kernel durante a medição: {linha}").into());
++        }
++    }
++    if armadas.len() != 1 || resultados.len() != 1 {
++        return Err(format!(
++            "Esperados ARMADA e RESULTADO únicos; recebidos {} e {}",
++            armadas.len(),
++            resultados.len()
++        )
++        .into());
++    }
++    let (inicio_armada, janela_armada) = parse_linha_medicao_armada(armadas[0])?;
++    let medicao = parse_linha_medicao_resultado(resultados[0])?;
++    if janela_armada != 100
++        || medicao.inicio != inicio_armada
++        || medicao.decorrido != 100
++        || medicao.fim.wrapping_sub(medicao.inicio) != 100
++    {
++        return Err("Janela, tick inicial ou duração divergem da ARMADA de 100 tiques".into());
++    }
++    let pos_armada = linhas
++        .iter()
++        .position(|linha| *linha == armadas[0])
++        .unwrap();
++    let pos_resultado = linhas
++        .iter()
++        .position(|linha| *linha == resultados[0])
++        .unwrap();
++    if pos_resultado <= pos_armada {
++        return Err("RESULTADO precede ARMADA".into());
++    }
++    Ok(medicao)
++}
++
++fn parse_linha_medicao_armada(linha: &str) -> Resultado<(u64, u64)> {
++    let tokens: Vec<&str> = linha.split_whitespace().collect();
++    if tokens.len() != 5 || tokens[0] != "[medicao-vazia]" || tokens[1] != "ARMADA" {
++        return Err("Marcador ARMADA malformado".into());
++    }
++    let revisao = campo_unico_medicao(linha, "revisao=")?;
++    let janela = campo_decimal_medicao(linha, "janela_tiques=")?;
++    let inicio = campo_decimal_medicao(linha, "inicio=")?;
++    if revisao != "0.2" {
++        return Err("ARMADA não identifica a revisão 0.2".into());
++    }
++    Ok((inicio, janela))
++}
++
++fn parse_linha_medicao_resultado(linha: &str) -> Resultado<ResultadoComparacaoVazia> {
++    let tokens: Vec<&str> = linha.split_whitespace().collect();
++    if tokens.len() != 9 || tokens[0] != "[medicao-vazia]" || tokens[1] != "RESULTADO" {
++        return Err("Marcador RESULTADO malformado".into());
++    }
++    let revisao = campo_unico_medicao(linha, "revisao=")?;
++    let janela = campo_decimal_medicao(linha, "janela_tiques=")?;
++    if revisao != "0.2" || janela != 100 {
++        return Err("RESULTADO não corresponde à janela base 0.2 de 100 tiques".into());
++    }
++    Ok(ResultadoComparacaoVazia {
++        inicio: campo_decimal_medicao(linha, "inicio=")?,
++        fim: campo_decimal_medicao(linha, "fim=")?,
++        decorrido: campo_decimal_medicao(linha, "decorrido=")?,
++        consultas_ipc_vazias: campo_decimal_medicao(linha, "consultas_ipc_vazias=")?,
++        voltas_sem_trabalho: campo_decimal_medicao(linha, "voltas_sem_trabalho=")?,
++    })
++}
++
++fn campo_unico_medicao<'a>(linha: &'a str, nome: &str) -> Resultado<&'a str> {
++    let mut valores = linha
++        .split_whitespace()
++        .filter_map(|campo| campo.strip_prefix(nome));
++    let valor = valores
++        .next()
++        .ok_or_else(|| format!("Campo ausente: {nome}"))?;
++    if valores.next().is_some() {
++        return Err(format!("Campo duplicado: {nome}").into());
++    }
++    Ok(valor)
++}
++
++fn campo_decimal_medicao(linha: &str, nome: &str) -> Resultado<u64> {
++    let valor = campo_unico_medicao(linha, nome)?;
++    if valor.is_empty() || !valor.bytes().all(|byte| byte.is_ascii_digit()) {
++        return Err(format!("Campo decimal malformado: {nome}{valor}").into());
++    }
++    Ok(valor.parse()?)
++}
++
+ fn leitor_saida<R: Read + Send + 'static>(
+     mut origem: R,
+     serial: bool,
+@@ -2064,6 +2375,72 @@ fn crc32(bytes: &[u8]) -> u32 {
+ mod testes {
+     use super::*;
+ 
++    #[test]
++    fn oraculo_comparacao_vazia_exige_armada_e_snapshot_unicos_de_100_tiques() {
++        let log_valido = concat!(
++            "[teste] TERMINAL_PRONTO\n",
++            "[rede] SERVICO_PRONTO CPL=3 IPv4=10.0.2.15 UDP=7777 geracao=1\n",
++            "[supervisor] SERVICO_PRONTO CPL=3 modo=manual limite=3\n",
++            "[medicao-vazia] ARMADA revisao=0.2 janela_tiques=100 inicio=500\n",
++            "[medicao-vazia] RESULTADO revisao=0.2 janela_tiques=100 inicio=500 fim=600 decorrido=100 consultas_ipc_vazias=123 voltas_sem_trabalho=456\n",
++        );
++        let medicao = validar_log_comparacao_vazia(log_valido.as_bytes()).unwrap();
++        assert_eq!(medicao.inicio, 500);
++        assert_eq!(medicao.fim, 600);
++        assert_eq!(medicao.consultas_ipc_vazias, 123);
++        assert_eq!(medicao.voltas_sem_trabalho, 456);
++
++        let armada_duplicada = format!(
++            "{log_valido}[medicao-vazia] ARMADA revisao=0.2 janela_tiques=100 inicio=500\n"
++        );
++        assert!(validar_log_comparacao_vazia(armada_duplicada.as_bytes()).is_err());
++        let resultado_duplicado = format!(
++            "{log_valido}[medicao-vazia] RESULTADO revisao=0.2 janela_tiques=100 inicio=500 fim=600 decorrido=100 consultas_ipc_vazias=123 voltas_sem_trabalho=456\n"
++        );
++        assert!(validar_log_comparacao_vazia(resultado_duplicado.as_bytes()).is_err());
++        assert!(validar_log_comparacao_vazia(
++            log_valido
++                .replace("janela_tiques=100 fim=600", "janela_tiques=100 fim=601")
++                .replace("decorrido=100", "decorrido=101")
++                .as_bytes()
++        )
++        .is_err());
++        assert!(validar_log_comparacao_vazia(
++            log_valido
++                .replace(
++                    "revisao=0.2 janela_tiques=100 inicio=500 fim=600",
++                    "revisao=0.2 janela_tiques=100 inicio=499 fim=600"
++                )
++                .as_bytes()
++        )
++        .is_err());
++        assert!(validar_log_comparacao_vazia(
++            log_valido
++                .replace("[medicao-vazia] ARMADA", "raiz> [medicao-vazia] ARMADA")
++                .as_bytes()
++        )
++        .is_err());
++        assert!(validar_log_comparacao_vazia(
++            log_valido
++                .replace("[medicao-vazia] RESULTADO", "[medicao-vazia] FALHA_JANELA")
++                .as_bytes()
++        )
++        .is_err());
++        assert!(validar_log_comparacao_vazia(
++            b"[medicao-vazia] ARMADA revisao=0.2 janela_tiques=100 inicio=500\n[medicao-vazia] RESULTADO revisao=0.2"
++        )
++        .is_err());
++        assert!(validar_log_comparacao_vazia(
++            log_valido
++                .replace(
++                    "consultas_ipc_vazias=123",
++                    "consultas_ipc_vazias=123 consultas_ipc_vazias=124"
++                )
++                .as_bytes()
++        )
++        .is_err());
++    }
++
+     #[test]
+     fn crc32_vetor_conhecido() {
+         assert_eq!(crc32(b"123456789"), 0xcbf4_3926);
+diff --git a/servicos/terminal/Cargo.toml b/servicos/terminal/Cargo.toml
+index 76a9db8..b283b20 100644
+--- a/servicos/terminal/Cargo.toml
++++ b/servicos/terminal/Cargo.toml
+@@ -3,6 +3,9 @@ name = "servico-terminal"
+ version.workspace = true
+ edition.workspace = true
+ 
++[features]
++comparacao-consultas-vazias = []
++
+ [dependencies]
+ contrato-boot = { path = "../../contrato-boot" }
+ contrato-sistema = { path = "../../contrato-sistema" }
+diff --git a/servicos/terminal/src/main.rs b/servicos/terminal/src/main.rs
+index 2ad5170..1cfe590 100644
+--- a/servicos/terminal/src/main.rs
++++ b/servicos/terminal/src/main.rs
+@@ -16,6 +16,83 @@ struct ContextoTerminal {
+     referencia_guardada: Option<u64>,
+ }
+ 
++#[cfg(feature = "comparacao-consultas-vazias")]
++const JANELA_COMPARACAO_TIQUES: u64 = 100;
++
++// Medição de diagnóstico por volta do terminal: consulta vazia é uma chamada
++// a receber() que retorna None; volta sem trabalho não retira IPC nem lê byte
++// serial/PS2. O comando medir-vazio inicia uma única janela; o resultado só é
++// emitido se a amostra terminar exatamente 100 tiques depois. Não mede CPU.
++#[cfg(feature = "comparacao-consultas-vazias")]
++struct MedicaoConsultasVazias {
++    ativa: bool,
++    concluida: bool,
++    inicio: u64,
++    consultas_ipc_vazias: u64,
++    voltas_sem_trabalho: u64,
++}
++
++#[cfg(feature = "comparacao-consultas-vazias")]
++impl MedicaoConsultasVazias {
++    const fn nova() -> Self {
++        Self {
++            ativa: false,
++            concluida: false,
++            inicio: 0,
++            consultas_ipc_vazias: 0,
++            voltas_sem_trabalho: 0,
++        }
++    }
++
++    fn armar(&mut self) {
++        if self.ativa || self.concluida {
++            imprimirln!("[medicao-vazia] FALHA_ESTADO");
++            return;
++        }
++        self.inicio = sistema::tiques();
++        self.consultas_ipc_vazias = 0;
++        self.voltas_sem_trabalho = 0;
++        self.ativa = true;
++        imprimirln!(
++            "\n[medicao-vazia] ARMADA revisao=0.2 janela_tiques={} inicio={}",
++            JANELA_COMPARACAO_TIQUES,
++            self.inicio
++        );
++    }
++
++    fn concluir_se_vencida(&mut self) {
++        if !self.ativa {
++            return;
++        }
++        let fim = sistema::tiques();
++        let decorrido = fim.wrapping_sub(self.inicio);
++        if decorrido < JANELA_COMPARACAO_TIQUES {
++            return;
++        }
++        self.ativa = false;
++        self.concluida = true;
++        if decorrido != JANELA_COMPARACAO_TIQUES {
++            imprimirln!(
++                "\n[medicao-vazia] FALHA_JANELA inicio={} fim={} decorrido={} esperado={}",
++                self.inicio,
++                fim,
++                decorrido,
++                JANELA_COMPARACAO_TIQUES
++            );
++            return;
++        }
++        imprimirln!(
++            "\n[medicao-vazia] RESULTADO revisao=0.2 janela_tiques={} inicio={} fim={} decorrido={} consultas_ipc_vazias={} voltas_sem_trabalho={}",
++            JANELA_COMPARACAO_TIQUES,
++            self.inicio,
++            fim,
++            decorrido,
++            self.consultas_ipc_vazias,
++            self.voltas_sem_trabalho
++        );
++    }
++}
++
+ #[no_mangle]
+ #[link_section = ".text.entrada"]
+ pub unsafe extern "sysv64" fn _inicio_servico(informacoes: *const InfoServico) -> ! {
+@@ -51,9 +128,23 @@ pub unsafe extern "sysv64" fn _inicio_servico(informacoes: *const InfoServico) -
+     let mut contexto = ContextoTerminal {
+         referencia_guardada: None,
+     };
++    #[cfg(feature = "comparacao-consultas-vazias")]
++    let mut medicao_vazia = MedicaoConsultasVazias::nova();
+     loop {
++        #[cfg(feature = "comparacao-consultas-vazias")]
++        let mut houve_trabalho = false;
+         for _ in 0..16 {
+-            let Some(m) = sistema::receber() else { break };
++            let recebida = sistema::receber();
++            #[cfg(feature = "comparacao-consultas-vazias")]
++            if medicao_vazia.ativa && recebida.is_none() {
++                medicao_vazia.consultas_ipc_vazias =
++                    medicao_vazia.consultas_ipc_vazias.saturating_add(1);
++            }
++            let Some(m) = recebida else { break };
++            #[cfg(feature = "comparacao-consultas-vazias")]
++            {
++                houve_trabalho = true;
++            }
+             if m.origem == sistema::resolver(SUPERVISOR) {
+                 receber_supervisor(&m);
+                 continue;
+@@ -103,6 +194,10 @@ pub unsafe extern "sysv64" fn _inicio_servico(informacoes: *const InfoServico) -
+             }
+         }
+         if let Some(b) = io::ler_serial().or_else(|| teclado.ler()) {
++            #[cfg(feature = "comparacao-consultas-vazias")]
++            {
++                houve_trabalho = true;
++            }
+             if b == b'\n' && ultimo_cr {
+                 ultimo_cr = false;
+                 continue;
+@@ -112,6 +207,9 @@ pub unsafe extern "sysv64" fn _inicio_servico(informacoes: *const InfoServico) -
+                 b'\r' | b'\n' => {
+                     imprimirln!();
+                     let comando = core::str::from_utf8(&linha[..tamanho]).unwrap_or("").trim();
++                    #[cfg(feature = "comparacao-consultas-vazias")]
++                    executar(comando, &info, &mut contexto, &mut medicao_vazia);
++                    #[cfg(not(feature = "comparacao-consultas-vazias"))]
+                     executar(comando, &info, &mut contexto);
+                     tamanho = 0;
+                     imprimir!("raiz> ");
+@@ -143,6 +241,12 @@ pub unsafe extern "sysv64" fn _inicio_servico(informacoes: *const InfoServico) -
+             }
+         }
+         sistema::ceder();
++        #[cfg(feature = "comparacao-consultas-vazias")]
++        if medicao_vazia.ativa && !houve_trabalho {
++            medicao_vazia.voltas_sem_trabalho = medicao_vazia.voltas_sem_trabalho.saturating_add(1);
++        }
++        #[cfg(feature = "comparacao-consultas-vazias")]
++        medicao_vazia.concluir_se_vencida();
+     }
+ }
+ 
+@@ -224,10 +328,17 @@ fn enviar_supervisor(codigo: u64, argumento: u64) {
+     }
+ }
+ 
+-fn executar(comando: &str, info: &InfoServico, contexto: &mut ContextoTerminal) {
++fn executar(
++    comando: &str,
++    info: &InfoServico,
++    contexto: &mut ContextoTerminal,
++    #[cfg(feature = "comparacao-consultas-vazias")] medicao_vazia: &mut MedicaoConsultasVazias,
++) {
+     let mut partes = comando.split_whitespace();
+     match partes.next().unwrap_or("") {
+         "" => {}
++        #[cfg(feature = "comparacao-consultas-vazias")]
++        "medir-vazio" => medicao_vazia.armar(),
+         "ajuda" => {
+             imprimirln!("sobre          - arquitetura e CPL do terminal");
+             imprimirln!("memoria        - reservas e isolamento de enderecos");

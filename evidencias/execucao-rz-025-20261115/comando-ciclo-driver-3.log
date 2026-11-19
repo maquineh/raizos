@@ -1,0 +1,5 @@
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.03s
+     Running `target\debug\ferramentas.exe testar-ciclo-espera`
+Erro: Snapshot DRIVER_ATIVO gen4 ausente, duplicado ou malformado
+Evidencias: <raiz-os>\evidencias/teste-ciclo-espera-1794753016432515800
+error: process didn't exit successfully: `target\debug\ferramentas.exe testar-ciclo-espera` (exit code: 1)

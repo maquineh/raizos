@@ -16,6 +16,9 @@ pub const TERMINAL: u64 = 1;
 pub const REDE: u64 = 2;
 pub const SUPERVISOR: u64 = 3;
 pub const QUANTIDADE_SERVICOS: usize = 3;
+/// Limites estaticos da caixa IPC e de cada origem na caixa do terminal.
+pub const CAPACIDADE_CAIXA_IPC: usize = 16;
+pub const LIMITE_ORIGEM_CAIXA_TERMINAL: usize = 15;
 /// Inicializacao original e mais tres reinicios; as arenas DMA nao sao reutilizadas.
 pub const MAX_INSTANCIAS_REDE: u64 = 4;
 
@@ -60,6 +63,34 @@ pub mod chamada {
     pub const REINICIAR: u64 = 9;
     /// rdi=referencia exata da rede; exclusivo do supervisor; retorna zero.
     pub const ENCERRAR: u64 = 10;
+    /// Espera disponibilidade da caixa propria, sem consumir mensagem.
+    pub const ESPERAR_IPC: u64 = 11;
+    /// Recebe uma mensagem da propria caixa, bloqueando quando vazia.
+    pub const RECEBER_BLOQUEANTE: u64 = 12;
+    /// Recebe da caixa propria com modo e duracao explicitos.
+    pub const RECEBER_COM_PRAZO: u64 = 13;
+    /// Recebe IPC proprio ou informa indisponibilidade da rede observada.
+    pub const RECEBER_OBSERVANDO: u64 = 14;
+    pub const INSCREVER_VIDA: u64 = 15;
+    pub const CANCELAR_VIDA: u64 = 16;
+    pub const ESPERAR_EVENTO: u64 = 17;
+    pub const ARMAR_IRQ4: u64 = 18;
+    pub const CONFIRMAR_IRQ4: u64 = 19;
+    pub const ESPERAR_IRQ_IPC: u64 = 20;
+}
+pub mod evento_vida {
+    pub const ESTADO: u64 = 1;
+    pub const INVALIDACAO: u64 = 2;
+}
+pub mod classe_evento {
+    pub const IPC: u64 = 1;
+    pub const VIDA: u64 = 2;
+    pub const IRQ: u64 = 3;
+}
+pub mod prazo {
+    pub const IMEDIATO: u64 = 0;
+    pub const FINITO: u64 = 1;
+    pub const SEM_PRAZO: u64 = 2;
 }
 pub mod erro {
     pub const PERMISSAO: u64 = u64::MAX - 1;
@@ -70,6 +101,9 @@ pub mod erro {
     pub const RECURSOS: u64 = u64::MAX - 6;
     pub const ESTADO: u64 = u64::MAX - 7;
     pub const IMAGEM: u64 = u64::MAX - 8;
+    pub const TEMPO: u64 = u64::MAX - 9;
+    pub const AUSENTE: u64 = u64::MAX - 10;
+    pub const ALVO_INDISPONIVEL: u64 = u64::MAX - 11;
 }
 pub mod evento {
     pub const REDE_PRONTA: u64 = 1; // a=0 ok ou 1 erro; b=MAC; c=IPv4 big endian; d=CPL

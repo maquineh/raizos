@@ -1,0 +1,7 @@
+# Ensaio T03-22 — orçamento RX
+
+Imagem opt-in; QEMU/TCG, pc/i440fx, 1 CPU, 256 MiB, OVMF e e1000. Este comando não reutiliza a imagem normal.
+
+Resultado: **APROVADO**. O convidado reconheceu 17 identificadores UDP de teste: 16 descritores na primeira consulta, retorno após `CEDER`, e um descritor na consulta seguinte sem novo bloqueio. A validação dos identificadores usa contador e máscara no driver; estes datagramas não geram respostas UDP.
+
+Pré-condicionamento: o ensaio observa a resposta ao ping do gateway e confirma um eco UDP comum antes da amostra. O host envia todos os datagramas antes de enviar o comando de liberação IPC. O marcador ARMADA indica prontidão da fixture; não é um marcador do kernel de bloqueio. O ensaio cobre esta rajada controlada e não mede desempenho, pressão contínua, perda geral, ou o comportamento de hardware físico. Logs: `serial.log` e `qemu-stderr.log`.

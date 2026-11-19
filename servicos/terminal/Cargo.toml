@@ -8,3 +8,27 @@ contrato-boot = { path = "../../contrato-boot" }
 contrato-sistema = { path = "../../contrato-sistema" }
 apoio-servicos = { path = "../../apoio-servicos" }
 
+
+[features]
+teste-uart = []
+teste-irq = []
+teste-quota = []
+teste-ipc-bloqueante = []
+teste-receber-bloqueante = []
+teste-prazo = []
+teste-prazo-idle = []
+teste-ciclo-espera = []
+teste-observacao = []
+teste-vida = []
+teste-rz022 = []
+teste-irq-ipc = []
+teste-seletor-irq-ipc = []
+teste-rx-orcamento = []
+teste-cancelamento-aplicacao = []
+teste-irq-morte = []
+teste-rz024 = []
+teste-irq-fifo-cheia = []
+teste-uart-rz025 = []
+comparacao-consultas-vazias = []
+teste-prazo-empate = []
+teste-rx-quota = []

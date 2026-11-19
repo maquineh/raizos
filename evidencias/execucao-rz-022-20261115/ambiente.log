@@ -1,0 +1,5 @@
+rustc 1.99.1 (58cf8f9c3 2026-10-13)
+cargo 1.99.1 (5f94df478 2026-08-27)
+QEMU emulator version 10.2.50 (v10.2.0-14086-g840320663e)
+33090cc07675baa5190d9f1e84bf5176b33bcbfa9bacac522961150cdb6dbb2a  edk2-x86_64-code.fd
+5d2ac383371b408398accee7ec27c8c09ea5b74a0de0ceea6513388b15be5d1e  edk2-i386-vars.fd

@@ -1,0 +1,22 @@
+[2J[01;01H[=3h[2J[01;01H[2J[01;01H[=3h[2J[01;01H[2J[01;01H[=3h[2J[01;01HBdsDxe: loading Boot0001 "UEFI QEMU HARDDISK QM00001 " from PciRoot(0x0)/Pci(0x1,0x1)/Ata(Primary,Master,0x0)
+BdsDxe: starting Boot0001 "UEFI QEMU HARDDISK QM00001 " from PciRoot(0x0)/Pci(0x1,0x1)/Ata(Primary,Master,0x0)
+Raiz OS 0.2.0 - carregador proprio em Rust
+ELF validado; segmentos e pilha preparados.
+Encerrando servicos de boot do UEFI...
+
+[boot] EXIT_BOOT_SERVICES_OK
+[microkernel] Raiz OS: nucleo proprio Rust.
+[microkernel] PCI atribuido ao servico 2: BDF=0x300 MMIO=0x81040000
+[microkernel] SERVICO_CARREGADO id=1 referencia=0x100000001 ELF=12368 bytes fisico=0x2028000 CR3=0x2c28000
+[microkernel] SERVICO_CARREGADO id=2 referencia=0x100000002 ELF=180 bytes fisico=0x2428000 CR3=0x2c48000
+[microkernel] SERVICO_CARREGADO id=3 referencia=0x100000003 ELF=308 bytes fisico=0x2228000 CR3=0x2c38000
+[microkernel] PRONTO: 3 processos CPL3; CR3 distintos; W^X/NX; IPC; PIT 100Hz; ABI 2.
+[teste-ipc] RECEBER_BLOQUEADO id=2
+[teste-prazo] BLOQUEADO id=3
+[teste-ipc] RECEBER_BLOQUEADO id=1
+[teste-prazo-idle] IRQ0_CPL0
+[teste-prazo] TIMEOUT id=3
+[teste-ipc] DESPERTADO id=1
+[teste-prazo] MENSAGEM id=1
+[teste-ipc] RECEBER_CONCLUIDO id=1
+[teste-prazo-idle] RESPOSTA_CPL3

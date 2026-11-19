@@ -1,0 +1,1 @@
+APROVADO: oito IPCs em ordem; trabalho serial e IPC observados na janela finita após IRQ4; eco completo.

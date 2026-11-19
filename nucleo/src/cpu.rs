@@ -125,6 +125,7 @@ pub struct Quadro {
 extern "C" {
     static VETORES_EXCECAO: [u64; 32];
     fn entrada_irq0();
+    fn entrada_irq4();
     fn entrada_syscall();
     fn entrada_inesperada();
     fn restaurar_contexto(quadro: *const Quadro) -> !;
@@ -188,6 +189,10 @@ pub unsafe fn iniciar() {
     write(
         idt.add(32),
         PortaIdt::nova(entrada_irq0 as *const () as u64, 0x8e, 0),
+    );
+    write(
+        idt.add(36),
+        PortaIdt::nova(entrada_irq4 as *const () as u64, 0x8e, 0),
     );
     // Unica porta invocavel por CPL3. Interrupt gate mantem o kernel nao reentrante.
     write(
@@ -268,6 +273,18 @@ pub fn cr2() -> u64 {
     }
     v
 }
+/// IF=0; preserva todas as demais linhas do PIC, inclusive IRQ0.
+pub unsafe fn mascara_irq4(mascarar: bool) {
+    let atual = crate::io::entrada8(0x21);
+    crate::io::saida8(
+        0x21,
+        if mascarar {
+            atual | 0x10
+        } else {
+            atual & !0x10
+        },
+    );
+}
 pub unsafe fn confirmar_irq0() {
     crate::io::saida8(0x20, 0x20);
 }
@@ -324,6 +341,11 @@ SEM_ERRO 31
 entrada_irq0:
     push 0
     push 32
+    jmp entrada_comum
+.global entrada_irq4
+entrada_irq4:
+    push 0
+    push 36
     jmp entrada_comum
 .global entrada_syscall
 entrada_syscall:

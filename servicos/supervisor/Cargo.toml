@@ -7,3 +7,18 @@ publish = false
 [dependencies]
 contrato-sistema = { path = "../../contrato-sistema" }
 apoio-servicos = { path = "../../apoio-servicos" }
+
+[features]
+teste-irq = []
+teste-quota = []
+teste-ipc-bloqueante = []
+teste-receber-bloqueante = []
+teste-prazo = []
+teste-prazo-idle = []
+teste-observacao = []
+teste-vida = []
+teste-rz022-supervisor = []
+teste-irq-morte = []
+teste-irq-fifo-cheia = []
+teste-prazo-empate = []
+teste-rx-quota = []

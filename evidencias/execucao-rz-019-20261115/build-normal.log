@@ -1,0 +1,13 @@
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.04s
+     Running `target\debug\ferramentas.exe compilar`
+Compilando serviços de terminal, rede e supervisão...
+   Compiling servico-terminal v0.2.0 (<raiz-os>\servicos\terminal)
+    Finished `release` profile [optimized + debuginfo] target(s) in 1.67s
+Compilando microkernel com os ELFs dos serviços incorporados...
+   Compiling nucleo v0.2.0 (<raiz-os>\nucleo)
+    Finished `release` profile [optimized + debuginfo] target(s) in 1.21s
+Compilando carregador UEFI com o kernel incorporado...
+   Compiling inicializador v0.2.0 (<raiz-os>\inicializador)
+    Finished `release` profile [optimized + debuginfo] target(s) in 0.43s
+Pronto: <raiz-os>\saida\raiz-os.img (128 MiB; carregador de 860160 bytes).
+GPT, FAT32 e bytes do carregador foram conferidos após a gravação.

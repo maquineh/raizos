@@ -1,0 +1,4 @@
+4081eef8b93f7b0a1dfced1eec17d9b401459bef4834f970769d00127fd232d7  saida/raiz-os.img
+76845870c24629557b6680957992d2bb5f0e6e31a288289603e465288ac2fe08  saida/esp/EFI/BOOT/BOOTX64.EFI
+63eade77e0c190f4e4c8b6e5ede8b766eae4a2fe350115400237193074dce089  saida/teste-irq-fifo-cheia/raiz-os.img
+7ce109db0613f4169e44ab7f93cce591662c20bc13ae054a6f345043be7fc2c0  saida/teste-irq-fifo-cheia/esp/EFI/BOOT/BOOTX64.EFI

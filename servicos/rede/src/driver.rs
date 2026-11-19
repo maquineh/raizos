@@ -6,8 +6,12 @@
 //! Não oferece TCP, DHCP, DNS, IPv6, remontagem, opções IPv4 ou sockets gerais.
 //! Referências: Intel 8254x Software Developer's Manual; RFCs 768/791/792/826.
 
-use apoio_servicos::{ceder, chamar, tiques};
-use contrato_sistema::{chamada, BASE_USUARIO, MMIO_REDE, TAMANHO_USUARIO};
+use apoio_servicos::{ceder, chamar, receber_com_prazo, tiques};
+#[cfg(feature = "teste-rz022-rede")]
+use apoio_servicos::{enviar, resolver};
+#[cfg(feature = "teste-rz022-rede")]
+use contrato_sistema::TERMINAL;
+use contrato_sistema::{chamada, erro, prazo, Mensagem, BASE_USUARIO, MMIO_REDE, TAMANHO_USUARIO};
 use core::ptr::{addr_of_mut, read_volatile, write_volatile};
 use core::sync::atomic::{fence, AtomicBool, Ordering};
 use protocolos::{checksum, checksum_udp, escrever_u16, ler_ipv4, ler_u16, ler_udp, montar_ipv4};
@@ -15,11 +19,40 @@ use protocolos::{checksum, checksum_udp, escrever_u16, ler_ipv4, ler_u16, ler_ud
 const IP: [u8; 4] = [10, 0, 2, 15];
 const GATEWAY: [u8; 4] = [10, 0, 2, 2];
 const PORTA_ECO: u16 = 7777;
+#[cfg(feature = "teste-rx-quota")]
+const PORTA_RX_QUOTA: u16 = 7779;
+#[cfg(feature = "teste-rx-quota")]
+const RX_QUOTA_MAGIC: &[u8; 6] = b"RZ25QT";
+#[cfg(feature = "teste-rx-quota")]
+const RX_QUOTA_QUANTIDADE: u16 = 18;
+#[cfg(feature = "teste-rx-orcamento")]
+const PORTA_RX_ORCAMENTO: u16 = 7778;
+#[cfg(feature = "teste-rx-orcamento")]
+const RX_ORCAMENTO_MAGIC: &[u8; 6] = b"RZ23RX";
+#[cfg(feature = "teste-rx-orcamento")]
+const RX_ORCAMENTO_QUANTIDADE: u16 = 17;
 const QUANTIDADE_RX: usize = 32;
 const QUANTIDADE_TX: usize = 8;
 const TAMANHO_BUFFER: usize = 2048;
 const MTU: usize = 1500;
 const IDENTIFICADOR_PING: u16 = 0x524f;
+const CAPACIDADE_IPC_INICIAL: usize = 16;
+
+// Preserva mensagens consumidas durante a inicializacao bloqueante do driver.
+static mut IPC_INICIAL: [Mensagem; CAPACIDADE_IPC_INICIAL] = [Mensagem {
+    origem: 0,
+    codigo: 0,
+    a: 0,
+    b: 0,
+    c: 0,
+    d: 0,
+}; CAPACIDADE_IPC_INICIAL];
+static mut IPC_INICIAL_INICIO: usize = 0;
+static mut IPC_INICIAL_TAMANHO: usize = 0;
+#[cfg(feature = "teste-rz022-rede")]
+static mut FIXTURA_RESET_ATIVA: bool = false;
+#[cfg(feature = "teste-rz022-rede")]
+static mut FIXTURA_STASH_ANUNCIADO: bool = false;
 
 // Os únicos buffers compartilhados com hardware não são expostos como referências
 // Rust. O dispositivo recebe PA = base_fisica + (VA - BASE_USUARIO).
@@ -92,6 +125,27 @@ pub struct Estatisticas {
     pub transmitidos: u64,
     pub respostas_ping: u64,
     pub ecos_udp: u64,
+    #[cfg(feature = "teste-rx-orcamento")]
+    pub quadros_rx_orcamento: u64,
+    #[cfg(feature = "teste-rx-orcamento")]
+    pub mascara_rx_orcamento: u32,
+    #[cfg(feature = "teste-rx-quota")]
+    pub quadros_rx_quota: u64,
+    #[cfg(feature = "teste-rx-quota")]
+    pub mascara_rx_quota: u32,
+    #[cfg(feature = "teste-rx-quota")]
+    pub rx_quota_invalido: bool,
+}
+
+#[cfg(feature = "teste-ciclo-espera")]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub struct SnapshotCicloEspera {
+    pub mmio: u64,
+    pub arena_fisica: u64,
+    pub indice_rx: u64,
+    pub indice_tx: u64,
+    pub recebidos: u64,
+    pub transmitidos: u64,
 }
 
 #[derive(Clone, Copy)]
@@ -125,6 +179,20 @@ pub struct Rede {
     descartados: u64,
     respostas_ping: u64,
     ecos_udp: u64,
+    #[cfg(feature = "teste-rx-orcamento")]
+    quadros_rx_orcamento: u64,
+    #[cfg(feature = "teste-rx-orcamento")]
+    mascara_rx_orcamento: u32,
+    #[cfg(feature = "teste-rx-quota")]
+    quadros_rx_quota: u64,
+    #[cfg(feature = "teste-rx-quota")]
+    mascara_rx_quota: u32,
+    #[cfg(feature = "teste-rx-quota")]
+    proximo_rx_quota: u16,
+    #[cfg(feature = "teste-rx-quota")]
+    rx_quota_armado: bool,
+    #[cfg(feature = "teste-rx-quota")]
+    rx_quota_invalido: bool,
     descartando_fragmento_ethernet: bool,
 }
 
@@ -172,17 +240,149 @@ fn pci_escrever_comando(
     }
 }
 
-/// O PIT opera a 100 Hz neste perfil. Dois avanços garantem pelo menos um
-/// período inteiro, excedendo a espera mínima do reset; não depende da CPU.
-fn aguardar_tiques(quantidade: u64) -> Result<(), &'static str> {
-    let inicio = tiques();
-    for _ in 0..1_000_000 {
-        if tiques().wrapping_sub(inicio) >= quantidade {
+fn guardar_ipc_inicial(mensagem: Mensagem) -> bool {
+    // So a thread de inicializacao acessa o stash; nao ha produtor concorrente.
+    unsafe {
+        if IPC_INICIAL_TAMANHO == CAPACIDADE_IPC_INICIAL {
+            return false;
+        }
+        let indice = (IPC_INICIAL_INICIO + IPC_INICIAL_TAMANHO) % CAPACIDADE_IPC_INICIAL;
+        IPC_INICIAL[indice] = mensagem;
+        IPC_INICIAL_TAMANHO += 1;
+        true
+    }
+}
+
+#[cfg(feature = "teste-rz022-rede")]
+fn notificar_teste_reset(codigo: u64, a: u64, b: u64, c: u64) -> Result<(), &'static str> {
+    let destino = resolver(TERMINAL);
+    if destino == 0 || destino == u64::MAX {
+        return Err("terminal indisponivel para fixture de reset");
+    }
+    for _ in 0..64 {
+        match enviar(destino, codigo, a, b, c, 0) {
+            0 => return Ok(()),
+            erro::FILA_CHEIA => ceder(),
+            _ => return Err("falha ao notificar fixture de reset"),
+        }
+    }
+    Err("caixa do terminal cheia na fixture de reset")
+}
+
+#[cfg(feature = "teste-rz022-rede")]
+fn sinalizar_stash_saturado() -> Result<(), &'static str> {
+    unsafe {
+        if !FIXTURA_RESET_ATIVA
+            || FIXTURA_STASH_ANUNCIADO
+            || IPC_INICIAL_TAMANHO != CAPACIDADE_IPC_INICIAL
+        {
             return Ok(());
         }
-        ceder();
+        FIXTURA_STASH_ANUNCIADO = true;
     }
-    Err("timer nao progrediu durante reset e1000")
+    notificar_teste_reset(
+        0x7b7,
+        CAPACIDADE_IPC_INICIAL as u64,
+        resolver(contrato_sistema::REDE),
+        tiques(),
+    )
+}
+
+/// Entrega IPC consumido durante reset antes da caixa do kernel.
+pub fn retirar_ipc_inicial() -> Option<Mensagem> {
+    unsafe {
+        if IPC_INICIAL_TAMANHO == 0 {
+            return None;
+        }
+        let mensagem = IPC_INICIAL[IPC_INICIAL_INICIO];
+        IPC_INICIAL_INICIO = (IPC_INICIAL_INICIO + 1) % CAPACIDADE_IPC_INICIAL;
+        IPC_INICIAL_TAMANHO -= 1;
+        Some(mensagem)
+    }
+}
+
+/// Espera por prazo guardando IPC consumido. Com o stash cheio, deixa a fila
+/// restante no kernel e cede até o prazo; esse é o único fallback com polling.
+fn aguardar_evento_ou_prazo(duracao: u64) -> Result<(), &'static str> {
+    let inicio = tiques();
+    let mut progresso = 0usize;
+    let mut prazo_disponivel = true;
+    loop {
+        let decorrido = tiques().wrapping_sub(inicio);
+        if decorrido >= duracao {
+            return Ok(());
+        }
+        let restante = duracao - decorrido;
+        let stash_cheio = unsafe { IPC_INICIAL_TAMANHO == CAPACIDADE_IPC_INICIAL };
+        if stash_cheio || !prazo_disponivel {
+            ceder();
+        } else {
+            match receber_com_prazo(prazo::FINITO, restante) {
+                Ok(mensagem) => {
+                    if !guardar_ipc_inicial(mensagem) {
+                        return Err("stash IPC inicial saturado durante espera");
+                    }
+                    #[cfg(feature = "teste-rz022-rede")]
+                    sinalizar_stash_saturado()?;
+                    progresso = 0;
+                    continue;
+                }
+                Err(erro::TEMPO) => return Ok(()),
+                Err(erro::CHAMADA) => {
+                    prazo_disponivel = false;
+                    ceder();
+                }
+                Err(_) => return Err("falha ao aguardar prazo do reset e1000"),
+            }
+        }
+        progresso += 1;
+        if progresso >= 1_000_000 && tiques().wrapping_sub(inicio) < duracao {
+            return Err("timer nao progrediu durante reset e1000");
+        }
+    }
+}
+
+fn aguardar_tiques(quantidade: u64) -> Result<(), &'static str> {
+    aguardar_evento_ou_prazo(quantidade)
+}
+
+fn aguardar_reset(rede: &Rede, duracao_maxima: u64) -> Result<bool, &'static str> {
+    let inicio = tiques();
+    let mut progresso = 0usize;
+    let mut prazo_disponivel = true;
+    loop {
+        if rede.ler(0x0000) & (1 << 26) == 0 {
+            return Ok(true);
+        }
+        let decorrido = tiques().wrapping_sub(inicio);
+        if decorrido >= duracao_maxima {
+            return Ok(false);
+        }
+        let stash_cheio = unsafe { IPC_INICIAL_TAMANHO == CAPACIDADE_IPC_INICIAL };
+        if stash_cheio || !prazo_disponivel {
+            ceder();
+        } else {
+            match receber_com_prazo(prazo::FINITO, 1) {
+                Ok(mensagem) => {
+                    if !guardar_ipc_inicial(mensagem) {
+                        return Err("stash IPC inicial saturado durante reset");
+                    }
+                    progresso = 0;
+                    continue;
+                }
+                Err(erro::TEMPO) => {}
+                Err(erro::CHAMADA) => {
+                    prazo_disponivel = false;
+                    ceder();
+                }
+                Err(_) => return Err("falha ao aguardar verificacao do reset e1000"),
+            }
+        }
+        progresso += 1;
+        if progresso >= 1_000_000 && tiques().wrapping_sub(inicio) < duracao_maxima {
+            return Err("timer nao progrediu durante verificacao do reset e1000");
+        }
+    }
 }
 
 unsafe fn localizar() -> Result<(u8, u8, u8, usize), &'static str> {
@@ -274,6 +474,20 @@ impl Rede {
             descartados: 0,
             respostas_ping: 0,
             ecos_udp: 0,
+            #[cfg(feature = "teste-rx-orcamento")]
+            quadros_rx_orcamento: 0,
+            #[cfg(feature = "teste-rx-orcamento")]
+            mascara_rx_orcamento: 0,
+            #[cfg(feature = "teste-rx-quota")]
+            quadros_rx_quota: 0,
+            #[cfg(feature = "teste-rx-quota")]
+            mascara_rx_quota: 0,
+            #[cfg(feature = "teste-rx-quota")]
+            proximo_rx_quota: 1,
+            #[cfg(feature = "teste-rx-quota")]
+            rx_quota_armado: false,
+            #[cfg(feature = "teste-rx-quota")]
+            rx_quota_invalido: false,
             descartando_fragmento_ethernet: false,
         };
         rede.escrever(0x00d8, u32::MAX); // IMC: nenhuma IRQ neste marco.
@@ -282,20 +496,22 @@ impl Rede {
         let _ = rede.ler(0x0008); // STATUS: flush das escritas MMIO postadas.
         aguardar_tiques(2)?;
         rede.escrever(0x0000, rede.ler(0x0000) | (1 << 26)); // CTRL.RST
-                                                             // Intel 8254x §13.4.1: esperar antes de reler o dispositivo após RST.
-        aguardar_tiques(2)?;
-        let inicio_reset = tiques();
-        let mut reset_concluido = false;
-        for _ in 0..1_000_000 {
-            if rede.ler(0x0000) & (1 << 26) == 0 {
-                reset_concluido = true;
-                break;
+        #[cfg(feature = "teste-rz022-rede")]
+        if contrato_sistema::geracao_referencia(resolver(contrato_sistema::REDE)) == 1 {
+            unsafe {
+                FIXTURA_RESET_ATIVA = true;
+                FIXTURA_STASH_ANUNCIADO = false;
             }
-            if tiques().wrapping_sub(inicio_reset) >= 50 {
-                break;
+            notificar_teste_reset(0x7b6, resolver(contrato_sistema::REDE), tiques(), 500)?;
+            aguardar_evento_ou_prazo(500)?;
+            notificar_teste_reset(0x7b8, 500, resolver(contrato_sistema::REDE), tiques())?;
+            unsafe {
+                FIXTURA_RESET_ATIVA = false;
             }
-            ceder();
         }
+        // Intel 8254x §13.4.1: esperar antes de reler o dispositivo após RST.
+        aguardar_tiques(2)?;
+        let reset_concluido = aguardar_reset(&rede, 50)?;
         if !reset_concluido {
             return Err("e1000 nao concluiu reset");
         }
@@ -417,7 +633,64 @@ impl Rede {
             transmitidos: self.transmitidos,
             respostas_ping: self.respostas_ping,
             ecos_udp: self.ecos_udp,
+            #[cfg(feature = "teste-rx-orcamento")]
+            quadros_rx_orcamento: self.quadros_rx_orcamento,
+            #[cfg(feature = "teste-rx-orcamento")]
+            mascara_rx_orcamento: self.mascara_rx_orcamento,
+            #[cfg(feature = "teste-rx-quota")]
+            quadros_rx_quota: self.quadros_rx_quota,
+            #[cfg(feature = "teste-rx-quota")]
+            mascara_rx_quota: self.mascara_rx_quota,
+            #[cfg(feature = "teste-rx-quota")]
+            rx_quota_invalido: self.rx_quota_invalido,
         }
+    }
+
+    /// Snapshot de campos já mantidos pelo driver; não lê MMIO nem descritores.
+    /// A imagem de teste o toma antes/depois de uma espera sem consultar o anel.
+    #[cfg(feature = "teste-ciclo-espera")]
+    pub fn snapshot_ciclo_espera(&self) -> SnapshotCicloEspera {
+        SnapshotCicloEspera {
+            mmio: self.mmio as u64,
+            arena_fisica: self.base_fisica,
+            indice_rx: self.indice_rx as u64,
+            indice_tx: self.indice_tx as u64,
+            recebidos: self.recebidos,
+            transmitidos: self.transmitidos,
+        }
+    }
+
+    #[cfg(feature = "teste-rx-quota")]
+    pub fn armar_rx_quota(&mut self) -> bool {
+        if self.rx_quota_armado || self.quadros_rx_quota != 0 || self.mascara_rx_quota != 0 {
+            return false;
+        }
+        self.rx_quota_armado = true;
+        self.proximo_rx_quota = 1;
+        self.rx_quota_invalido = false;
+        true
+    }
+
+    /// Conta DD consecutivos sem avançar o anel, apenas na imagem de ensaio.
+    /// O serviço não chama `consultar` enquanto espera a mensagem de liberação;
+    /// portanto nenhum consumidor de CPU pode limpar estes descritores.
+    #[cfg(feature = "teste-rx-orcamento")]
+    pub fn rx_orcamento_descritores_prontos(&self) -> (usize, usize) {
+        let inicio = self.indice_rx;
+        let mut prontos = 0;
+        unsafe {
+            let anel = addr_of_mut!(ANEL_RX.0).cast::<DescritorRx>();
+            for deslocamento in 0..RX_ORCAMENTO_QUANTIDADE as usize {
+                let indice = (inicio + deslocamento) % QUANTIDADE_RX;
+                let estado = read_volatile(addr_of_mut!((*anel.add(indice)).estado));
+                if estado & 1 == 0 {
+                    break;
+                }
+                fence(Ordering::Acquire);
+                prontos += 1;
+            }
+        }
+        (prontos, inicio)
     }
 
     fn transmitir(&mut self, quadro: &[u8]) -> Result<(), &'static str> {
@@ -496,16 +769,17 @@ impl Rede {
         }
     }
 
-    /// Processa até 16 quadros por rodada, evitando bloquear o console.
-    pub fn consultar(&mut self) {
+    /// Processa até 16 quadros; `true` pede cessao e nova rodada sem dormir.
+    pub fn consultar(&mut self) -> bool {
         let mut quadro = [0u8; TAMANHO_BUFFER];
         for _ in 0..16 {
             match self.receber(&mut quadro) {
                 Some(0) => continue,
                 Some(comprimento) => self.processar(&quadro[..comprimento]),
-                None => break,
+                None => return false,
             }
         }
+        true
     }
 
     fn processar(&mut self, quadro: &[u8]) {
@@ -682,26 +956,107 @@ impl Rede {
                     }
                 };
                 if udp.porta_destino != PORTA_ECO
+                    && !cfg!(feature = "teste-rx-orcamento")
+                    && !cfg!(feature = "teste-rx-quota")
+                {
+                    self.descartados += 1;
+                    return;
+                }
+                #[cfg(feature = "teste-rx-quota")]
+                if udp.porta_destino == PORTA_RX_QUOTA {
+                    if udp.porta_origem == 0
+                        || udp.carga.len() != 8
+                        || &udp.carga[..6] != RX_QUOTA_MAGIC
+                    {
+                        self.rx_quota_invalido = true;
+                        self.descartados += 1;
+                        return;
+                    }
+                    let sequencia = u16::from_be_bytes([udp.carga[6], udp.carga[7]]);
+                    if sequencia == 0 {
+                        self.responder_udp(
+                            mac_origem,
+                            ip.origem,
+                            PORTA_RX_QUOTA,
+                            udp.porta_origem,
+                            udp.carga,
+                        );
+                        return;
+                    }
+                    if !self.rx_quota_armado
+                        || sequencia != self.proximo_rx_quota
+                        || sequencia > RX_QUOTA_QUANTIDADE
+                    {
+                        self.rx_quota_invalido = true;
+                        self.descartados += 1;
+                        return;
+                    }
+                    self.quadros_rx_quota = self.quadros_rx_quota.saturating_add(1);
+                    self.mascara_rx_quota |= 1u32 << (sequencia - 1);
+                    self.proximo_rx_quota += 1;
+                    return;
+                }
+                #[cfg(feature = "teste-rx-quota")]
+                if udp.porta_destino != PORTA_ECO && udp.porta_destino != PORTA_RX_QUOTA {
+                    self.descartados += 1;
+                    return;
+                }
+                #[cfg(feature = "teste-rx-orcamento")]
+                if udp.porta_destino == PORTA_RX_ORCAMENTO {
+                    if udp.porta_origem == 0
+                        || udp.carga.len() != 8
+                        || &udp.carga[..6] != RX_ORCAMENTO_MAGIC
+                    {
+                        self.descartados += 1;
+                        return;
+                    }
+                    let sequencia = u16::from_be_bytes([udp.carga[6], udp.carga[7]]);
+                    if sequencia >= RX_ORCAMENTO_QUANTIDADE {
+                        self.descartados += 1;
+                        return;
+                    }
+                    self.quadros_rx_orcamento += 1;
+                    self.mascara_rx_orcamento |= 1u32 << sequencia;
+                    return;
+                }
+                if udp.porta_destino != PORTA_ECO
                     || udp.porta_origem == 0
                     || udp.carga.len() > MTU - 28
                 {
                     self.descartados += 1;
                     return;
                 }
-                let mut resposta = [0u8; MTU - 20];
-                let tamanho = udp.carga.len() + 8;
-                escrever_u16(&mut resposta, 0, PORTA_ECO);
-                escrever_u16(&mut resposta, 2, udp.porta_origem);
-                escrever_u16(&mut resposta, 4, tamanho as u16);
-                resposta[8..tamanho].copy_from_slice(udp.carga);
-                let soma = checksum_udp(IP, ip.origem, &resposta[..tamanho]);
-                escrever_u16(&mut resposta, 6, if soma == 0 { 0xffff } else { soma });
-                match self.enviar_ip(mac_origem, ip.origem, 17, &resposta[..tamanho]) {
-                    Ok(()) => self.ecos_udp += 1,
-                    Err(_) => self.descartados += 1,
-                }
+                self.responder_udp(
+                    mac_origem,
+                    ip.origem,
+                    PORTA_ECO,
+                    udp.porta_origem,
+                    udp.carga,
+                );
             }
             _ => self.descartados += 1,
+        }
+    }
+
+    fn responder_udp(
+        &mut self,
+        mac: [u8; 6],
+        destino: [u8; 4],
+        porta_origem: u16,
+        porta_destino: u16,
+        carga: &[u8],
+    ) {
+        let mut resposta = [0u8; MTU - 20];
+        let tamanho = carga.len() + 8;
+        escrever_u16(&mut resposta, 0, porta_origem);
+        escrever_u16(&mut resposta, 2, porta_destino);
+        escrever_u16(&mut resposta, 4, tamanho as u16);
+        resposta[8..tamanho].copy_from_slice(carga);
+        let soma = checksum_udp(IP, destino, &resposta[..tamanho]);
+        escrever_u16(&mut resposta, 6, if soma == 0 { 0xffff } else { soma });
+        match self.enviar_ip(mac, destino, 17, &resposta[..tamanho]) {
+            Ok(()) => self.ecos_udp += 1,
+            Err(_) => self.descartados += 1,
         }
     }
 

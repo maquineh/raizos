@@ -1,0 +1,5 @@
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.03s
+     Running `target\debug\ferramentas.exe testar-seletor-irq-ipc`
+Evidências: <raiz-os>\evidencias/teste-seletor-irq-ipc-1794738417205755800
+Erro: Tempo esgotado aguardando "[teste-seletor-irq-ipc] FIM CPL3" após 15 segundos
+error: process didn't exit successfully: `target\debug\ferramentas.exe testar-seletor-irq-ipc` (exit code: 1)

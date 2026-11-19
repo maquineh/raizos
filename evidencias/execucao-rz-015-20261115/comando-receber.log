@@ -1,0 +1,5 @@
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.03s
+     Running `target\debug\ferramentas.exe testar-receber-bloqueante`
+Evidencias: <raiz-os>\evidencias/teste-receber-bloqueante-1794721941063068900
+Erro: Tempo esgotado aguardando "[teste-ipc] RECEBER_IMEDIATO id=3" após 10 segundos
+error: process didn't exit successfully: `target\debug\ferramentas.exe testar-receber-bloqueante` (exit code: 1)

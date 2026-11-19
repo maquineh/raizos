@@ -1,0 +1,3 @@
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.03s
+     Running `target\debug\ferramentas.exe testar-ipc-bloqueante`
+Evidencias: <raiz-os>\evidencias/teste-ipc-bloqueante-1794721434165104700

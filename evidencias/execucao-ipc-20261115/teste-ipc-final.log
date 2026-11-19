@@ -1,0 +1,4 @@
+   Compiling ferramentas v0.2.0 (<raiz-os>\ferramentas)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 1.25s
+     Running `target\debug\ferramentas.exe testar-ipc-bloqueante`
+Evidencias: <raiz-os>\evidencias/teste-ipc-bloqueante-1794721124835151200

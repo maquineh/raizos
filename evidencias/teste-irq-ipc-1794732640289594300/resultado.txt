@@ -1,0 +1,1 @@
+APROVADO: oito IPCs entregues, sobreposição IRQ4/IPC e eco completo observados.

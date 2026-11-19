@@ -1,0 +1,13 @@
+# Comparação de consultas vazias — base 0.2
+
+Resultado: **APROVADO**.
+
+Perfil: QEMU/TCG, `pc`/i440fx, 1 CPU, 256 MiB, OVMF e e1000. A imagem deve ter sido criada previamente com `cargo raiz compilar --comparacao-vazia`; o harness não recompila nem substitui a imagem.
+
+Sincronização: aguardou prontidão do terminal, rede e supervisor; enviou `medir-vazio` pela UART serial. A janela observada foi de 100 tiques (`inicio=5`, `fim=105`, `decorrido=100`).
+
+Métricas do terminal CPL3: 27887 chamadas `receber()` sem mensagem e 27887 voltas completas sem IPC consumido nem byte serial/PS2 lido. Na wrapper 0.2, `receber()` retorna `None` para consulta sem mensagem e não distingue essa condição de outros retornos não decodificados como mensagem.
+
+Estas contagens descrevem somente o intervalo e os pontos instrumentados. Não medem ciclos de CPU, utilização, energia, taxa de economia, latência ou desempenho de hardware físico.
+
+Evidências: `serial.log`, `qemu-stderr.log` e `comando.log`. Duração do harness: 3.802 s.

@@ -17,6 +17,11 @@ pub fn chamar(numero: u64, a: u64, b: u64, c: u64, d: u64, e: u64, f: u64) -> u6
 pub fn ceder() {
     chamar(chamada::CEDER, 0, 0, 0, 0, 0, 0);
 }
+/// Espera atividade IPC na caixa propria; confirme o resultado com receber().
+/// Kernels ABI 2 anteriores podem retornar erro::CHAMADA.
+pub fn esperar_ipc() -> u64 {
+    chamar(chamada::ESPERAR_IPC, 0, 0, 0, 0, 0, 0)
+}
 pub fn enviar(destino: u64, codigo: u64, a: u64, b: u64, c: u64, d: u64) -> u64 {
     chamar(chamada::ENVIAR, destino, codigo, a, b, c, d)
 }
@@ -38,6 +43,147 @@ pub fn receber() -> Option<Mensagem> {
             c,
             d,
         })
+    }
+}
+/// Recebe uma mensagem ou um erro. Kernels ABI 2 anteriores retornam CHAMADA.
+pub fn receber_bloqueante() -> Result<Mensagem, u64> {
+    let (resultado, origem, codigo, a, b, c, d);
+    unsafe {
+        asm!("int 0x80", inlateout("rax") chamada::RECEBER_BLOQUEANTE => resultado,
+            lateout("rdi") origem, lateout("rsi") codigo, lateout("rdx") a,
+            lateout("r10") b, lateout("r8") c, lateout("r9") d);
+    }
+    if resultado != 0 {
+        Err(resultado)
+    } else {
+        Ok(Mensagem {
+            origem,
+            codigo,
+            a,
+            b,
+            c,
+            d,
+        })
+    }
+}
+/// Modo e duracao seguem contrato_sistema::prazo; CHAMADA indica indisponibilidade
+/// em kernels ABI 2 anteriores ou argumentos invalidos.
+pub fn receber_com_prazo(modo: u64, duracao: u64) -> Result<Mensagem, u64> {
+    let (resultado, origem, codigo, a, b, c, d);
+    unsafe {
+        asm!("int 0x80", inlateout("rax") chamada::RECEBER_COM_PRAZO => resultado,
+            inlateout("rdi") modo => origem, inlateout("rsi") duracao => codigo,
+            lateout("rdx") a, lateout("r10") b, lateout("r8") c, lateout("r9") d);
+    }
+    if resultado != 0 {
+        Err(resultado)
+    } else {
+        Ok(Mensagem {
+            origem,
+            codigo,
+            a,
+            b,
+            c,
+            d,
+        })
+    }
+}
+/// Apenas supervisor: aguarda IPC proprio ou indisponibilidade da rede exata.
+pub fn receber_observando(alvo: u64, modo: u64, duracao: u64) -> Result<Mensagem, u64> {
+    let (resultado, origem, codigo, a, b, c, d);
+    unsafe {
+        asm!("int 0x80", inlateout("rax") chamada::RECEBER_OBSERVANDO => resultado,
+            inlateout("rdi") alvo => origem, inlateout("rsi") modo => codigo,
+            inlateout("rdx") duracao => a, lateout("r10") b, lateout("r8") c, lateout("r9") d);
+    }
+    if resultado != 0 {
+        Err(resultado)
+    } else {
+        Ok(Mensagem {
+            origem,
+            codigo,
+            a,
+            b,
+            c,
+            d,
+        })
+    }
+}
+pub enum EventoSistema {
+    Ipc(Mensagem),
+    Irq {
+        sequencia: u64,
+    },
+    Vida {
+        referencia: u64,
+        tipo: u64,
+        estado: u64,
+    },
+}
+pub fn armar_irq4() -> u64 {
+    chamar(chamada::ARMAR_IRQ4, 0, 0, 0, 0, 0, 0)
+}
+pub fn confirmar_irq4(sequencia: u64) -> u64 {
+    chamar(chamada::CONFIRMAR_IRQ4, sequencia, 0, 0, 0, 0, 0)
+}
+pub fn esperar_irq_ipc(modo: u64, duracao: u64) -> Result<EventoSistema, u64> {
+    let (classe, rdi, rsi, rdx, r10, r8, r9);
+    unsafe {
+        asm!("int 0x80", inlateout("rax") chamada::ESPERAR_IRQ_IPC => classe,
+        inlateout("rdi") modo => rdi, inlateout("rsi") duracao => rsi,
+        lateout("rdx") rdx, lateout("r10") r10, lateout("r8") r8, lateout("r9") r9);
+    }
+    match classe {
+        contrato_sistema::classe_evento::IRQ => Ok(EventoSistema::Irq { sequencia: rdi }),
+        contrato_sistema::classe_evento::IPC => Ok(EventoSistema::Ipc(Mensagem {
+            origem: rdi,
+            codigo: rsi,
+            a: rdx,
+            b: r10,
+            c: r8,
+            d: r9,
+        })),
+        e => Err(e),
+    }
+}
+pub fn inscrever_vida(referencia: u64) -> Result<u64, u64> {
+    let (status, estado);
+    unsafe {
+        asm!("int 0x80", inlateout("rax") chamada::INSCREVER_VIDA => status,
+        inlateout("rdi") referencia => estado, lateout("rsi") _, lateout("rdx") _,
+        lateout("r10") _, lateout("r8") _, lateout("r9") _);
+    }
+    if status == 0 {
+        Ok(estado)
+    } else {
+        Err(status)
+    }
+}
+pub fn cancelar_vida(referencia: u64) -> u64 {
+    chamar(chamada::CANCELAR_VIDA, referencia, 0, 0, 0, 0, 0)
+}
+pub fn esperar_evento(modo: u64, duracao: u64) -> Result<EventoSistema, u64> {
+    let (classe, rdi, rsi, rdx, r10, r8, r9);
+    unsafe {
+        asm!("int 0x80", inlateout("rax") chamada::ESPERAR_EVENTO => classe,
+        inlateout("rdi") modo => rdi, inlateout("rsi") duracao => rsi,
+        lateout("rdx") rdx, lateout("r10") r10, lateout("r8") r8, lateout("r9") r9);
+    }
+    match classe {
+        contrato_sistema::classe_evento::IPC => Ok(EventoSistema::Ipc(Mensagem {
+            origem: rdi,
+            codigo: rsi,
+            a: rdx,
+            b: r10,
+            c: r8,
+            d: r9,
+        })),
+        contrato_sistema::classe_evento::VIDA => Ok(EventoSistema::Vida {
+            referencia: rdi,
+            tipo: rsi,
+            estado: rdx,
+        }),
+        e => Err(e),
     }
 }
 pub fn estado(id: u64) -> u64 {

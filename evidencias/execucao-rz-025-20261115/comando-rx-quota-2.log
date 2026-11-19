@@ -1,0 +1,5 @@
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.03s
+     Running `target\debug\ferramentas.exe testar-rx-quota`
+Evidências: <raiz-os>\evidencias/teste-rx-quota-1794750986962632100
+Erro: Tempo esgotado aguardando "FIFO com quota da rede e controle supervisor" após 15 segundos
+error: process didn't exit successfully: `target\debug\ferramentas.exe testar-rx-quota` (exit code: 1)

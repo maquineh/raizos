@@ -1,0 +1,20 @@
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.03s
+     Running `target\debug\ferramentas.exe compilar --teste-idle`
+Compilando serviços de terminal, rede e supervisão...
+   Compiling contrato-boot v0.2.0 (<raiz-os>\contrato-boot)
+   Compiling servico-supervisor v0.2.0 (<raiz-os>\servicos\supervisor)
+   Compiling servico-rede v0.2.0 (<raiz-os>\servicos\rede)
+   Compiling servico-terminal v0.2.0 (<raiz-os>\servicos\terminal)
+   Compiling protocolos v0.1.0 (<raiz-os>\protocolos)
+   Compiling contrato-sistema v0.2.0 (<raiz-os>\contrato-sistema)
+   Compiling apoio-servicos v0.2.0 (<raiz-os>\apoio-servicos)
+    Finished `release` profile [optimized + debuginfo] target(s) in 1.98s
+Compilando microkernel com os ELFs dos serviços incorporados...
+   Compiling nucleo v0.2.0 (<raiz-os>\nucleo)
+    Finished `release` profile [optimized + debuginfo] target(s) in 1.19s
+Compilando carregador UEFI com o kernel incorporado...
+   Compiling contrato-boot v0.2.0 (<raiz-os>\contrato-boot)
+   Compiling inicializador v0.2.0 (<raiz-os>\inicializador)
+    Finished `release` profile [optimized + debuginfo] target(s) in 0.44s
+Pronto: <raiz-os>\saida/teste-idle\raiz-os.img (128 MiB; carregador de 795648 bytes).
+GPT, FAT32 e bytes do carregador foram conferidos após a gravação.

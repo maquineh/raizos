@@ -1,0 +1,2187 @@
+[2J[01;01H[=3h[2J[01;01H[2J[01;01H[=3h[2J[01;01H[2J[01;01H[=3h[2J[01;01HBdsDxe: loading Boot0001 "UEFI QEMU HARDDISK QM00001 " from PciRoot(0x0)/Pci(0x1,0x1)/Ata(Primary,Master,0x0)
+BdsDxe: starting Boot0001 "UEFI QEMU HARDDISK QM00001 " from PciRoot(0x0)/Pci(0x1,0x1)/Ata(Primary,Master,0x0)
+Raiz OS 0.2.0 - carregador proprio em Rust
+ELF validado; segmentos e pilha preparados.
+Encerrando servicos de boot do UEFI...
+
+[boot] EXIT_BOOT_SERVICES_OK
+[microkernel] Raiz OS: nucleo proprio Rust.
+[microkernel] PCI atribuido ao servico 2: BDF=0x300 MMIO=0x81040000
+[microkernel] SERVICO_CARREGADO id=1 referencia=0x100000001 ELF=49232 bytes fisico=0x20af000 CR3=0x2caf000
+[microkernel] SERVICO_CARREGADO id=2 referencia=0x100000002 ELF=103808 bytes fisico=0x24af000 CR3=0x2ccf000
+[microkernel] SERVICO_CARREGADO id=3 referencia=0x100000003 ELF=8280 bytes fisico=0x22af000 CR3=0x2cbf000
+[microkernel] PRONTO: 3 processos CPL3; CR3 distintos; W^X/NX; IPC; PIT 100Hz; ABI 2.
+[teste-ciclo-espera] BLOQUEADA referencia=0x100000002 prazo=1001
+[teste-prazo] BLOQUEADO id=2
+RAIZ OS / 0.2.0 / MICROKERNEL / x86_64
+Sistema operacional proprio, escrito em Rust.
+[terminal] Servico isolado iniciado: CPL=3
+[ok] Console, framebuffer e teclado fora do kernel.
+[ok] IPC int80; paginas por processo; privilegios por servico.
+Digite ajuda. Use ping 10.0.2.2 para testar a rede.
+[teste] TERMINAL_PRONTO
+raiz> 
+[supervisor] SERVICO_PRONTO CPL=3 modo=manual limite=4
+raiz> p[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=3
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=4
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=5
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=6
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=7
+[teste-prazo] TIMEOUT id=1
+a[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=8
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=9
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=10
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=11
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=12
+[teste-prazo] TIMEOUT id=1
+r[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=13
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=14
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=15
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=16
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=17
+[teste-prazo] TIMEOUT id=1
+a[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=18
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=19
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=20
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=21
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=22
+[teste-prazo] TIMEOUT id=1
+r[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=23
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=24
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=25
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=26
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=27
+[teste-prazo] TIMEOUT id=1
+-[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=28
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=29
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=30
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=31
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=32
+[teste-prazo] TIMEOUT id=1
+r[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=33
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=34
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=35
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=36
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=37
+[teste-prazo] TIMEOUT id=1
+e[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=38
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=39
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=40
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=41
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=42
+[teste-prazo] TIMEOUT id=1
+d[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=43
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=44
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=45
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=46
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=47
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=48
+[teste-prazo] TIMEOUT id=1
+e[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=49
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=50
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=51
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=52
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=53
+[teste-prazo] TIMEOUT id=1
+
+raiz> [teste-ciclo-espera] CANCELADA referencia=0x100000002
+[microkernel] SERVICO_ENCERRADO id=2 referencia=0x100000002 purgadas=0
+
+[supervisor] REDE_PARADA geracao=1
+raiz> 
+[supervisor] MODO manual reinicios=0 ultimo_erro=0x0 limite=4
+raiz> [teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=54
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=55
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=56
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=57
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=58
+[teste-prazo] TIMEOUT id=1
+r[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=59
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=60
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=61
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=62
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=63
+[teste-prazo] TIMEOUT id=1
+e[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=64
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=65
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=66
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=67
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=68
+[teste-prazo] TIMEOUT id=1
+i[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=69
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=70
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=71
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=72
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=73
+[teste-prazo] TIMEOUT id=1
+n[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=74
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=75
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=76
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=77
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=78
+[teste-prazo] TIMEOUT id=1
+i[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=79
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=80
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=81
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=82
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=83
+[teste-prazo] TIMEOUT id=1
+c[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=84
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=85
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=86
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=87
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=88
+[teste-prazo] TIMEOUT id=1
+i[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=89
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=90
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=91
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=92
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=93
+[teste-prazo] TIMEOUT id=1
+a[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=94
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=95
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=96
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=97
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=98
+[teste-prazo] TIMEOUT id=1
+r[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=99
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=100
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=101
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=102
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=103
+[teste-prazo] TIMEOUT id=1
+-[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=104
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=105
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=106
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=107
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=108
+[teste-prazo] TIMEOUT id=1
+r[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=109
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=110
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=111
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=112
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=113
+[teste-prazo] TIMEOUT id=1
+e[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=114
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=115
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=116
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=117
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=118
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=119
+[teste-prazo] TIMEOUT id=1
+d[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=120
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=121
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=122
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=123
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=124
+[teste-prazo] TIMEOUT id=1
+e[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=125
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=126
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=127
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=128
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=129
+[teste-prazo] TIMEOUT id=1
+
+raiz> [microkernel] SERVICO_REINICIADO id=2 antiga=0x100000002 nova=0x200000002 arena_antiga=0x24af000 arena_nova=0x26af000 purgadas=0
+[microkernel] DMA_QUARENTENA referencia=0x100000002 arena=0x24af000 bytes=2097152
+
+[supervisor] REDE_REINICIADA geracao_antiga=1 geracao_nova=2 automatico=0 referencia_antiga=0x100000002 referencia_nova=0x200000002
+Nova instancia criada; aguardando inicializacao do driver.
+raiz> [teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=5129
+[teste-prazo] BLOQUEADO id=2
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=130
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=131
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=132
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=133
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=134
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=135
+[teste-prazo] TIMEOUT id=1
+p[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=136
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=137
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=138
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=139
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=140
+[teste-prazo] TIMEOUT id=1
+r[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=141
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=142
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=143
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=144
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=145
+[teste-prazo] TIMEOUT id=1
+o[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=146
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=147
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=148
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=149
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=150
+[teste-prazo] TIMEOUT id=1
+c[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=151
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=152
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=153
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=154
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=155
+[teste-prazo] TIMEOUT id=1
+e[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=156
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=157
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=158
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=159
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=160
+[teste-prazo] TIMEOUT id=1
+s[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=161
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=162
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=163
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=164
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=165
+[teste-prazo] TIMEOUT id=1
+s[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=166
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=167
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=168
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=169
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=170
+[teste-prazo] TIMEOUT id=1
+o[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=171
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=172
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=173
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=174
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=175
+[teste-prazo] TIMEOUT id=1
+s[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=176
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=177
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=178
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=179
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=180
+[teste-prazo] TIMEOUT id=1
+
+terminal=1 rede=1 tiques=180
+supervisor=1 geracao_rede=2 referencia_rede=0x200000002 referencia_terminal=0x100000001
+Estados: 1=executavel 2=falhou 3=finalizado 0=inexistente.
+raiz> [teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=181
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=182
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=183
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=184
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=185
+[teste-prazo] TIMEOUT id=1
+p[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=186
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=187
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=188
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=189
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=190
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=191
+[teste-prazo] TIMEOUT id=1
+r[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=192
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=193
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=194
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=195
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=196
+[teste-prazo] TIMEOUT id=1
+o[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=197
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=198
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=199
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=200
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=201
+[teste-prazo] TIMEOUT id=1
+c[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=202
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=203
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=204
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=205
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=206
+[teste-prazo] TIMEOUT id=1
+e[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=207
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=208
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=209
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=210
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=211
+[teste-prazo] TIMEOUT id=1
+s[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=212
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=213
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=214
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=215
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=216
+[teste-prazo] TIMEOUT id=1
+s[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=217
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=218
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=219
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=220
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=221
+[teste-prazo] TIMEOUT id=1
+o[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=222
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=223
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=224
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=225
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=226
+[teste-prazo] TIMEOUT id=1
+s[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=227
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=228
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=229
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=230
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=231
+[teste-prazo] TIMEOUT id=1
+
+terminal=1 rede=1 tiques=231
+supervisor=1 geracao_rede=2 referencia_rede=0x200000002 referencia_terminal=0x100000001
+Estados: 1=executavel 2=falhou 3=finalizado 0=inexistente.
+raiz> [teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=232
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=233
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=234
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=235
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=236
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=237
+[teste-prazo] TIMEOUT id=1
+p[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=238
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=239
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=240
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=241
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=242
+[teste-prazo] TIMEOUT id=1
+r[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=243
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=244
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=245
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=246
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=247
+[teste-prazo] TIMEOUT id=1
+o[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=248
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=249
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=250
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=251
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=252
+[teste-prazo] TIMEOUT id=1
+c[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=253
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=254
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=255
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=256
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=257
+[teste-prazo] TIMEOUT id=1
+e[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=258
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=259
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=260
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=261
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=262
+[teste-prazo] TIMEOUT id=1
+s[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=263
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=264
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=265
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=266
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=267
+[teste-prazo] TIMEOUT id=1
+s[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=268
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=269
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=270
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=271
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=272
+[teste-prazo] TIMEOUT id=1
+o[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=273
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=274
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=275
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=276
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=277
+[teste-prazo] TIMEOUT id=1
+s[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=279
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=280
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=281
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=282
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=283
+[teste-prazo] TIMEOUT id=1
+
+terminal=1 rede=1 tiques=283
+supervisor=1 geracao_rede=2 referencia_rede=0x200000002 referencia_terminal=0x100000001
+Estados: 1=executavel 2=falhou 3=finalizado 0=inexistente.
+raiz> [teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=284
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=285
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=286
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=287
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=288
+[teste-prazo] TIMEOUT id=1
+p[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=289
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=290
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=291
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=292
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=293
+[teste-prazo] TIMEOUT id=1
+r[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=294
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=295
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=296
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=297
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=298
+[teste-prazo] TIMEOUT id=1
+o[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=299
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=300
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=301
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=302
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=303
+[teste-prazo] TIMEOUT id=1
+c[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=304
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=305
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=306
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=307
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=308
+[teste-prazo] TIMEOUT id=1
+e[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=309
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=310
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=311
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=312
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=313
+[teste-prazo] TIMEOUT id=1
+s[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=314
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=315
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=316
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=317
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=318
+[teste-prazo] TIMEOUT id=1
+s[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=319
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=320
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=321
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=322
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=323
+[teste-prazo] TIMEOUT id=1
+o[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=324
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=325
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=326
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=327
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=328
+[teste-prazo] TIMEOUT id=1
+s[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=329
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=330
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=331
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=332
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=333
+[teste-prazo] TIMEOUT id=1
+
+terminal=1 rede=1 tiques=334
+supervisor=1 geracao_rede=2 referencia_rede=0x200000002 referencia_terminal=0x100000001
+Estados: 1=executavel 2=falhou 3=finalizado 0=inexistente.
+raiz> [teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=335
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=336
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=337
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=338
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=339
+[teste-prazo] TIMEOUT id=1
+p[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=340
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=341
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=342
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=343
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=344
+[teste-prazo] TIMEOUT id=1
+r[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=345
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=346
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=347
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=348
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=349
+[teste-prazo] TIMEOUT id=1
+o[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=350
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=351
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=352
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=353
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=354
+[teste-prazo] TIMEOUT id=1
+c[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=355
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=356
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=357
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=358
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=359
+[teste-prazo] TIMEOUT id=1
+e[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=360
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=361
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=362
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=363
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=364
+[teste-prazo] TIMEOUT id=1
+s[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=365
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=366
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=367
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=368
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=369
+[teste-prazo] TIMEOUT id=1
+s[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=370
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=371
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=372
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=373
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=374
+[teste-prazo] TIMEOUT id=1
+o[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=375
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=376
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=377
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=378
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=379
+[teste-prazo] TIMEOUT id=1
+s[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=380
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=381
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=382
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=383
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=384
+[teste-prazo] TIMEOUT id=1
+
+terminal=1 rede=1 tiques=384
+supervisor=1 geracao_rede=2 referencia_rede=0x200000002 referencia_terminal=0x100000001
+Estados: 1=executavel 2=falhou 3=finalizado 0=inexistente.
+raiz> [teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=385
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=386
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=387
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=388
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=389
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=390
+[teste-prazo] TIMEOUT id=1
+p[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=391
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=392
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=393
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=394
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=395
+[teste-prazo] TIMEOUT id=1
+r[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=396
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=397
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=398
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=399
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=400
+[teste-prazo] TIMEOUT id=1
+o[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=401
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=402
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=403
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=404
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=405
+[teste-prazo] TIMEOUT id=1
+c[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=406
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=407
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=408
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=409
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=410
+[teste-prazo] TIMEOUT id=1
+e[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=411
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=412
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=413
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=414
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=415
+[teste-prazo] TIMEOUT id=1
+s[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=416
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=417
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=418
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=419
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=420
+[teste-prazo] TIMEOUT id=1
+s[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=421
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=422
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=423
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=424
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=425
+[teste-prazo] TIMEOUT id=1
+o[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=426
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=427
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=428
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=429
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=430
+[teste-prazo] TIMEOUT id=1
+s[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=431
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=432
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=433
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=434
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=435
+[teste-prazo] TIMEOUT id=1
+
+terminal=1 rede=1 tiques=435
+supervisor=1 geracao_rede=2 referencia_rede=0x200000002 referencia_terminal=0x100000001
+Estados: 1=executavel 2=falhou 3=finalizado 0=inexistente.
+raiz> [teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=436
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=437
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=438
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=439
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=440
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=441
+[teste-prazo] TIMEOUT id=1
+p[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=442
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=443
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=444
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=445
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=446
+[teste-prazo] TIMEOUT id=1
+r[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=447
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=448
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=449
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=450
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=451
+[teste-prazo] TIMEOUT id=1
+o[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=452
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=453
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=454
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=455
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=456
+[teste-prazo] TIMEOUT id=1
+c[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=457
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=458
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=459
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=460
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=461
+[teste-prazo] TIMEOUT id=1
+e[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=462
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=463
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=464
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=465
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=466
+[teste-prazo] TIMEOUT id=1
+s[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=467
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=468
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=469
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=470
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=471
+[teste-prazo] TIMEOUT id=1
+s[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=472
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=473
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=474
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=475
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=476
+[teste-prazo] TIMEOUT id=1
+o[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=477
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=478
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=479
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=480
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=481
+[teste-prazo] TIMEOUT id=1
+s[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=482
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=483
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=484
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=485
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=486
+[teste-prazo] TIMEOUT id=1
+
+terminal=1 rede=1 tiques=486
+supervisor=1 geracao_rede=2 referencia_rede=0x200000002 referencia_terminal=0x100000001
+Estados: 1=executavel 2=falhou 3=finalizado 0=inexistente.
+raiz> [teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=487
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=488
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=489
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=490
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=491
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=492
+[teste-prazo] TIMEOUT id=1
+p[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=493
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=494
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=495
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=496
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=497
+[teste-prazo] TIMEOUT id=1
+r[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=498
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=499
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=500
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=501
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=502
+[teste-prazo] TIMEOUT id=1
+o[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=503
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=504
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=505
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=506
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=507
+[teste-prazo] TIMEOUT id=1
+c[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=508
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=509
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=510
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=511
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=512
+[teste-prazo] TIMEOUT id=1
+e[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=513
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=514
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=515
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=516
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=517
+[teste-prazo] TIMEOUT id=1
+s[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=518
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=519
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=520
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=521
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=522
+[teste-prazo] TIMEOUT id=1
+s[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=523
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=524
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=525
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=526
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=527
+[teste-prazo] TIMEOUT id=1
+o[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=528
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=529
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=530
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=531
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=532
+[teste-prazo] TIMEOUT id=1
+s[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=533
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=534
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=535
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=536
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=537
+[teste-prazo] TIMEOUT id=1
+
+terminal=1 rede=1 tiques=537
+supervisor=1 geracao_rede=2 referencia_rede=0x200000002 referencia_terminal=0x100000001
+Estados: 1=executavel 2=falhou 3=finalizado 0=inexistente.
+raiz> [teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=539
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=540
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=541
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=542
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=543
+[teste-prazo] TIMEOUT id=1
+p[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=544
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=545
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=546
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=547
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=548
+[teste-prazo] TIMEOUT id=1
+r[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=549
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=550
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=551
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=552
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=553
+[teste-prazo] TIMEOUT id=1
+o[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=554
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=555
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=556
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=557
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=558
+[teste-prazo] TIMEOUT id=1
+c[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=559
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=560
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=561
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=562
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=563
+[teste-prazo] TIMEOUT id=1
+e[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=564
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=565
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=566
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=567
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=568
+[teste-prazo] TIMEOUT id=1
+s[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=569
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=570
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=571
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=572
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=573
+[teste-prazo] TIMEOUT id=1
+s[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=574
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=575
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=576
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=577
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=578
+[teste-prazo] TIMEOUT id=1
+o[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=579
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=580
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=581
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=582
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=583
+[teste-prazo] TIMEOUT id=1
+s[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=584
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=585
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=586
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=587
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=588
+[teste-prazo] TIMEOUT id=1
+
+terminal=1 rede=1 tiques=588
+supervisor=1 geracao_rede=2 referencia_rede=0x200000002 referencia_terminal=0x100000001
+Estados: 1=executavel 2=falhou 3=finalizado 0=inexistente.
+raiz> [teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=590
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=591
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=592
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=593
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=594
+[teste-prazo] TIMEOUT id=1
+p[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=595
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=596
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=597
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=598
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=599
+[teste-prazo] TIMEOUT id=1
+r[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=600
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=601
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=602
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=603
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=604
+[teste-prazo] TIMEOUT id=1
+o[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=605
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=606
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=607
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=608
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=609
+[teste-prazo] TIMEOUT id=1
+c[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=610
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=611
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=612
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=613
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=614
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=615
+[teste-prazo] TIMEOUT id=1
+e[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=616
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=617
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=618
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=619
+[teste-prazo] TIMEOUT id=1
+s[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=620
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=621
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=622
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=623
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=624
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=625
+[teste-prazo] TIMEOUT id=1
+s[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=626
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=627
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=628
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=629
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=630
+[teste-prazo] TIMEOUT id=1
+o[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=631
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=632
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=633
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=634
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=635
+[teste-prazo] TIMEOUT id=1
+s[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=636
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=637
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=638
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=639
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=640
+[teste-prazo] TIMEOUT id=1
+
+terminal=1 rede=1 tiques=640
+supervisor=1 geracao_rede=2 referencia_rede=0x200000002 referencia_terminal=0x100000001
+Estados: 1=executavel 2=falhou 3=finalizado 0=inexistente.
+raiz> [teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=642
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=643
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=644
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=645
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=646
+[teste-prazo] TIMEOUT id=1
+p[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=647
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=648
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=649
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=650
+[teste-prazo] TIMEOUT id=1
+r[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=652
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=653
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=654
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=655
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=656
+[teste-prazo] TIMEOUT id=1
+o[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=657
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=658
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=659
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=660
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=661
+[teste-prazo] TIMEOUT id=1
+c[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=662
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=663
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=664
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=665
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=666
+[teste-prazo] TIMEOUT id=1
+e[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=667
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=668
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=669
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=670
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=671
+[teste-prazo] TIMEOUT id=1
+s[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=672
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=673
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=674
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=675
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=676
+[teste-prazo] TIMEOUT id=1
+s[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=677
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=678
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=679
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=680
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=681
+[teste-prazo] TIMEOUT id=1
+o[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=682
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=683
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=684
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=685
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=686
+[teste-prazo] TIMEOUT id=1
+s[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=687
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=688
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=689
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=690
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=691
+[teste-prazo] TIMEOUT id=1
+
+terminal=1 rede=1 tiques=691
+supervisor=1 geracao_rede=2 referencia_rede=0x200000002 referencia_terminal=0x100000001
+Estados: 1=executavel 2=falhou 3=finalizado 0=inexistente.
+raiz> [teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=693
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=694
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=695
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=696
+[teste-prazo] TIMEOUT id=1
+p[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=697
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=698
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=699
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=700
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=701
+[teste-prazo] TIMEOUT id=1
+r[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=702
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=703
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=704
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=705
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=706
+[teste-prazo] TIMEOUT id=1
+o[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=707
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=708
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=709
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=710
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=711
+[teste-prazo] TIMEOUT id=1
+c[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=712
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=713
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=714
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=715
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=716
+[teste-prazo] TIMEOUT id=1
+e[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=717
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=718
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=719
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=720
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=721
+[teste-prazo] TIMEOUT id=1
+s[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=722
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=723
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=724
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=725
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=726
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=727
+[teste-prazo] TIMEOUT id=1
+s[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=728
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=729
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=730
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=731
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=732
+[teste-prazo] TIMEOUT id=1
+o[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=733
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=734
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=735
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=736
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=737
+[teste-prazo] TIMEOUT id=1
+s[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=738
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=739
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=740
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=741
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=742
+[teste-prazo] TIMEOUT id=1
+
+terminal=1 rede=1 tiques=742
+supervisor=1 geracao_rede=2 referencia_rede=0x200000002 referencia_terminal=0x100000001
+Estados: 1=executavel 2=falhou 3=finalizado 0=inexistente.
+raiz> [teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=743
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=744
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=745
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=746
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=747
+[teste-prazo] TIMEOUT id=1
+p[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=748
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=749
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=750
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=751
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=752
+[teste-prazo] TIMEOUT id=1
+r[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=753
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=754
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=755
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=756
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=757
+[teste-prazo] TIMEOUT id=1
+o[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=758
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=759
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=760
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=761
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=762
+[teste-prazo] TIMEOUT id=1
+c[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=763
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=764
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=765
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=766
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=767
+[teste-prazo] TIMEOUT id=1
+e[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=768
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=769
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=770
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=771
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=772
+[teste-prazo] TIMEOUT id=1
+s[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=773
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=774
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=775
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=776
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=777
+[teste-prazo] TIMEOUT id=1
+s[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=778
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=779
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=780
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=781
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=782
+[teste-prazo] TIMEOUT id=1
+o[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=783
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=784
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=785
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=786
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=787
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=788
+[teste-prazo] TIMEOUT id=1
+s[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=789
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=790
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=791
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=792
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=793
+[teste-prazo] TIMEOUT id=1
+
+terminal=1 rede=1 tiques=793
+supervisor=1 geracao_rede=2 referencia_rede=0x200000002 referencia_terminal=0x100000001
+Estados: 1=executavel 2=falhou 3=finalizado 0=inexistente.
+raiz> [teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=794
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=795
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=796
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=797
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=798
+[teste-prazo] TIMEOUT id=1
+p[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=799
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=800
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=801
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=802
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=803
+[teste-prazo] TIMEOUT id=1
+r[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=804
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=805
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=806
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=807
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=808
+[teste-prazo] TIMEOUT id=1
+o[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=809
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=810
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=811
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=812
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=813
+[teste-prazo] TIMEOUT id=1
+c[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=814
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=815
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=816
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=817
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=818
+[teste-prazo] TIMEOUT id=1
+e[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=819
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=820
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=821
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=822
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=823
+[teste-prazo] TIMEOUT id=1
+s[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=824
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=825
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=826
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=827
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=828
+[teste-prazo] TIMEOUT id=1
+s[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=829
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=830
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=831
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=832
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=833
+[teste-prazo] TIMEOUT id=1
+o[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=834
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=835
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=836
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=837
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=838
+[teste-prazo] TIMEOUT id=1
+s[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=839
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=840
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=841
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=842
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=843
+[teste-prazo] TIMEOUT id=1
+
+terminal=1 rede=1 tiques=843
+supervisor=1 geracao_rede=2 referencia_rede=0x200000002 referencia_terminal=0x100000001
+Estados: 1=executavel 2=falhou 3=finalizado 0=inexistente.
+raiz> [teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=845
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=846
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=847
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=848
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=849
+[teste-prazo] TIMEOUT id=1
+p[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=850
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=851
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=852
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=853
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=854
+[teste-prazo] TIMEOUT id=1
+r[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=855
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=856
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=857
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=858
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=859
+[teste-prazo] TIMEOUT id=1
+o[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=860
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=861
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=862
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=863
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=864
+[teste-prazo] TIMEOUT id=1
+c[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=865
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=866
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=867
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=868
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=869
+[teste-prazo] TIMEOUT id=1
+e[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=870
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=871
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=872
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=873
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=874
+[teste-prazo] TIMEOUT id=1
+s[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=875
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=876
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=877
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=878
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=879
+[teste-prazo] TIMEOUT id=1
+s[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=880
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=881
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=882
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=883
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=884
+[teste-prazo] TIMEOUT id=1
+o[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=885
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=886
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=887
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=888
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=889
+[teste-prazo] TIMEOUT id=1
+s[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=890
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=891
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=892
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=893
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=894
+[teste-prazo] TIMEOUT id=1
+
+terminal=1 rede=1 tiques=894
+supervisor=1 geracao_rede=2 referencia_rede=0x200000002 referencia_terminal=0x100000001
+Estados: 1=executavel 2=falhou 3=finalizado 0=inexistente.
+raiz> [teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=896
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=897
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=898
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=899
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=900
+[teste-prazo] TIMEOUT id=1
+p[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=901
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=902
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=903
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=904
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=905
+[teste-prazo] TIMEOUT id=1
+r[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=906
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=907
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=908
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=909
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=910
+[teste-prazo] TIMEOUT id=1
+o[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=911
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=912
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=913
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=914
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=915
+[teste-prazo] TIMEOUT id=1
+c[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=916
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=917
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=918
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=919
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=920
+[teste-prazo] TIMEOUT id=1
+e[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=921
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=922
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=923
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=924
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=925
+[teste-prazo] TIMEOUT id=1
+s[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=926
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=927
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=928
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=929
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=930
+[teste-prazo] TIMEOUT id=1
+s[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=931
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=932
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=933
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=934
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=935
+[teste-prazo] TIMEOUT id=1
+o[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=936
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=937
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=938
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=939
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=940
+[teste-prazo] TIMEOUT id=1
+s[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=941
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=942
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=943
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=944
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=945
+[teste-prazo] TIMEOUT id=1
+
+terminal=1 rede=1 tiques=945
+supervisor=1 geracao_rede=2 referencia_rede=0x200000002 referencia_terminal=0x100000001
+Estados: 1=executavel 2=falhou 3=finalizado 0=inexistente.
+raiz> [teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=947
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=948
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=949
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=950
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=951
+[teste-prazo] TIMEOUT id=1
+p[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=952
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=953
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=954
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=955
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=956
+[teste-prazo] TIMEOUT id=1
+r[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=957
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=958
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=959
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=960
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=961
+[teste-prazo] TIMEOUT id=1
+o[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=962
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=963
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=964
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=965
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=966
+[teste-prazo] TIMEOUT id=1
+c[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=967
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=968
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=969
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=970
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=971
+[teste-prazo] TIMEOUT id=1
+e[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=972
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=973
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=974
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=975
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=976
+[teste-prazo] TIMEOUT id=1
+s[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=977
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=978
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=979
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=980
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=981
+[teste-prazo] TIMEOUT id=1
+s[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=982
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=983
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=984
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=985
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=986
+[teste-prazo] TIMEOUT id=1
+o[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=987
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=988
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=989
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=990
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=991
+[teste-prazo] TIMEOUT id=1
+s[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=992
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=993
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=994
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=995
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=996
+[teste-prazo] TIMEOUT id=1
+
+terminal=1 rede=1 tiques=996
+supervisor=1 geracao_rede=2 referencia_rede=0x200000002 referencia_terminal=0x100000001
+Estados: 1=executavel 2=falhou 3=finalizado 0=inexistente.
+raiz> [teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=998
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=999
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=1000
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=1001
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=1002
+[teste-prazo] TIMEOUT id=1
+p[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=1003
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=1004
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=1005
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=1006
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=1007
+[teste-prazo] TIMEOUT id=1
+r[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=1008
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=1009
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=1010
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=1011
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=1012
+[teste-prazo] TIMEOUT id=1
+o[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=1013
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=1014
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=1015
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=1016
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=1017
+[teste-prazo] TIMEOUT id=1
+c[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=1018
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=1019
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=1020
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=1021
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=1022
+[teste-prazo] TIMEOUT id=1
+e[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=1023
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=1024
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=1025
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=1026
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=1027
+[teste-prazo] TIMEOUT id=1
+s[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=1028
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=1029
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=1030
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=1031
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=1032
+[teste-prazo] TIMEOUT id=1
+s[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=1033
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=1034
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=1035
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=1036
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=1037
+[teste-prazo] TIMEOUT id=1
+o[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=1038
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=1039
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=1040
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=1041
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=1042
+[teste-prazo] TIMEOUT id=1
+s[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=1043
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=1044
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=1045
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=1046
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=1047
+[teste-prazo] TIMEOUT id=1
+
+terminal=1 rede=1 tiques=1047
+supervisor=1 geracao_rede=2 referencia_rede=0x200000002 referencia_terminal=0x100000001
+Estados: 1=executavel 2=falhou 3=finalizado 0=inexistente.
+raiz> [teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=1049
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=1050
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=1051
+[teste-prazo] TIMEOUT id=1
+[teste-ciclo-espera] TIMEOUT referencia=0x100000001 tiques=1052
+[teste-prazo] TIMEOUT id=1

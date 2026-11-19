@@ -1,0 +1,5 @@
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.04s
+     Running `target\debug\ferramentas.exe testar-ciclo-espera`
+Evidencias: <raiz-os>\evidencias/teste-ciclo-espera-1794730927053300100
+Erro: Tempo esgotado aguardando "[supervisor] REDE_REINICIADA geracao_antiga=3 geracao_nova=4 automatico=0 (linha completa)" após 10 segundos
+error: process didn't exit successfully: `target\debug\ferramentas.exe testar-ciclo-espera` (exit code: 1)

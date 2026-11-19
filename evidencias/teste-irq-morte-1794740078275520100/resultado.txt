@@ -1,0 +1,1 @@
+FALHOU: Tempo esgotado aguardando "[teste-irq-morte] TIMER_AMOSTRAS quantidade=50" após 15 segundos

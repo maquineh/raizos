@@ -1,0 +1,3 @@
+cargo raiz compilar --teste-prazo-empate
+cargo raiz testar-prazo-empate
+comando serial: teste-prazo-empate

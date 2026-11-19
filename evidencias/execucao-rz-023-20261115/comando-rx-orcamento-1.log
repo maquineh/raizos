@@ -1,0 +1,7 @@
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.03s
+     Running `target\debug\ferramentas.exe testar-rx-orcamento`
+Evidências: <raiz-os>\evidencias/teste-rx-orcamento-1794733787882074200
+Erro: Eco UDP de 22 bytes sem resposta válida em até 3 segundos: Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu. (os error 10060)
+error: process didn't exit successfully: `target\debug\ferramentas.exe testar-rx-orcamento` (exit code: 1)

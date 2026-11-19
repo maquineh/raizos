@@ -1,0 +1,9 @@
+# Ensaio T03-22 — orçamento RX
+
+Imagem opt-in; QEMU/TCG, pc/i440fx, 1 CPU, 256 MiB, OVMF e e1000. Este comando não reutiliza a imagem normal.
+
+Resultado: **FALHOU**. `Eco UDP de 22 bytes sem resposta válida em até 3 segundos: Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu. (os error 10060)`
+
+O host enviou todos os datagramas antes de enviar o comando de liberação IPC. O marcador ARMADA indica prontidão da fixture; não é um marcador do kernel de bloqueio. O ensaio cobre esta rajada controlada e não mede desempenho, pressão contínua, perda geral, ou o comportamento de hardware físico. Logs: `serial.log` e `qemu-stderr.log`.

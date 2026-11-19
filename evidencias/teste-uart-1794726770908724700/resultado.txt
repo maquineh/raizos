@@ -1,0 +1,1 @@
+APROVADO: comandos e respostas completos; instrumentado=true.

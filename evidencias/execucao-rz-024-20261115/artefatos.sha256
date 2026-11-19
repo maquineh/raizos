@@ -1,0 +1,8 @@
+0eee90d43a9382e378f60f3c91ed4143d6f31cd55953bee32e7e575fd8c805ca  saida/raiz-os.img
+ae2e8430787f25604cccc7328cd78b1c08afbd3a3938204a34e527b2b8ceb298  saida/esp/EFI/BOOT/BOOTX64.EFI
+a3df4a235d744cb8be8183d2e03b2eed497248c581c3bd39b7a84d57ed2d9734  saida/teste-rz024-irq/raiz-os.img
+a779b989fcbc6e7c548223051df4f2349b45cfd0fa96c5e789aeca030b706022  saida/teste-rz024-irq/esp/EFI/BOOT/BOOTX64.EFI
+ba5df3868aac24b4d5ccfdb05420f7f74d9cbc8b6aca752051097b9f6656a665  saida/teste-rz024-prazo/raiz-os.img
+f157d1e79cdf010f40423c63dffd84aa514f2c41b81d2f2c9ac3af679828c0e3  saida/teste-rz024-prazo/esp/EFI/BOOT/BOOTX64.EFI
+d7af40f9ecf23e367125ed58ef78d3f389dada0632166535fcd9694848b6deea  saida/teste-rz024-pressao/raiz-os.img
+485d7ff65c9eabac4b55f5f96a8cbddd46733b201e96faa56e2063b0e0852162  saida/teste-rz024-pressao/esp/EFI/BOOT/BOOTX64.EFI

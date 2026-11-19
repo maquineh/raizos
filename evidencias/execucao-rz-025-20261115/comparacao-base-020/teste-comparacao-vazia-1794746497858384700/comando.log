@@ -1,0 +1,3 @@
+cargo raiz compilar --comparacao-vazia
+cargo raiz testar-comparacao-vazia
+comando serial: medir-vazio

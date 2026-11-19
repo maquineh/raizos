@@ -1,0 +1,1 @@
+APROVADO: fixture existente confirmou oito IPCs ordenadas e eco completo; carga finita, sem meta de desempenho.

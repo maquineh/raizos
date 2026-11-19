@@ -1,0 +1,7 @@
+# Ensaio T03-22 — orçamento RX
+
+Imagem opt-in; QEMU/TCG, pc/i440fx, 1 CPU, 256 MiB, OVMF e e1000. Este comando não reutiliza a imagem normal.
+
+Resultado: **APROVADO**. Antes da primeira consulta, o driver observou DD ativo em 17 descritores RX consecutivos a partir de `indice_rx`. Sem outro consumidor RX enquanto a rede estava bloqueada, os estados DD permaneceram prontos até a consulta; ela consumiu 16 quadros válidos e cedeu com trabalho já pendente. A consulta seguinte processou o 17.º identificador sem novo esgotamento. Os contadores de quadros válidos e a máscara confirmam os identificadores de teste; o bit DD é uma observação separada do estado dos descritores. Estes datagramas não geram respostas UDP.
+
+Pré-condicionamento: o ensaio observa a resposta ao ping do gateway e confirma um eco UDP comum antes da amostra. O host envia todos os datagramas antes de enviar o comando de liberação IPC. O marcador ARMADA indica prontidão da fixture; não é um marcador do kernel de bloqueio. O ensaio cobre esta rajada controlada e não mede desempenho, pressão contínua, perda geral, ou o comportamento de hardware físico. Logs: `serial.log` e `qemu-stderr.log`.

@@ -1,0 +1,191 @@
+ M PROJETO.md
+ M README.md
+ M apoio-servicos/src/lib.rs
+ M contrato-sistema/src/lib.rs
+ M docs/ABI-0.2.md
+ M docs/projeto/BACKLOG.csv
+ M docs/projeto/CONTINUIDADE.md
+ M docs/projeto/ESPECIFICACAO-0.3.md
+ M docs/projeto/ROADMAP.md
+ M docs/projeto/VALIDACAO-E-ENTREGA.md
+ M ferramentas/src/main.rs
+ M nucleo/Cargo.toml
+ M nucleo/src/controle.rs
+ M nucleo/src/cpu.rs
+ M nucleo/src/lib.rs
+ M nucleo/src/processos.rs
+ M servicos/rede/Cargo.toml
+ M servicos/rede/src/driver.rs
+ M servicos/rede/src/main.rs
+ M servicos/supervisor/Cargo.toml
+ M servicos/supervisor/src/main.rs
+ M servicos/terminal/Cargo.toml
+ M servicos/terminal/src/io.rs
+ M servicos/terminal/src/main.rs
+?? docs/ADR-003-ESPERA-0.3.md
+?? docs/ADR-004-ESPERA-IPC-ABI-2.md
+?? docs/ADR-005-RECEPCAO-BLOQUEANTE.md
+?? docs/ADR-006-PRAZOS-IPC.md
+?? docs/ADR-007-ESPERA-E-CICLO-DE-VIDA.md
+?? docs/ADR-008-NOTIFICACOES-VIDA.md
+?? docs/ADR-009-LIMITES-IPC.md
+?? docs/ADR-010-NOTIFICACAO-IRQ4.md
+?? docs/ADR-011-TERMINAL-UART.md
+?? docs/ADR-012-ESPERA-SERVICOS-RZ022.md
+?? evidencias/execucao-ipc-20261115/
+?? evidencias/execucao-rz-014-20261115/
+?? evidencias/execucao-rz-015-20261115/
+?? evidencias/execucao-rz-016-20261115/
+?? evidencias/execucao-rz-017-20261115/
+?? evidencias/execucao-rz-018-20261115/
+?? evidencias/execucao-rz-019-20261115/
+?? evidencias/execucao-rz-020-20261115/
+?? evidencias/execucao-rz-021-20261115/
+?? evidencias/execucao-rz-022-1794728786449629500/
+?? evidencias/execucao-rz-022-1794728962640850600/
+?? evidencias/execucao-rz-022-1794729868459967100/
+?? evidencias/execucao-rz-022-1794730782358824400/
+?? evidencias/execucao-rz-022-1794731439514596800/
+?? evidencias/execucao-rz-022-20261115/
+?? evidencias/execucao-rz-023-20261115/
+?? evidencias/execucao-rz-024-20261115/
+?? evidencias/execucao-rz-025-20261115/
+?? evidencias/execucao-supervisor-20261115/
+?? evidencias/teste-cancelamento-aplicacao-1794736001073296900/
+?? evidencias/teste-cancelamento-aplicacao-1794740528244617000/
+?? evidencias/teste-ciclo-espera-1794723488638996400/
+?? evidencias/teste-ciclo-espera-1794724583709320900/
+?? evidencias/teste-ciclo-espera-1794725214069687500/
+?? evidencias/teste-ciclo-espera-1794730083373608300/
+?? evidencias/teste-ciclo-espera-1794730331699558100/
+?? evidencias/teste-ciclo-espera-1794730586129312100/
+?? evidencias/teste-ciclo-espera-1794730927053300100/
+?? evidencias/teste-ciclo-espera-1794731272447054900/
+?? evidencias/teste-ciclo-espera-1794731367103979200/
+?? evidencias/teste-ciclo-espera-1794731396374947500/
+?? evidencias/teste-ciclo-espera-1794740394543076300/
+?? evidencias/teste-ciclo-espera-1794752431397843200/
+?? evidencias/teste-ciclo-espera-1794752766992341000/
+?? evidencias/teste-ciclo-espera-1794753016432515800/
+?? evidencias/teste-comparacao-vazia-1794746764914154900/
+?? evidencias/teste-comparacao-vazia-1794746769383594500/
+?? evidencias/teste-comparacao-vazia-1794746773837725400/
+?? evidencias/teste-falha-preparacao-1794742892087494800/
+?? evidencias/teste-falha-preparacao-1794743041965761600/
+?? evidencias/teste-ipc-bloqueante-1794720958567407100/
+?? evidencias/teste-ipc-bloqueante-1794721124835151200/
+?? evidencias/teste-ipc-bloqueante-1794721434165104700/
+?? evidencias/teste-ipc-bloqueante-1794722098723292200/
+?? evidencias/teste-ipc-bloqueante-1794722803602330800/
+?? evidencias/teste-irq-1794725671682654900/
+?? evidencias/teste-irq-1794725802752374300/
+?? evidencias/teste-irq-1794725963506321900/
+?? evidencias/teste-irq-1794727015885039400/
+?? evidencias/teste-irq-1794730023753734900/
+?? evidencias/teste-irq-1794730955658540100/
+?? evidencias/teste-irq-1794731479494639000/
+?? evidencias/teste-irq-1794735243823061000/
+?? evidencias/teste-irq-1794735257443993000/
+?? evidencias/teste-irq-1794736006392076900/
+?? evidencias/teste-irq-1794740489065000300/
+?? evidencias/teste-irq-fifo-cheia-1794744277467154800/
+?? evidencias/teste-irq-fifo-cheia-1794744290122562700/
+?? evidencias/teste-irq-fifo-cheia-1794744323818426700/
+?? evidencias/teste-irq-fifo-cheia-1794744327832498300/
+?? evidencias/teste-irq-fifo-cheia-1794744539244129100/
+?? evidencias/teste-irq-ipc-1794732505478463500/
+?? evidencias/teste-irq-ipc-1794732516939909300/
+?? evidencias/teste-irq-ipc-1794732635537525200/
+?? evidencias/teste-irq-ipc-1794732640289594300/
+?? evidencias/teste-irq-ipc-1794732759143200100/
+?? evidencias/teste-irq-ipc-1794732763992269200/
+?? evidencias/teste-irq-ipc-1794734668475208900/
+?? evidencias/teste-irq-ipc-1794738623175203500/
+?? evidencias/teste-irq-morte-1794739904022393700/
+?? evidencias/teste-irq-morte-1794740078275520100/
+?? evidencias/teste-irq-morte-1794740207660657100/
+?? evidencias/teste-irq-morte-1794740213828014200/
+?? evidencias/teste-observacao-1794723464859922300/
+?? evidencias/teste-observacao-1794724618090843000/
+?? evidencias/teste-observacao-1794740429330454500/
+?? evidencias/teste-prazo-1794722646418998500/
+?? evidencias/teste-prazo-1794723658329379700/
+?? evidencias/teste-prazo-1794724634751535200/
+?? evidencias/teste-prazo-1794740374912624600/
+?? evidencias/teste-prazo-empate-1794748241068193700/
+?? evidencias/teste-prazo-empate-1794748969907907600/
+?? evidencias/teste-prazo-empate-1794749079973062400/
+?? evidencias/teste-prazo-empate-1794749084182557700/
+?? evidencias/teste-prazo-empate-1794749258177448900/
+?? evidencias/teste-prazo-idle-1794722659073305000/
+?? evidencias/teste-prazo-idle-1794723678526388100/
+?? evidencias/teste-prazo-idle-1794724644452625000/
+?? evidencias/teste-prazo-idle-1794726114872668800/
+?? evidencias/teste-prazo-idle-1794727076056907600/
+?? evidencias/teste-prazo-idle-1794730100898230700/
+?? evidencias/teste-prazo-idle-1794730996496301500/
+?? evidencias/teste-prazo-idle-1794731527161460600/
+?? evidencias/teste-prazo-idle-1794740384401729200/
+?? evidencias/teste-quota-1794725073649578100/
+?? evidencias/teste-quota-1794726070029937300/
+?? evidencias/teste-quota-1794727028551910900/
+?? evidencias/teste-quota-1794730036807867100/
+?? evidencias/teste-quota-1794730961860397100/
+?? evidencias/teste-quota-1794731488236693900/
+?? evidencias/teste-quota-1794740468722158600/
+?? evidencias/teste-receber-bloqueante-1794721941063068900/
+?? evidencias/teste-receber-bloqueante-1794722072073175400/
+?? evidencias/teste-receber-bloqueante-1794722780877796800/
+?? evidencias/teste-receber-bloqueante-1794723700866187500/
+?? evidencias/teste-receber-bloqueante-1794724655397848700/
+?? evidencias/teste-receber-bloqueante-1794725247332647900/
+?? evidencias/teste-receber-bloqueante-1794740363976665500/
+?? evidencias/teste-rx-orcamento-1794733787882074200/
+?? evidencias/teste-rx-orcamento-1794733889708570700/
+?? evidencias/teste-rx-orcamento-1794733902725371300/
+?? evidencias/teste-rx-orcamento-1794734214369400500/
+?? evidencias/teste-rx-orcamento-1794734221237766300/
+?? evidencias/teste-rx-orcamento-1794734545957669000/
+?? evidencias/teste-rx-orcamento-1794734552405722300/
+?? evidencias/teste-rx-orcamento-1794740516890899300/
+?? evidencias/teste-rx-quota-1794750846647830200/
+?? evidencias/teste-rx-quota-1794750986962632100/
+?? evidencias/teste-rx-quota-1794751363479086500/
+?? evidencias/teste-rx-quota-1794751379029899500/
+?? evidencias/teste-rz024-1794741842151523900/
+?? evidencias/teste-rz024-1794742020545159600/
+?? evidencias/teste-seletor-irq-ipc-1794738222011274300/
+?? evidencias/teste-seletor-irq-ipc-1794738417205755800/
+?? evidencias/teste-seletor-irq-ipc-1794738618371671800/
+?? evidencias/teste-seletor-irq-ipc-1794738643538232200/
+?? evidencias/teste-seletor-irq-ipc-1794740507865847200/
+?? evidencias/teste-uart-1794726671224390100/
+?? evidencias/teste-uart-1794726718052693100/
+?? evidencias/teste-uart-1794726770908724700/
+?? evidencias/teste-uart-1794726791881491000/
+?? evidencias/teste-uart-1794726895277854900/
+?? evidencias/teste-uart-1794726920528122700/
+?? evidencias/teste-uart-1794729028194606000/
+?? evidencias/teste-uart-1794729927747856400/
+?? evidencias/teste-uart-1794730111350751500/
+?? evidencias/teste-uart-1794730835012558800/
+?? evidencias/teste-uart-1794731002593219800/
+?? evidencias/teste-uart-1794731535111360900/
+?? evidencias/teste-uart-1794731559912987000/
+?? evidencias/teste-uart-1794740498833412900/
+?? evidencias/teste-uart-rz025-1794745626449479100/
+?? evidencias/teste-uart-rz025-1794745669826929700/
+?? evidencias/teste-uart-rz025-1794746072846004000/
+?? evidencias/teste-uart-rz025-1794746077826314400/
+?? evidencias/teste-vida-1794724330187689900/
+?? evidencias/teste-vida-1794724542137348500/
+?? evidencias/teste-vida-1794725191226050200/
+?? evidencias/teste-vida-1794726091503292900/
+?? evidencias/teste-vida-1794727051609060500/
+?? evidencias/teste-vida-1794730059748946100/
+?? evidencias/teste-vida-1794730978435830900/
+?? evidencias/teste-vida-1794731506888476700/
+?? evidencias/teste-vida-1794740446416127900/
+?? nucleo/src/agendamento.rs
+?? nucleo/src/irq.rs
+?? nucleo/src/observacao.rs

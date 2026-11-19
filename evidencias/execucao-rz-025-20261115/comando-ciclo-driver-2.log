@@ -1,0 +1,5 @@
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.03s
+     Running `target\debug\ferramentas.exe testar-ciclo-espera`
+Erro: Tempo esgotado aguardando "[rede] SERVICO_PRONTO CPL=3 geracao=2 (linha completa)" após 10 segundos
+Evidencias: <raiz-os>\evidencias/teste-ciclo-espera-1794752766992341000
+error: process didn't exit successfully: `target\debug\ferramentas.exe testar-ciclo-espera` (exit code: 1)

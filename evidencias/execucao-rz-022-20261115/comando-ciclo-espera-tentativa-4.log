@@ -1,0 +1,5 @@
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.03s
+     Running `target\debug\ferramentas.exe testar-ciclo-espera`
+Evidencias: <raiz-os>\evidencias/teste-ciclo-espera-1794731272447054900
+Erro: Tempo esgotado aguardando "[microkernel] SERVICO_REINICIADO antiga=0x1 nova=0x2 (linha completa)" após 10 segundos
+error: process didn't exit successfully: `target\debug\ferramentas.exe testar-ciclo-espera` (exit code: 1)

@@ -1,0 +1,7 @@
+cenario=teste-rz024-prazo
+sha256_imagem=ba5df3868aac24b4d5ccfdb05420f7f74d9cbc8b6aca752051097b9f6656a665
+qemu_versao=QEMU emulator version 10.2.50 (v10.2.0-14086-g840320663e)
+maquina=pc accel=tcg smp=1 memoria=256M rede=e1000 serial=stdio monitor=none display=none no-reboot snapshot=on hostfwd=udp:17777
+sha256_ovmf=33090cc07675baa5190d9f1e84bf5176b33bcbfa9bacac522961150cdb6dbb2a
+sha256_ovmf_vars=5d2ac383371b408398accee7ec27c8c09ea5b74a0de0ceea6513388b15be5d1e
+qemu_dados_configurado=sim

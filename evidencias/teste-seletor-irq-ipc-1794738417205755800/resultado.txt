@@ -1,0 +1,1 @@
+FALHOU: Tempo esgotado aguardando "[teste-seletor-irq-ipc] FIM CPL3" após 15 segundos

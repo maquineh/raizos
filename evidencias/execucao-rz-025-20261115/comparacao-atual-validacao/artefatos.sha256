@@ -1,0 +1,4 @@
+ca2eb0896408aff7eacecfe83696ecf257a6536fe1cba8ab6a834b7d32548b13  saida/raiz-os.img
+605a4aedfc120700f7d922c0a5e96d5b1abb9a1f08c99a59436953fdbb272e16  saida/esp/EFI/BOOT/BOOTX64.EFI
+abe363a943270247f277f406e7797f8bec37888ccc8a23f0fd4bc12e9400b0e8  saida/comparacao-vazia/raiz-os.img
+d863d68bf61209b46c60c5d7cbf89abfa9c1c85c134f33916a1d8f39e26e84e8  saida/comparacao-vazia/esp/EFI/BOOT/BOOTX64.EFI

@@ -1,0 +1,331 @@
+[2J[01;01H[=3h[2J[01;01H[2J[01;01H[=3h[2J[01;01H[2J[01;01H[=3h[2J[01;01HBdsDxe: loading Boot0001 "UEFI QEMU HARDDISK QM00001 " from PciRoot(0x0)/Pci(0x1,0x1)/Ata(Primary,Master,0x0)
+BdsDxe: starting Boot0001 "UEFI QEMU HARDDISK QM00001 " from PciRoot(0x0)/Pci(0x1,0x1)/Ata(Primary,Master,0x0)
+Raiz OS 0.2.0 - carregador proprio em Rust
+ELF validado; segmentos e pilha preparados.
+Encerrando servicos de boot do UEFI...
+
+[boot] EXIT_BOOT_SERVICES_OK
+[microkernel] Raiz OS: nucleo proprio Rust.
+[microkernel] PCI atribuido ao servico 2: BDF=0x300 MMIO=0x81040000
+[microkernel] SERVICO_CARREGADO id=1 referencia=0x100000001 ELF=57424 bytes fisico=0x20b9000 CR3=0x2cb9000
+[microkernel] SERVICO_CARREGADO id=2 referencia=0x100000002 ELF=107904 bytes fisico=0x24b9000 CR3=0x2cd9000
+[microkernel] SERVICO_CARREGADO id=3 referencia=0x100000003 ELF=8280 bytes fisico=0x22b9000 CR3=0x2cc9000
+[microkernel] PRONTO: 3 processos CPL3; CR3 distintos; W^X/NX; IPC; PIT 100Hz; ABI 2.
+[teste-ciclo-espera] BLOQUEADA referencia=0x100000002 prazo=3
+RAIZ OS / 0.2.0 / MICROKERNEL / x86_64
+Sistema operacional proprio, escrito em Rust.
+[terminal] Servico isolado iniciado: CPL=3
+[ok] Console, framebuffer e teclado fora do kernel.
+[ok] IPC int80; paginas por processo; privilegios por servico.
+Digite ajuda. Use ping 10.0.2.2 para testar a rede.
+[teste] TERMINAL_PRONTO
+raiz> 
+[supervisor] SERVICO_PRONTO CPL=3 modo=manual limite=4
+raiz> [teste-ciclo-espera] TIMEOUT referencia=0x100000002 tiques=3
+[teste-ciclo-espera] BLOQUEADA referencia=0x100000002 prazo=5
+[teste-ciclo-espera] TIMEOUT referencia=0x100000002 tiques=5
+[teste-ciclo-espera] BLOQUEADA referencia=0x100000002 prazo=505
+
+[rede] SERVICO_PRONTO CPL=3 IPv4=10.0.2.15 UDP=7777 geracao=1
+raiz> 
+[teste-ciclo-espera] DRIVER_ATIVO referencia=0x100000002 mmio=0x50000000 arena=0x24b9000 rx_idx=0 tx_idx=0 rx=0 tx=0 CPL3
+[teste-ciclo-espera] BLOQUEADA referencia=0x100000002 prazo=1005
+parar-rede
+raiz> [teste-ciclo-espera] CANCELADA referencia=0x100000002
+[microkernel] SERVICO_ENCERRADO id=2 referencia=0x100000002 purgadas=0
+
+[supervisor] REDE_PARADA geracao=1
+raiz> 
+[supervisor] MODO manual reinicios=0 ultimo_erro=0x0 limite=4
+raiz> reiniciar-rede
+raiz> [microkernel] SERVICO_REINICIADO id=2 antiga=0x100000002 nova=0x200000002 arena_antiga=0x24b9000 arena_nova=0x26b9000 purgadas=0
+[microkernel] DMA_QUARENTENA referencia=0x100000002 arena=0x24b9000 bytes=2097152
+
+[supervisor] REDE_REINICIADA geracao_antiga=1 geracao_nova=2 automatico=0 referencia_antiga=0x100000002 referencia_nova=0x200000002
+Nova instancia criada; aguardando inicializacao do driver.
+raiz> [teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=133
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=133
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=135
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=135
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=635
+
+[rede] SERVICO_PRONTO CPL=3 IPv4=10.0.2.15 UDP=7777 geracao=2
+raiz> 
+[teste-ciclo-espera] DRIVER_ATIVO referencia=0x200000002 mmio=0x50000000 arena=0x26b9000 rx_idx=0 tx_idx=0 rx=0 tx=0 CPL3
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=5135
+processos
+terminal=1 rede=1 tiques=182
+supervisor=1 geracao_rede=2 referencia_rede=0x200000002 referencia_terminal=0x100000001
+Estados: 1=executavel 2=falhou 3=finalizado 0=inexistente.
+raiz> processos
+terminal=1 rede=1 tiques=232
+supervisor=1 geracao_rede=2 referencia_rede=0x200000002 referencia_terminal=0x100000001
+Estados: 1=executavel 2=falhou 3=finalizado 0=inexistente.
+raiz> processos
+terminal=1 rede=1 tiques=282
+supervisor=1 geracao_rede=2 referencia_rede=0x200000002 referencia_terminal=0x100000001
+Estados: 1=executavel 2=falhou 3=finalizado 0=inexistente.
+raiz> processos
+terminal=1 rede=1 tiques=333
+supervisor=1 geracao_rede=2 referencia_rede=0x200000002 referencia_terminal=0x100000001
+Estados: 1=executavel 2=falhou 3=finalizado 0=inexistente.
+raiz> processos
+terminal=1 rede=1 tiques=383
+supervisor=1 geracao_rede=2 referencia_rede=0x200000002 referencia_terminal=0x100000001
+Estados: 1=executavel 2=falhou 3=finalizado 0=inexistente.
+raiz> processos
+terminal=1 rede=1 tiques=433
+supervisor=1 geracao_rede=2 referencia_rede=0x200000002 referencia_terminal=0x100000001
+Estados: 1=executavel 2=falhou 3=finalizado 0=inexistente.
+raiz> processos
+terminal=1 rede=1 tiques=484
+supervisor=1 geracao_rede=2 referencia_rede=0x200000002 referencia_terminal=0x100000001
+Estados: 1=executavel 2=falhou 3=finalizado 0=inexistente.
+raiz> processos
+terminal=1 rede=1 tiques=534
+supervisor=1 geracao_rede=2 referencia_rede=0x200000002 referencia_terminal=0x100000001
+Estados: 1=executavel 2=falhou 3=finalizado 0=inexistente.
+raiz> processos
+terminal=1 rede=1 tiques=585
+supervisor=1 geracao_rede=2 referencia_rede=0x200000002 referencia_terminal=0x100000001
+Estados: 1=executavel 2=falhou 3=finalizado 0=inexistente.
+raiz> processos
+terminal=1 rede=1 tiques=635
+supervisor=1 geracao_rede=2 referencia_rede=0x200000002 referencia_terminal=0x100000001
+Estados: 1=executavel 2=falhou 3=finalizado 0=inexistente.
+raiz> processos
+terminal=1 rede=1 tiques=686
+supervisor=1 geracao_rede=2 referencia_rede=0x200000002 referencia_terminal=0x100000001
+Estados: 1=executavel 2=falhou 3=finalizado 0=inexistente.
+raiz> processos
+terminal=1 rede=1 tiques=736
+supervisor=1 geracao_rede=2 referencia_rede=0x200000002 referencia_terminal=0x100000001
+Estados: 1=executavel 2=falhou 3=finalizado 0=inexistente.
+raiz> processos
+terminal=1 rede=1 tiques=786
+supervisor=1 geracao_rede=2 referencia_rede=0x200000002 referencia_terminal=0x100000001
+Estados: 1=executavel 2=falhou 3=finalizado 0=inexistente.
+raiz> processos
+terminal=1 rede=1 tiques=837
+supervisor=1 geracao_rede=2 referencia_rede=0x200000002 referencia_terminal=0x100000001
+Estados: 1=executavel 2=falhou 3=finalizado 0=inexistente.
+raiz> processos
+terminal=1 rede=1 tiques=887
+supervisor=1 geracao_rede=2 referencia_rede=0x200000002 referencia_terminal=0x100000001
+Estados: 1=executavel 2=falhou 3=finalizado 0=inexistente.
+raiz> processos
+terminal=1 rede=1 tiques=937
+supervisor=1 geracao_rede=2 referencia_rede=0x200000002 referencia_terminal=0x100000001
+Estados: 1=executavel 2=falhou 3=finalizado 0=inexistente.
+raiz> processos
+terminal=1 rede=1 tiques=988
+supervisor=1 geracao_rede=2 referencia_rede=0x200000002 referencia_terminal=0x100000001
+Estados: 1=executavel 2=falhou 3=finalizado 0=inexistente.
+raiz> processos
+terminal=1 rede=1 tiques=1038
+supervisor=1 geracao_rede=2 referencia_rede=0x200000002 referencia_terminal=0x100000001
+Estados: 1=executavel 2=falhou 3=finalizado 0=inexistente.
+raiz> teste-ciclo-liberar
+raiz> [teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1149
+
+[teste-ciclo] REDE_LIBERADA geracao=2
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1149
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1159
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1159
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1169
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1169
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1179
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1179
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1189
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1189
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1199
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1199
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1209
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1209
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1219
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1219
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1229
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1229
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1239
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1239
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1249
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1249
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1259
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1259
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1269
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1269
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1279
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1279
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1289
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1289
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1299
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1299
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1309
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1309
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1319
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1319
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1329
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1329
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1339
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1339
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1349
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1349
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1359
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1359
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1369
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1369
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1379
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1379
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1389
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1389
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1399
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1399
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1409
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1409
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1419
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1419
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1429
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1429
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1439
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1439
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1449
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1449
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1459
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1459
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1469
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1469
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1479
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1479
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1489
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1489
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1499
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1499
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1509
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1509
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1519
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1519
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1529
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1529
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1539
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1539
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1549
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1549
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1559
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1559
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1569
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1569
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1579
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1579
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1589
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1589
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1599
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1599
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1609
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1609
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1619
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1619
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1629
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1629
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1639
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1639
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1649
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1649
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1659
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1659
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1669
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1669
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1679
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1679
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1689
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1689
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1699
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1699
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1709
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1709
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1719
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1719
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1729
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1729
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1739
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1739
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1749
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1749
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1759
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1759
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1769
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1769
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1779
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1779
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1789
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1789
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1799
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1799
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1809
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1809
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1819
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1819
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1829
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1829
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1839
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1839
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1849
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1849
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1859
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1859
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1869
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1869
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1879
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1879
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1889
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1889
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1899
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1899
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1909
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1909
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1919
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1919
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1929
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1929
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1939
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1939
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1949
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1949
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1959
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1959
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1969
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1969
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1979
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1979
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1989
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1989
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=1999
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=1999
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=2009
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=2009
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=2019
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=2019
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=2029
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=2029
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=2039
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=2039
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=2049
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=2049
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=2059
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=2059
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=2069
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=2069
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=2079
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=2079
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=2089
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=2089
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=2099
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=2099
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=2109
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=2109
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=2119
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=2119
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=2129
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=2129
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=2139
+[teste-ciclo-espera] TIMEOUT referencia=0x200000002 tiques=2139
+[teste-ciclo-espera] BLOQUEADA referencia=0x200000002 prazo=2149

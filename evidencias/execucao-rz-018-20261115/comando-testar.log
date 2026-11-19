@@ -1,0 +1,4 @@
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.04s
+     Running `target\debug\ferramentas.exe testar`
+Testando boot, serviços em CPL=3, rede e isolamento de falha em QEMU/TCG...
+Relatório: <raiz-os>\evidencias\RELATORIO-SMOKE.md

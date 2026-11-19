@@ -1,0 +1,4 @@
+c80413afbfffbea8d827561f4caca0fef2164c22935d7be12b30646e0cb492c7  saida/raiz-os.img
+ef4e1010d69e39cf92dc3577921fdbc7fca086c0e501d39c450237adc465a7e0  saida/esp/EFI/BOOT/BOOTX64.EFI
+02ba1482ac3110edccae104ae0a92495db4de92e5ca20dfa09f3bb1c3e39015e  saida/teste-uart-rz025/raiz-os.img
+e0eca082eccc8dacaf6251a616e492da8b161e26b7af025f9a28f22901f04ddd  saida/teste-uart-rz025/esp/EFI/BOOT/BOOTX64.EFI

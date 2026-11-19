@@ -1,0 +1,13 @@
+   Compiling ferramentas v0.2.0 (<raiz-os>\ferramentas)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 1.53s
+     Running `target\debug\ferramentas.exe compilar --teste-ciclo-espera`
+Compilando serviços de terminal, rede e supervisão...
+    Finished `release` profile [optimized + debuginfo] target(s) in 0.07s
+Compilando microkernel com os ELFs dos serviços incorporados...
+   Compiling nucleo v0.2.0 (<raiz-os>\nucleo)
+    Finished `release` profile [optimized + debuginfo] target(s) in 1.19s
+Compilando carregador UEFI com o kernel incorporado...
+   Compiling inicializador v0.2.0 (<raiz-os>\inicializador)
+    Finished `release` profile [optimized + debuginfo] target(s) in 0.56s
+Pronto: <raiz-os>\saida/teste-ciclo-espera\raiz-os.img (128 MiB; carregador de 824832 bytes).
+GPT, FAT32 e bytes do carregador foram conferidos após a gravação.

@@ -1,0 +1,4 @@
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.04s
+     Running `target\debug\ferramentas.exe testar-rz022`
+Testando polling RX da rede, recuperação manual e backoff automático RZ-022...
+Evidências: <raiz-os>\evidencias\execucao-rz-022-1794731439514596800

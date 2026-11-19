@@ -1,0 +1,1 @@
+APROVADO: boots controlados IRQ4, prazo e pressão finita; ver manifests e logs por cenário. Sem meta de desempenho ou inferência de energia/hardware físico.

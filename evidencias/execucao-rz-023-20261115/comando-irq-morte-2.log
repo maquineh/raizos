@@ -1,0 +1,5 @@
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.04s
+     Running `target\debug\ferramentas.exe testar-irq-morte`
+Evidências: <raiz-os>\evidencias/teste-irq-morte-1794740078275520100
+Erro: Tempo esgotado aguardando "[teste-irq-morte] TIMER_AMOSTRAS quantidade=50" após 15 segundos
+error: process didn't exit successfully: `target\debug\ferramentas.exe testar-irq-morte` (exit code: 1)

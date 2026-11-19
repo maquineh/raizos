@@ -1,0 +1,67 @@
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.05s
+     Running `target\debug\ferramentas.exe compilar`
+Compilando serviços de terminal, rede e supervisão...
+   Compiling servico-rede v0.2.0 (<raiz-os>\servicos\rede)
+   Compiling servico-supervisor v0.2.0 (<raiz-os>\servicos\supervisor)
+   Compiling servico-terminal v0.2.0 (<raiz-os>\servicos\terminal)
+    Finished `release` profile [optimized + debuginfo] target(s) in 3.02s
+Compilando microkernel com os ELFs dos serviços incorporados...
+   Compiling nucleo v0.2.0 (<raiz-os>\nucleo)
+warning: creating a mutable reference to mutable static
+   --> nucleo\src\processos.rs:304:9
+    |
+304 |         IRQ4.cancelar();
+    |         ^^^^^^^^^^^^^^^ mutable reference to mutable static
+    |
+    = note: mutable references to mutable statics are dangerous; it's undefined behavior if any other pointer to the static is used or if any other reference is created for the static while the mutable reference lives
+    = help: use a type that relies on "interior mutability" instead; to read more on this, visit <https://doc.rust-lang.org/reference/interior-mutability.html>
+    = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+    = note: `#[warn(static_mut_refs)]` (part of `#[warn(rust_2024_compatibility)]`) on by default
+
+warning: creating a mutable reference to mutable static
+   --> nucleo\src\processos.rs:316:19
+    |
+316 |             match IRQ4.retirar() {
+    |                   ^^^^^^^^^^^^^^ mutable reference to mutable static
+    |
+    = note: mutable references to mutable statics are dangerous; it's undefined behavior if any other pointer to the static is used or if any other reference is created for the static while the mutable reference lives
+    = help: use a type that relies on "interior mutability" instead; to read more on this, visit <https://doc.rust-lang.org/reference/interior-mutability.html>
+    = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+
+warning: creating a mutable reference to mutable static
+   --> nucleo\src\processos.rs:343:5
+    |
+343 |     IRQ4.publicar();
+    |     ^^^^^^^^^^^^^^^ mutable reference to mutable static
+    |
+    = note: mutable references to mutable statics are dangerous; it's undefined behavior if any other pointer to the static is used or if any other reference is created for the static while the mutable reference lives
+    = help: use a type that relies on "interior mutability" instead; to read more on this, visit <https://doc.rust-lang.org/reference/interior-mutability.html>
+    = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+
+warning: creating a mutable reference to mutable static
+   --> nucleo\src\processos.rs:543:39
+    |
+543 |                         f.rax = match IRQ4.armar(PROCESSOS[0].referencia) {
+    |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ mutable reference to mutable static
+    |
+    = note: mutable references to mutable statics are dangerous; it's undefined behavior if any other pointer to the static is used or if any other reference is created for the static while the mutable reference lives
+    = help: use a type that relies on "interior mutability" instead; to read more on this, visit <https://doc.rust-lang.org/reference/interior-mutability.html>
+    = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+
+warning: creating a mutable reference to mutable static
+   --> nucleo\src\processos.rs:556:39
+    |
+556 |                         f.rax = match IRQ4.confirmar(PROCESSOS[0].referencia, f.rdi) {
+    |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ mutable reference to mutable static
+    |
+    = note: mutable references to mutable statics are dangerous; it's undefined behavior if any other pointer to the static is used or if any other reference is created for the static while the mutable reference lives
+    = help: use a type that relies on "interior mutability" instead; to read more on this, visit <https://doc.rust-lang.org/reference/interior-mutability.html>
+    = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+
+warning: `nucleo` (bin "nucleo") generated 5 warnings
+    Finished `release` profile [optimized + debuginfo] target(s) in 2.68s
+Compilando carregador UEFI com o kernel incorporado...
+   Compiling inicializador v0.2.0 (<raiz-os>\inicializador)
+    Finished `release` profile [optimized + debuginfo] target(s) in 0.68s
+Pronto: <raiz-os>\saida\raiz-os.img (128 MiB; carregador de 873472 bytes).
+GPT, FAT32 e bytes do carregador foram conferidos após a gravação.

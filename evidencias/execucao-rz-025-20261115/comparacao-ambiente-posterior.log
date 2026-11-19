@@ -1,0 +1,7 @@
+rustc 1.99.1 (58cf8f9c3 2026-10-13)
+cargo 1.99.1 (5f94df478 2026-08-27)
+QEMU emulator version 10.2.50 (v10.2.0-14086-g840320663e)
+qemu-executavel sha256=e6edd04e4b2ef6aa29452ec3131e219f40a3756a3e9fb9906cd17c200e679317
+ovmf-code sha256=33090cc07675baa5190d9f1e84bf5176b33bcbfa9bacac522961150cdb6dbb2a
+ovmf-vars sha256=5d2ac383371b408398accee7ec27c8c09ea5b74a0de0ceea6513388b15be5d1e
+Registro coletado apos os seis boots; nao demonstra por si so imutabilidade dos arquivos durante cada boot.

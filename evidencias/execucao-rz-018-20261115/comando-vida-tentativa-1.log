@@ -1,0 +1,5 @@
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.03s
+     Running `target\debug\ferramentas.exe testar-vida`
+Evidencias: <raiz-os>\evidencias/teste-vida-1794724330187689900
+Erro: Tempo esgotado aguardando "[teste-vida-servico] ETAPA 3 CPL3" após 30 segundos
+error: process didn't exit successfully: `target\debug\ferramentas.exe testar-vida` (exit code: 1)

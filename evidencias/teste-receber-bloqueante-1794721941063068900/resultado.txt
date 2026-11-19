@@ -1,0 +1,1 @@
+FALHOU: Tempo esgotado aguardando "[teste-ipc] RECEBER_IMEDIATO id=3" após 10 segundos

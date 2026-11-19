@@ -1,0 +1,4 @@
+a49e857d7a884270ae22f0ff0f51bcd44bba40d192b3ed58cf81cb894e1c1cf7  saida/raiz-os.img
+32147ffb12ef2ec10b451fa4281cb8b69139bf0dc550889fc8819cda82488b6c  saida/esp/EFI/BOOT/BOOTX64.EFI
+64d8b2c28754d5f2f4db866c283f027960a75536da489d1e9bc8027618404cac  saida/teste-falha-preparacao/raiz-os.img
+bb951c9b44a22d2cb152d10794d25fb5ec52b6ba9fc14989a0b4fc818ac0eb60  saida/teste-falha-preparacao/esp/EFI/BOOT/BOOTX64.EFI

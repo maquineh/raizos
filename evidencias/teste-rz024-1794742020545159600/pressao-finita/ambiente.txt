@@ -1,0 +1,7 @@
+cenario=teste-rz024-pressao
+sha256_imagem=d7af40f9ecf23e367125ed58ef78d3f389dada0632166535fcd9694848b6deea
+qemu_versao=QEMU emulator version 10.2.50 (v10.2.0-14086-g840320663e)
+maquina=pc accel=tcg smp=1 memoria=256M rede=e1000 serial=stdio monitor=none display=none no-reboot snapshot=on hostfwd=udp:17777
+sha256_ovmf=33090cc07675baa5190d9f1e84bf5176b33bcbfa9bacac522961150cdb6dbb2a
+sha256_ovmf_vars=5d2ac383371b408398accee7ec27c8c09ea5b74a0de0ceea6513388b15be5d1e
+qemu_dados_configurado=sim

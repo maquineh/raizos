@@ -1,0 +1,1 @@
+Somente o caminho privado do worktree foi substituido por <worktree-base-0.2> nos quatro logs; o restante foi preservado. Os logs brutos ficam em target local ignorado.

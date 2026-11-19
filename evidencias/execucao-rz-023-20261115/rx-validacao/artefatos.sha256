@@ -1,0 +1,6 @@
+072a4eebc52b1a55a5abc9c69f46af8bc7fd35a941ca10382c32e58da28bb7d3  saida/raiz-os.img
+15c375e468b481a30777a2b9a6b3d6efe77ca231178602fc7fe663e284bc50d1  saida/esp/EFI/BOOT/BOOTX64.EFI
+24bba3b5634bc6536f01bbdb79f32a1201919e8303d85a2a0b80585f81f3be5f  saida/teste-irq-ipc/raiz-os.img
+53b45d6e1dee729490e89c35c97b723eec229100b3ca219a1ec6ab930196b519  saida/teste-irq-ipc/esp/EFI/BOOT/BOOTX64.EFI
+1116180c8cd664c47004e0c721412848bdea10f27e0a906bf966bdf79d461e77  saida/teste-rx-orcamento/raiz-os.img
+64e6937368fdedcbf4e3be1bb30cce7621c1c236f67f52adf2afad5daa26e2d6  saida/teste-rx-orcamento/esp/EFI/BOOT/BOOTX64.EFI

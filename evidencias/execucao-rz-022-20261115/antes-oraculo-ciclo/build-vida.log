@@ -1,0 +1,15 @@
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.03s
+     Running `target\debug\ferramentas.exe compilar --teste-vida`
+Compilando serviços de terminal, rede e supervisão...
+   Compiling servico-supervisor v0.2.0 (<raiz-os>\servicos\supervisor)
+   Compiling servico-terminal v0.2.0 (<raiz-os>\servicos\terminal)
+   Compiling servico-rede v0.2.0 (<raiz-os>\servicos\rede)
+    Finished `release` profile [optimized + debuginfo] target(s) in 2.95s
+Compilando microkernel com os ELFs dos serviços incorporados...
+   Compiling nucleo v0.2.0 (<raiz-os>\nucleo)
+    Finished `release` profile [optimized + debuginfo] target(s) in 1.78s
+Compilando carregador UEFI com o kernel incorporado...
+   Compiling inicializador v0.2.0 (<raiz-os>\inicializador)
+    Finished `release` profile [optimized + debuginfo] target(s) in 0.57s
+Pronto: <raiz-os>\saida/teste-vida\raiz-os.img (128 MiB; carregador de 961536 bytes).
+GPT, FAT32 e bytes do carregador foram conferidos após a gravação.

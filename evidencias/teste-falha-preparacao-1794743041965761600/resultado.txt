@@ -1,0 +1,7 @@
+# Ensaio T03-10 — falha de preparação da rede
+
+Imagem opt-in; QEMU/TCG, pc/i440fx, 1 CPU, 256 MiB, OVMF e e1000.
+
+Resultado: **APROVADO**. O comando autorizado do supervisor entrou no reinício real. A fixture passou um ELF inválido ao loader real da arena ainda não publicada; o loader recusou a preparação antes da revogação/commit. O erro `IMAGEM` retornou ao terminal. A referência da rede permaneceu na geração 1 e a rede anterior respondeu ao ping do gateway e a ecos UDP após a recusa.
+
+Limite: a falha é injetada na validação de ELF do processo de preparação; não simula esgotamento físico, falha de página nem toda classe de falha do loader. Não demonstra recuperação de conexão ou estado de aplicação. Logs: `serial.log` e `qemu-stderr.log`.

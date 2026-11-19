@@ -30,8 +30,8 @@ As decisões de arquitetura já adotadas estão nos
 
 | Tema | Hipótese ou questão aberta | Resolver antes de |
 |---|---|---|
-| Espera e ABI | Proposta inicial: espera/recepção multiplexada por mensagens e eventos com prazo; `ENVIAR` permanece não bloqueante, com limites por origem e erro de esgotamento. Envio bloqueante é alternativa a avaliar em ADR, não parte aceita do piloto. Números de syscalls e compatibilidade ainda não estão definidos. | Alterar o contrato da 0.3 |
-| Temporização | Reusar inicialmente o timer da plataforma; definir unidade, arredondamento, prazo zero/infinito, overflow e precedência entre evento e expiração. Não assumir garantia de tempo real. | Implementar timeout |
+| Espera e ABI | ADR 003 decide espera multiplexada, envio não bloqueante, limites e incompatibilidade sem tradução implícita; envio bloqueante fica fora de 0.3. Números e layout binário permanecem a definir antes da exposição. | Alterar o contrato da 0.3 |
+| Temporização | Usar tiques monotônicos e implementar as regras de tentativa imediata, prazo finito, rollover e precedência decididas na ADR 003. Não assumir garantia de tempo real. | Implementar timeout |
 | Primeira IRQ delegada | Piloto proposto: UART 16550 COM1 com IRQ4 exclusiva do terminal. Definir máscara, confirmação e coalescência; notificações do kernel ficam separadas da fila IPC. Rede e PS/2 permanecem em polling com prazo documentado. | Integrar notificações da 0.3 |
 | Aplicações e armazenamento | Definir origem dos executáveis, política de carga, dispositivo de bloco, formato de disco e garantias de persistência. A ESP do boot não é um filesystem do SO em execução. | Abrir implementação das respectivas trilhas |
 | IOMMU e suporte | Escolher plataforma de teste, dispositivo e comportamento esperado de revogação/reset. Antecipar essa trilha se o modelo passar a admitir driver DMA não confiável. | Ampliar o modelo de confiança ou reciclar buffers DMA |
@@ -58,12 +58,12 @@ imagem nova.
 **Resultado esperado:** um serviço pode esperar por trabalho e prazo sem manter
 um laço de consultas; o núcleo acorda o destinatário correto e conserva controle
 de recursos e preempção. Requisitos principais: RQ-009, RQ-010 e RQ-011.
-O desenho proposto está na [especificação da 0.3](ESPECIFICACAO-0.3.md), com
+A semântica foi decidida na [ADR 003](../ADR-003-ESPERA-0.3.md); o desenho está na [especificação da 0.3](ESPECIFICACAO-0.3.md), com
 fronteiras no [modelo de ameaças](AMEACAS-E-LIMITES.md).
 
 | Pacote | Entrega | Dependência | Aceitação |
 |---|---|---|---|
-| 03-A — contrato | ADR de espera, retorno de erro, prazo, cancelamento, IRQ e limites; separar estado de vida e estado de escalonamento; decisão de versão ABI. | Leitura da ABI 2 e dos casos de reinício/revogação. | Contrato cobre evento já disponível, destino falho/finalizado, referência antiga, fila cheia e empate evento/timeout; supervisor não confunde bloqueio com morte. |
+| 03-A — contrato | ADR de espera, retorno de erro, prazo, cancelamento, IRQ e limites; separar estado de vida e estado de escalonamento; definição da compatibilidade; codificação binária antes da exposição. | Leitura da ABI 2 e dos casos de reinício/revogação. | Contrato cobre evento já disponível, destino falho/finalizado, referência antiga, fila cheia e empate evento/timeout; supervisor não confunde bloqueio com morte. |
 | 03-B — bloqueio e despertar | Recepção bloqueante, transição atômica entre fila e espera, integração ao escalonador e estado ocioso do núcleo. | 03-A. | Mensagem chegando em cada lado da transição não se perde; bloqueado não roda; todos bloqueados permitem espera ociosa e retomada por evento. |
 | 03-C — prazo e invalidação | Timeout, cancelamento e tratamento da morte/substituição da instância enquanto há espera. | 03-A e 03-B. | Cada espera termina uma vez; cliente não fica preso após revogação; evento atrasado não alcança a geração nova como se fosse da antiga. |
 | 03-D — IRQ delegada | Piloto COM1/IRQ4 exclusiva para o terminal, com máscara/confirmação e notificações separadas da fila IPC. | 03-A e 03-B; contrato de eventos do dispositivo. | Terminal acorda por IRQ real; acesso sem direito falha; fila IPC cheia não oculta IRQ; repetição de IRQ e consumidor parado respeitam limites e preservam o timer de preempção. |

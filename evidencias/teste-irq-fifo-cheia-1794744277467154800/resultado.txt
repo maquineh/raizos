@@ -1,0 +1,7 @@
+# Ensaio T03-11 — IRQ4 com FIFO IPC cheia
+
+Imagem opt-in; QEMU/TCG, pc/i440fx, 1 CPU, 256 MiB, OVMF e e1000.
+
+Resultado: **APROVADO**. A sonda observou 15 mensagens da rede e uma do supervisor na caixa real do terminal, em ordem e com o slot IRQ inicialmente vazio. Após esse estado, o host enviou um byte UART real; a sonda observou IRQ4 selecionável, mascarada no PIC, enquanto a FIFO ainda continha as mesmas 16 mensagens. O seletor do kernel entregou a notificação IRQ e as 16 IPCs; o terminal validou cada origem, código e payload, confirmou a sequência e a sonda final confirmou a FIFO vazia.
+
+Limite: a evidência demonstra a reserva/coexistência e drenagem desta composição finita; não prova justiça sob carga ilimitada, tempestades UART nem hardware físico. Logs: `serial.log` e `qemu-stderr.log`.

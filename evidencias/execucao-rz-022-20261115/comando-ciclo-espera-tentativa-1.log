@@ -1,0 +1,5 @@
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.04s
+     Running `target\debug\ferramentas.exe testar-ciclo-espera`
+Erro: Timeout inesperado de rede
+Evidencias: <raiz-os>\evidencias/teste-ciclo-espera-1794730083373608300
+error: process didn't exit successfully: `target\debug\ferramentas.exe testar-ciclo-espera` (exit code: 1)

@@ -1,12 +1,17 @@
 # Especificação proposta — Raiz OS 0.3
 
-**Estado:** proposta técnica revisável; implementação não iniciada neste documento.  
+**Estado:** semântica decidida na [ADR 003](../ADR-003-ESPERA-0.3.md). As [ADRs 004](../ADR-004-ESPERA-IPC-ABI-2.md) e [005](../ADR-005-RECEPCAO-BLOQUEANTE.md) acrescentam espera e recepção da caixa própria à ABI 2. A [ADR 006](../ADR-006-PRAZOS-IPC.md) adiciona prazo à recepção, exercitado no recorte de RZ-016. A ADR 010 implementa o recorte IRQ4 da ABI 2, validado no ensaio opt-in; espera multiplexada completa e ABI futura ainda não estão implementadas.
+
+A [ADR 007](../ADR-007-ESPERA-E-CICLO-DE-VIDA.md) acrescenta observação one-shot da rede pelo supervisor durante uma recepção, exercitada no recorte de RZ-017. Ela não oferece inscrições nem notificações persistentes de RZ-018.
+
+A [ADR 008](../ADR-008-NOTIFICACOES-VIDA.md) implementa inscrição e slot de
+ciclo de vida persistentes no recorte supervisor→rede; o ensaio de vida e as regressões passaram em QEMU.
 **Base preservada:** código e evidências da versão 0.2.0, com ABI de serviços 2.  
 **Objetivo:** permitir que serviços esperem trabalho sem consultar continuamente filas vazias, preservando identidade de instância, autoridade e recuperação.  
 **Requisitos relacionados:** RQ-009, RQ-010 e RQ-011 do PRD.  
 **Trabalho relacionado:** RZ-013 a RZ-025 do backlog.
 
-Os nomes de operações, estruturas e estados abaixo descrevem uma proposta. Não atribuem números de syscalls, códigos de erro, valores de estados ou um número de ABI futura. Essas decisões dependem da revisão RZ-013, de um ADR e da atualização conjunta de kernel, wrappers e serviços. A fonte normativa da implementação atual continua sendo [`contrato-sistema`](../../contrato-sistema/src/lib.rs); este arquivo não a substitui.
+Os nomes abaixo descrevem o desenho decidido, ainda não implementado. Não atribuem números de syscalls, códigos de erro, valores de estados ou um número de ABI futura. A codificação binária será definida e testada antes de expor as operações, com atualização conjunta de kernel, wrappers e serviços. A fonte normativa atual continua sendo [`contrato-sistema`](../../contrato-sistema/src/lib.rs).
 
 ## 1. Resultado que o marco deve produzir
 
@@ -25,21 +30,36 @@ Critérios de resultado:
 5. O terminal recebe entrada serial por IRQ4 e mantém atendimento a IPC; rede e supervisor preservam suas responsabilidades em ring 3.
 6. Os testes de isolamento, autoridade, referências e recuperação de 0.2 continuam válidos após adaptar somente as verificações de estados que o novo contrato deliberadamente alterar.
 
+
+RZ-020 está concluído no recorte de IRQ4 exclusiva: a [ADR 010](../ADR-010-NOTIFICACAO-IRQ4.md) acrescenta à ABI 2 uma associação exclusiva de IRQ4 ao terminal, notificação coalescida separada da fila IPC e confirmação por sequência. No [ensaio opt-in em QEMU](../../evidencias/teste-irq-1794725963506321900/resultado.txt), IRQ4 acordou o terminal a partir de idle CPL 0; foram observadas negação a outro serviço, recusas de sequência incorreta e duplicada, rechecagem e rearme. Com B pendente e sem confirmação por 50 tiques, a máscara foi observada em duas amostras, o contador de entradas permaneceu igual e o timer avançou; C chegou após o rearme. Coalescência foi testada no host, não demonstrada nesse ensaio QEMU. Isso não demonstra ausência absoluta de tempestades nem suporte a hardware físico. A construção normal, verificação de imagem e três comandos de regressão em QEMU (cinco boots) passaram. Naquela execução o terminal normal ainda usava polling. SMP e IRQ compartilhada não foram demonstrados. Os ensaios reconstruídos de quota, vida e prazo-idle também passaram; o [resumo da execução RZ-020](../../evidencias/execucao-rz-020-20261115/RESUMO.md) reúne logs, hashes e limites.
+
 ## 2. O que a base 0.2 oferece e o que precisa mudar
 
 | Base examinada | Comportamento existente | Consequência para 0.3 |
 |---|---|---|
 | [`controle.rs`](../../nucleo/src/controle.rs) | Caixa FIFO de 16 mensagens; referências com geração; purga por origem exata | Preservar ordem, identidade e limites; acrescentar estado de espera sem tornar a caixa um canal de eventos de hardware |
-| [`processos.rs`](../../nucleo/src/processos.rs) | `RECEBER` consulta sem bloquear; serviços chamam `CEDER`; três contextos | Acrescentar bloqueio/despertar e distinguir estar vivo de estar pronto para executar |
+| [`processos.rs`](../../nucleo/src/processos.rs) | `RECEBER` consulta sem bloquear; extensão de recepção bloqueante implementada; três contextos | Preservar distinção entre vida e agendamento e ampliar fontes de espera |
 | [`cpu.rs`](../../nucleo/src/cpu.rs) | PIT aproximadamente a 100 Hz, PIC, portas de interrupção, retorno a CPL 3 | Criar entrada e retorno válidos para IRQ ocorrida durante o contexto ocioso em CPL 0 |
-| [`processos.rs`](../../nucleo/src/processos.rs) | Ausência de processo executável chama a parada do kernel; interrupção originada em CPL 0 é tratada como falha | Esses caminhos não servem como implementação de idle com IRQs habilitadas |
-| [`servico-rede`](../../servicos/rede/src/main.rs) | Consulta IPC, processa até 16 quadros e cede; reset usa esperas limitadas por tiques | Trocar consultas sem trabalho por espera com prazo, mantendo polling residual explícito |
-| [`servico-supervisor`](../../servicos/supervisor/src/main.rs) | Consulta estado da rede; backoff de 100/200/400 tiques | Receber notificações de ciclo de vida e esperar até o próximo prazo da política |
-| [`servico-terminal`](../../servicos/terminal/src/main.rs) | Consulta serial, PS/2 e IPC | Multiplexar entrada serial por IRQ, mensagens e prazo de PS/2 |
+| [`processos.rs`](../../nucleo/src/processos.rs) | Idle em CPL 0 e espera de disponibilidade da própria caixa, com despertar por IPC admitido | Integrar espera completa aos serviços e validar os cenários de geração, recuperação, prazo e IRQ |
+| [`servico-rede`](../../servicos/rede/src/main.rs) | Aguarda IPC por até 10 tiques; processa até 16 quadros por rodada e cede se o orçamento de RX se esgotar; reset usa esperas limitadas por tiques | Manter polling residual da e1000 e validar saturação, fallback e regressões |
+| [`servico-supervisor`](../../servicos/supervisor/src/main.rs) | Inscrição IPC/vida; no automático, rede saudável espera sem prazo e falha espera o restante do backoff de 100/200/400 tiques | Repetir execução normal e complementos de integração do RZ-022 |
+| [`servico-terminal`](../../servicos/terminal/src/main.rs) | Espera IRQ4/IPC e usa prazo para polling PS/2 | Validar integração e regressões segundo a [ADR 011](../ADR-011-TERMINAL-UART.md) |
 
-O [resumo de validação 0.2](../../evidencias/RESUMO-VALIDACAO.md) registra 26 testes no host e cinco inicializações de integração em QEMU aprovadas. As evidências cobrem preempção, uma violação de memória provocada, referências antigas e recuperação limitada da rede. **Não cobrem as esperas, deadlines, IRQ4 ou idle propostos aqui.**
+O [resumo de validação 0.2](../../evidencias/RESUMO-VALIDACAO.md) registra 26 testes no host e cinco inicializações de integração em QEMU aprovadas. As evidências cobrem preempção, uma violação de memória provocada, referências antigas e recuperação limitada da rede. **Não cobrem as esperas, deadlines, IRQ4 ou idle propostos aqui.** Um [ensaio posterior de idle](../../evidencias/execucao-rz-014-20261115/final/RELATORIO-TESTE-IDLE.md) foi aprovado em QEMU com despertar provocado pela feature de teste, sem demonstrar evento real de serviço.
+
+Um ensaio em imagem opt-in exercitou espera de disponibilidade e envio IPC real entre terminal e supervisor em CPL 3. Essa operação é agora extensão aditiva ABI 2, conforme ADR 004; sua integração normal foi reconstruída e passou pelas regressões registradas no [resumo da execução](../../evidencias/execucao-supervisor-20261115/RESUMO.md). A mensagem permanece na FIFO até `RECEBER`; a purga pode esvaziar a fila antes da execução do receptor. O ensaio anterior empregava chamada privada; o ensaio posterior usou a extensão pública. O registro pertence ao processo e é cancelado ao terminar ou substituir a instância, mas não identifica callbacks atrasados por geração ou sequência. O recorte da ADR 004 não inclui prazo, notificação de IRQ ou cancelamento remoto de espera. RZ-015 foi concluído para recepção da própria caixa, com [evidências específicas](../../evidencias/execucao-rz-015-20261115/RESUMO.md); a revogação entre despertar e seleção foi ensaiada no host, não em VM.
 
 Também existe uma distinção importante no alcance dos testes: a purga de filas ocupadas foi exercitada no módulo de controle no host; nos reinícios observados na VM, o número de mensagens pendentes era zero. A integração 0.3 deve incluir filas ocupadas durante bloqueio e recuperação, sem apresentar o resultado anterior como prova dessa nova interação.
+
+A [execução RZ-016](../../evidencias/execucao-rz-016-20261115/RESUMO.md) exercitou timeout em QEMU inclusive com três serviços bloqueados e idle em CPL 0. Empate evento/timeout, volta do contador e substituição de instância foram testados no host, não em VM. A compatibilidade com kernel antigo não foi testada em VM. Esse ensaio anterior não cobriu a extensão posterior de IPC/vida; não conclui a espera multiplexada completa nem o marco 0.3.
+
+A [execução RZ-017](../../evidencias/execucao-rz-017-20261115/RESUMO.md) exercitou em QEMU cancelamento por encerramento/reinício, preservação do prazo após recusa por quota e observação pontual da falha da rede. Falha de preparação e concorrência entre timeout e invalidação foram testadas no host; observação durante substituição e fallback com kernel anterior não foram ensaiados em VM. A observação não é persistente e não conclui RZ-018.
+
+RZ-019 está concluído no recorte implementado conforme a [ADR 009](../ADR-009-LIMITES-IPC.md): caixas de 16 mensagens, limite de 15 por origem lógica na caixa do terminal e slots estruturais de inscrição e espera por processo. Passaram 29 testes do núcleo no host; as regressões normais em QEMU passaram. RZ-020 está concluído no recorte de IRQ4 exclusiva. O [ensaio de quota em QEMU](../../evidencias/teste-quota-1794725073649578100/resultado.txt) passou para 15 envios da rede, recusa do 16º, reserva ao supervisor, FIFO e readmissão após drenagem. A ordem inversa e liberação após uma retirada ou purga foram testadas no host, não nesse ensaio de VM. O [resumo da execução](../../evidencias/execucao-rz-019-20261115/RESUMO.md) reúne construção normal, verificação de imagem e os cinco boots de regressão.
+
+O [ensaio RZ-018](../../evidencias/teste-vida-1794724542137348500/resultado.txt) passou em QEMU com autorização, FIFO saturada, transições e invalidação por geração no recorte supervisor→rede; as regressões também passaram. Uma tentativa inicial da fixture falhou e foi corrigida, com histórico preservado. Os cinco ensaios específicos anteriores reconstruídos passaram, conforme o [resumo da execução](../../evidencias/execucao-rz-018-20261115/RESUMO.md); as regressões gerais também passaram novamente na imagem normal final.
+
+O RZ-022 foi concluído no escopo validado. A [ADR 012](../ADR-012-ESPERA-SERVICOS-RZ022.md) e o [resumo da execução](../../evidencias/execucao-rz-022-20261115/RESUMO.md) registram integração final, ciclo de espera, regressões e limites. O RZ-023 foi concluído no escopo do aceite original com 12 comandos de regressão após rebuild, testes host e cinco boots normais; consulte o [resumo](../../evidencias/execucao-rz-023-20261115/RESUMO.md) e a [matriz T03](../../evidencias/execucao-rz-023-20261115/MATRIZ.md). RZ-024 foi concluído no recorte controlado de IRQ4, prazo e pressão finita; o [resumo](../../evidencias/execucao-rz-024-20261115/RESUMO.md) registra contagens e limites. A matriz mantém lacunas por cenário; nem todos os T03 estão demonstrados e o marco 0.3 continua pendente.
 
 ## 3. Escopo e condições de validade
 
@@ -64,7 +84,7 @@ Essa separação evita duas regressões concretas: recusar mensagens porque o de
 | Falhou/finalizado | Recusa de serviço indisponível | Não | Reinício conforme autoridade e quota |
 | Referência de geração anterior | Recusa por referência antiga | Nunca | Recusa por referência antiga |
 
-A representação pública desses estados permanece uma decisão de contrato. Pode haver uma consulta adicional de agendamento ou uma revisão explícita do retorno existente. Não reutilizar silenciosamente um valor ABI 2 com significado incompatível, nem alterar o significado de falha para acomodar bloqueio.
+A consulta de vida distinguirá ativo, falhou e finalizado; bloqueio é condição de agendamento, não falha. Uma consulta de agendamento, se necessária, será separada. Não reutilizar silenciosamente um valor ABI 2 com significado incompatível.
 
 ### 4.2 Registro mínimo de espera
 
@@ -81,7 +101,7 @@ Uma conclusão só pode atingir o registro se **referência e sequência da oper
 
 As estruturas podem ser estáticas nesta etapa. Não é necessário introduzir um alocador geral para três registros de espera, filas limitadas e associações de IRQ fixas.
 
-### 4.3 Operações candidatas, sem codificação binária aprovada
+### 4.3 Operações decididas, sem codificação binária aprovada
 
 | Operação conceitual | Entrada | Resultado esperado |
 |---|---|---|
@@ -94,7 +114,7 @@ As estruturas podem ser estáticas nesta etapa. Não é necessário introduzir u
 
 A espera multiplexada deve ser a primitiva utilizada pelos serviços com várias responsabilidades. Fazer o terminal esperar apenas uma resposta de ping bloquearia sua leitura de teclado e suas mensagens do supervisor.
 
-O retorno deve ser discriminado por classe de evento definida pelo kernel. Uma mensagem de usuário com um código parecido não pode virar notificação privilegiada. Não usar uma `Mensagem` com origem zero como atalho: a validação atual de origem rejeita essa referência, e uma exceção informal enfraqueceria a autenticação. O layout e a convenção de registradores serão decididos em RZ-013 e testados no crate de contrato.
+O retorno deve ser discriminado por classe de evento definida pelo kernel. Uma mensagem de usuário com um código parecido não pode virar notificação privilegiada. Não usar uma `Mensagem` com origem zero como atalho. Layout e registradores serão definidos e testados no crate de contrato antes da exposição; RZ-013 decide semântica e compatibilidade, não a codificação binária.
 
 ## 5. Registro atômico e prevenção de perda de despertar
 
@@ -136,9 +156,9 @@ Uma IRQ pode ser agrupada com outras ocorrências. Uma mensagem IPC não: deve p
 
 Usar o contador monotônico de tiques do kernel, não horário de calendário. O PIT atual fornece granularidade aproximada de 10 ms; isso não é garantia de latência máxima de retorno. Períodos longos com IRQs desabilitadas, atendimento de outros serviços e execução no emulador afetam a observação do prazo. [1]
 
-A API proposta distingue tentativa imediata, prazo finito e ausência explícita de prazo. Não reservar informalmente um número que também poderia representar um tique válido. A comparação deve tratar rollover com regra documentada e horizonte máximo inferior a metade do espaço do contador, ou recusar valores que não possam ser comparados sem ambiguidade.
+A API distingue tentativa imediata, prazo finito e ausência explícita de prazo. Tentativa imediata verifica eventos pendentes e retorna ausência sem bloquear; não é um prazo já vencido. Prazo finito é duração relativa de 1 a 2^63−1 tiques, somada modularmente ao contador de 64 bits na admissão; valores maiores são recusados. Zero representa tentativa imediata e ausência de prazo é opção distinta. `vencido = agora.wrapping_sub(prazo) < 2^63`; a comparação exige processar a expiração antes de ela estar vencida por 2^63 tiques observados. Tiques observados não medem tempo físico enquanto IRQ estiver mascarada.
 
-Recomendação para desempate: antes de concluir uma operação ainda pendente, verificar a expiração pelo relógio lógico observado sob a mesma exclusão. Se o prazo já venceu, concluir timeout sem consumir o evento em seu nome. Uma conclusão registrada antes do vencimento continua válida, mesmo que o serviço só volte a executar depois. Essa ordem precisa ser exercitada em testes; não prometer ordenação por nanossegundo do host.
+Regra de desempate: antes de concluir uma operação com prazo finito, verificar a expiração pelo relógio lógico observado sob a mesma exclusão. Se o prazo já venceu, concluir timeout sem consumir o evento em seu nome. Uma conclusão registrada antes do vencimento continua válida, mesmo que o serviço só volte a executar depois. Essa ordem precisa ser exercitada em testes; não prometer ordenação por nanossegundo do host.
 
 Para três processos, uma varredura limitada dos registros de prazo a cada IRQ0 é suficiente como implementação inicial. Uma heap de timers não deve ser introduzida sem necessidade medida. Remoção por token e geração continua obrigatória em qualquer estrutura.
 
@@ -150,7 +170,7 @@ Sucesso de `ENVIAR` confirma aceitação na caixa, não execução da operação
 
 ### 6.3 Cancelamento suportável no mínimo proposto
 
-São obrigatórios cancelamento/desvinculação ao encerrar ou substituir a instância e conclusão por invalidação de uma referência que a espera observa. O processo antigo nunca retorna após ser substituído. Outros processos que aguardam sua geração devem receber o resultado apropriado ou manter espera por outras fontes, conforme o conjunto registrado.
+São obrigatórios cancelamento/desvinculação ao encerrar ou substituir a instância e conclusão por invalidação de uma referência inscrita como fonte da espera. O processo antigo nunca retorna após ser substituído. Se outro resultado vencer primeiro, a invalidação permanece pendente para a próxima espera.
 
 Não prometer que uma única thread já bloqueada executará uma chamada para cancelar a si própria. No terminal, `Ctrl+C` exige que a entrada faça parte da espera multiplexada e que pedidos longos sejam operações de aplicação pendentes, sem bloquear todo o serviço em um envio. Cancelamento remoto genérico de espera exigiria autoridade nova e fica sujeito a ADR; conhecer um token não deve conceder esse direito.
 
@@ -166,9 +186,9 @@ A caixa de 16 posições é a referência inicial de avaliação, não uma justi
 
 ### 7.2 Admissão e consumo justos
 
-O terminal recebe de rede e supervisor. Uma origem não deve ocupar permanentemente toda a caixa e impedir a outra de publicar controle. Avaliar reservas mínimas por origem autorizada, com capacidade restante compartilhada, ou outra política que demonstre o mesmo progresso. A capacidade reservada deve contar na mesma quota total; não criar uma segunda fila sem limite.
+O terminal recebe de rede e supervisor. Cada uma dessas origens pode ocupar até 15 das 16 posições da caixa, deixando uma posição disponível para a outra. Nas demais caixas, a capacidade total permanece 16. Exceder o limite de origem retorna fila cheia; não há fila adicional.
 
-Manter FIFO das mensagens admitidas. Entre classes diferentes — IPC, IRQ e observação de ciclo de vida — usar seleção rotativa ou orçamento explícito, em vez de prioridade absoluta que permita a um fluxo contínuo de UART adiar indefinidamente o supervisor. Os valores dos orçamentos são parâmetros experimentais a registrar no relatório.
+Manter FIFO das mensagens admitidas. Entre IPC, IRQ e ciclo de vida, selecionar classes em rotação, avançando após cada entrega e ignorando classes sem evento elegível. Isso não promete progresso se o serviço não executar ou não consumir eventos.
 
 O round-robin continua entre processos prontos. Uma IRQ não deve executar o driver inteiro no kernel ou conceder uma sequência ilimitada de quanta ao proprietário. Justiça pressupõe handlers e regiões críticas limitados; não equivale a garantia de tempo real.
 
@@ -180,7 +200,7 @@ Uma observação de ciclo de vida é relativa a uma referência exata. Se vária
 
 ### 7.4 Alternativa de envio bloqueante — não adotada por este texto
 
-Se RZ-013 decidir acrescentá-la, o mínimo seguro exige copiar a mensagem para um registro do kernel antes de bloquear; guardar remetente, destino e geração exatos; exigir prazo para envios que possam formar ciclos; manter ordem FIFO dos remetentes esperando espaço; e impedir que envios novos ultrapassem indefinidamente quem já espera.
+Uma decisão futura para acrescentá-la exigiria, no mínimo, copiar a mensagem para um registro do kernel antes de bloquear; guardar remetente, destino e geração exatos; exigir prazo para envios que possam formar ciclos; manter ordem FIFO dos remetentes esperando espaço; e impedir que envios novos ultrapassem indefinidamente quem já espera.
 
 Ao liberar uma posição, admitir atomicamente o primeiro envio válido, concluir seu remetente e retirar seu registro. Expiração, morte e reinício devem remover o envio antes que a posição seja ocupada por ele. Depois de admitido, não é mais possível prometer retirada por timeout do remetente. Ciclos de serviços esperando espaço continuam possíveis; prazos e desenho dos protocolos são necessários. Essa alternativa aumenta o escopo de estados e testes e não deve ser acrescentada sem revisar o backlog.
 
@@ -200,7 +220,7 @@ Após preparação bem-sucedida, a revogação proposta acrescenta, na mesma tra
 
 Uma operação que aponta para a geração antiga nunca é redirecionada automaticamente. O supervisor deve observar explicitamente a nova referência devolvida pelo reinício. O retorno de reinício continua distinto da confirmação posterior de driver pronto.
 
-A inscrição de ciclo de vida deve combinar consulta e registro de interesse sob a mesma exclusão. Se a rede falhou antes da inscrição, devolver imediatamente seu estado; se a referência já foi substituída, devolver invalidação. Não implementar apenas “consultar; depois inscrever”, que perderia a falha entre as duas chamadas.
+A inscrição autorizada combina consulta e registro sob a mesma exclusão, com um slot por par observador e alvo lógico autorizado, ligado à referência exata. No recorte inicial, apenas o supervisor pode observar a rede. Retorna o estado atual e registra interesse persistentemente; estado já falho ou finalizado não produz também notificação duplicada da mesma transição. Mudança posterior ocupa o slot pendente. Referência já substituída retorna referência antiga sem inscrever. Cancelamento ou revogação do observador libera o slot; revogação do alvo publica invalidação terminal até consumo ou cancelamento e então libera o slot, sem redirecionar à nova geração. Enquanto a invalidação ocupar o slot, inscrever a geração nova retorna recursos esgotados.
 
 ## 9. Ociosidade quando todos esperam
 
@@ -263,7 +283,7 @@ O supervisor conserva modo manual inicial, orçamento de recuperação e limite 
 
 | Trabalho | Entrega proposta | Dependência |
 |---|---|---|
-| RZ-013 | ADR de semântica, resultados, compatibilidade e limites; layout de contrato testável | Revisão desta especificação |
+| RZ-013 | ADR de semântica, resultados, compatibilidade e limites; codificação e testes de layout precedem a exposição das operações | Revisão desta especificação |
 | RZ-014 | Estados de vida/agendamento, registros de espera e contexto idle válido | RZ-013 |
 | RZ-015 | Recepção bloqueante e publicação/despertar atômicos | RZ-014 |
 | RZ-016 | Prazos, comparação temporal, expiração limitada | RZ-014 e RZ-015 |
@@ -281,7 +301,7 @@ Impactos principais previstos: `contrato-sistema` e `apoio-servicos` para contra
 
 ## 13. Matriz de testes futuros — nenhum executado neste documento
 
-**Todos os casos T03 abaixo estão planejados e ainda não foram executados.** A coluna de critério descreve o que deverá ser observado, não um resultado obtido. Os testes no host devem explorar ordenações controladas do mesmo modelo utilizado pelo kernel; a integração deve provar os caminhos de CPU, timer, contexto e dispositivo que um modelo puro não cobre.
+**Os casos T03 abaixo são critérios planejados; a matriz de RZ-023 inventariou evidências parciais e pendências, mas não demonstra cobertura integral de cada cenário.** Alguns comportamentos foram exercitados nos incrementos RZ-014 a RZ-023. A coluna descreve o que deverá ser observado, não um resultado obtido por este documento. Os testes no host devem explorar ordenações controladas do mesmo modelo utilizado pelo kernel; a integração deve provar os caminhos de CPU, timer, contexto e dispositivo que um modelo puro não cobre.
 
 | Caso | Cenário | Critério proposto |
 |---|---|---|
@@ -332,3 +352,6 @@ O fechamento exige código, imagem, comandos de reprodução, logs e relatório 
 5. Intel, *PCI/PCI-X Family of Gigabit Ethernet Controllers Software Developer's Manual*, revisão 4.0; registradores de interrupção e inicialização/reset. <https://www.intel.com/content/dam/doc/manual/pci-pci-x-family-gbe-controllers-software-dev-manual.pdf>
 
 As fontes de hardware fundamentam restrições e protocolos a verificar. Não certificam a futura implementação Raiz OS. O modelo de confiança permanece descrito em [Ameaças e limites](AMEACAS-E-LIMITES.md).
+
+
+RZ-021 está concluído no recorte validado. O terminal normal agora usa IRQ4/IPC e prazo para PS/2, conforme a [ADR 011](../ADR-011-TERMINAL-UART.md). O [ensaio instrumentado](../../evidencias/teste-uart-1794726895277854900/resultado.txt) passou, inclusive na janela de rearme controlada; o ensaio normal, construção, verificação de imagem e cinco boots normais também passaram. Os ensaios adicionais de IRQ, quota, vida e prazo-idle passaram; no host passaram 31 testes do núcleo e 23 dos pacotes. O PS/2 emulado por HMP executou o comando sobre e recebeu resposta distinta. As rajadas ensaiadas foram de quatro bytes a cada 50 ms. PS/2 físico e fallback com kernel antigo não foram validados em VM; não há garantia de perda zero geral. RZ-022 e RZ-023 foram concluídos no escopo registrado em seus resumos, e RZ-024 no recorte controlado descrito no [resumo](../../evidencias/execucao-rz-024-20261115/RESUMO.md). A [matriz RZ-023](../../evidencias/execucao-rz-023-20261115/MATRIZ.md) ainda lista lacunas por cenário; a cobertura integral dos T03 e o marco 0.3 permanecem pendentes.

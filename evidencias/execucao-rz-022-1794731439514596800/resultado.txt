@@ -1,0 +1,18 @@
+# Teste integrado RZ-022
+
+Imagem opt-in separada da imagem normal; QEMU/TCG, pc/i440fx, 1 CPU, 256 MiB, OVMF e e1000. Esta execução preserva os relatórios históricos.
+
+## Recuperação manual, FIFO de reset e RX
+
+Resultado: **APROVADO**.
+
+Após CTRL.RST, o helper real de inicialização guardou 16 IPCs; outros 16 permaneceram na FIFO do kernel, a 33ª tentativa recebeu FILA_CHEIA, e após o prazo observado de 500 tiques a nova rede confirmou os ACKs 1..32 em ordem. No ciclo normal, a rede anunciou seu próximo prazo de polling; o kernel registrou bloqueio por 10 tiques, o host enviou um datagrama após esse marcador, e o harness exigiu marcador de timeout antes do eco idêntico e do contador RX/UDP crescente. A ordem observada não prova em que instante o dispositivo recebeu o datagrama. UD2 da rede permaneceu sem reinício no modo manual; `reiniciar-rede` criou a geração 2, que respondeu a ping e UDP.
+
+## Retentativas automáticas com backoff
+
+Resultado: **APROVADO**.
+
+Tentativa 1: referência 0x100000002, VIDA_DESPERTA correlacionada com a falha e espera FINITO registrada entre deadline e tentativa; backoff de 100 tiques (diferença observada: 100), geração 2 respondeu a ping/UDP.
+Tentativa 2: referência 0x200000002, VIDA_DESPERTA correlacionada com a falha e espera FINITO registrada entre deadline e tentativa; backoff de 200 tiques (diferença observada: 200), geração 3 respondeu a ping/UDP.
+Tentativa 3: referência 0x300000002, VIDA_DESPERTA correlacionada com a falha e espera FINITO registrada entre deadline e tentativa; backoff de 400 tiques (diferença observada: 400), geração 4 respondeu a ping/UDP.
+

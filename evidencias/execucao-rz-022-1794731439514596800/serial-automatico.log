@@ -1,0 +1,112 @@
+[2J[01;01H[=3h[2J[01;01H[2J[01;01H[=3h[2J[01;01H[2J[01;01H[=3h[2J[01;01HBdsDxe: loading Boot0001 "UEFI QEMU HARDDISK QM00001 " from PciRoot(0x0)/Pci(0x1,0x1)/Ata(Primary,Master,0x0)
+BdsDxe: starting Boot0001 "UEFI QEMU HARDDISK QM00001 " from PciRoot(0x0)/Pci(0x1,0x1)/Ata(Primary,Master,0x0)
+Raiz OS 0.2.0 - carregador proprio em Rust
+ELF validado; segmentos e pilha preparados.
+Encerrando servicos de boot do UEFI...
+
+[boot] EXIT_BOOT_SERVICES_OK
+[microkernel] Raiz OS: nucleo proprio Rust.
+[microkernel] PCI atribuido ao servico 2: BDF=0x300 MMIO=0x81040000
+[microkernel] SERVICO_CARREGADO id=1 referencia=0x100000001 ELF=57424 bytes fisico=0x20be000 CR3=0x2cbe000
+[microkernel] SERVICO_CARREGADO id=2 referencia=0x100000002 ELF=107904 bytes fisico=0x24be000 CR3=0x2cde000
+[microkernel] SERVICO_CARREGADO id=3 referencia=0x100000003 ELF=8280 bytes fisico=0x22be000 CR3=0x2cce000
+[microkernel] PRONTO: 3 processos CPL3; CR3 distintos; W^X/NX; IPC; PIT 100Hz; ABI 2.
+RAIZ OS / 0.2.0 / MICROKERNEL / x86_64
+Sistema operacional proprio, escrito em Rust.
+[terminal] Servico isolado iniciado: CPL=3
+[ok] Console, framebuffer e teclado fora do kernel.
+[ok] IPC int80; paginas por processo; privilegios por servico.
+Digite ajuda. Use ping 10.0.2.2 para testar a rede.
+[teste] TERMINAL_PRONTO
+raiz> [teste-rz022] EVENTO_BLOQUEADO observador=0x100000003 referencia=0x100000002 modo=SEM_PRAZO duracao=0 inicio=2
+
+[supervisor] SERVICO_PRONTO CPL=3 modo=manual limite=4
+raiz> 
+[teste-rz022-rede] FIFO_JANELA referencia=0x100000002 inicio=3 tiques=500
+raiz> 
+[teste-rz022-rede] FIFO_JANELA_FIM tiques=503 referencia=0x100000002
+raiz> 
+[rede] SERVICO_PRONTO CPL=3 IPv4=10.0.2.15 UDP=7777 geracao=1
+raiz> supervisao auto
+[teste-rz022-supervisor] AUTO_SOLICITADO tique=582
+raiz> [teste-rz022] EVENTO_BLOQUEADO observador=0x100000003 referencia=0x100000002 modo=SEM_PRAZO duracao=0 inicio=582
+
+[teste-rz022-supervisor] AUTO_CONFIRMADO tique=582
+
+[supervisor] MODO auto reinicios=0 ultimo_erro=0x0 limite=4
+raiz> falhar-rede
+[teste-rz022-supervisor] FALHA_SOLICITADA referencia=0x100000002 tique=643
+Solicitando falha controlada ao servico de rede...
+raiz> 
+[microkernel] SERVICO_FALHOU id=2 vetor=6 erro=0x0 RIP=0x40001ec8 CR2=0x0 referencia=0x100000002
+[teste-rz022] VIDA_DESPERTA observador=0x100000003 referencia=0x100000002 tipo=1 estado=2 tique=643
+[teste-rz022] EVENTO_BLOQUEADO observador=0x100000003 referencia=0x100000002 modo=FINITO duracao=100 inicio=643
+
+[teste-rz022-supervisor] DEADLINE referencia=0x100000002 inicio=643 atraso=100
+[microkernel] SERVICO_REINICIADO id=2 antiga=0x100000002 nova=0x200000002 arena_antiga=0x24be000 arena_nova=0x26be000 purgadas=0
+[microkernel] DMA_QUARENTENA referencia=0x100000002 arena=0x24be000 bytes=2097152
+[teste-rz022] EVENTO_BLOQUEADO observador=0x100000003 referencia=0x200000002 modo=SEM_PRAZO duracao=0 inicio=743
+
+[teste-rz022-supervisor] TENTATIVA referencia=0x100000002 tique=743 indice=1
+
+[supervisor] REDE_REINICIADA geracao_antiga=1 geracao_nova=2 automatico=1 referencia_antiga=0x100000002 referencia_nova=0x200000002
+Nova instancia criada; aguardando inicializacao do driver.
+raiz> 
+[teste-rz022-supervisor] REINICIADO antiga=0x100000002 nova=0x200000002 tique=743
+
+[rede] SERVICO_PRONTO CPL=3 IPv4=10.0.2.15 UDP=7777 geracao=2
+raiz> ping 10.0.2.2
+Solicitando ping a 10.0.2.2 por IPC...
+raiz> 
+[rede] PING OK 10.0.2.2 seq=1
+raiz> falhar-rede
+[teste-rz022-supervisor] FALHA_SOLICITADA referencia=0x200000002 tique=948
+Solicitando falha controlada ao servico de rede...
+raiz> 
+[microkernel] SERVICO_FALHOU id=2 vetor=6 erro=0x0 RIP=0x40001ec8 CR2=0x0 referencia=0x200000002
+[teste-rz022] VIDA_DESPERTA observador=0x100000003 referencia=0x200000002 tipo=1 estado=2 tique=948
+[teste-rz022] EVENTO_BLOQUEADO observador=0x100000003 referencia=0x200000002 modo=FINITO duracao=200 inicio=948
+
+[teste-rz022-supervisor] DEADLINE referencia=0x200000002 inicio=948 atraso=200
+[microkernel] SERVICO_REINICIADO id=2 antiga=0x200000002 nova=0x300000002 arena_antiga=0x26be000 arena_nova=0x28be000 purgadas=0
+[microkernel] DMA_QUARENTENA referencia=0x200000002 arena=0x26be000 bytes=2097152
+[teste-rz022] EVENTO_BLOQUEADO observador=0x100000003 referencia=0x300000002 modo=SEM_PRAZO duracao=0 inicio=1148
+
+[teste-rz022-supervisor] TENTATIVA referencia=0x200000002 tique=1148 indice=2
+
+[supervisor] REDE_REINICIADA geracao_antiga=2 geracao_nova=3 automatico=1 referencia_antiga=0x200000002 referencia_nova=0x300000002
+Nova instancia criada; aguardando inicializacao do driver.
+raiz> 
+[teste-rz022-supervisor] REINICIADO antiga=0x200000002 nova=0x300000002 tique=1148
+
+[rede] SERVICO_PRONTO CPL=3 IPv4=10.0.2.15 UDP=7777 geracao=3
+raiz> ping 10.0.2.2
+Solicitando ping a 10.0.2.2 por IPC...
+raiz> 
+[rede] PING OK 10.0.2.2 seq=1
+raiz> falhar-rede
+[teste-rz022-supervisor] FALHA_SOLICITADA referencia=0x300000002 tique=1354
+Solicitando falha controlada ao servico de rede...
+raiz> 
+[microkernel] SERVICO_FALHOU id=2 vetor=6 erro=0x0 RIP=0x40001ec8 CR2=0x0 referencia=0x300000002
+[teste-rz022] VIDA_DESPERTA observador=0x100000003 referencia=0x300000002 tipo=1 estado=2 tique=1355
+[teste-rz022] EVENTO_BLOQUEADO observador=0x100000003 referencia=0x300000002 modo=FINITO duracao=400 inicio=1355
+
+[teste-rz022-supervisor] DEADLINE referencia=0x300000002 inicio=1355 atraso=400
+[microkernel] SERVICO_REINICIADO id=2 antiga=0x300000002 nova=0x400000002 arena_antiga=0x28be000 arena_nova=0x2abe000 purgadas=0
+[microkernel] DMA_QUARENTENA referencia=0x300000002 arena=0x28be000 bytes=2097152
+[teste-rz022] EVENTO_BLOQUEADO observador=0x100000003 referencia=0x400000002 modo=SEM_PRAZO duracao=0 inicio=1755
+
+[teste-rz022-supervisor] TENTATIVA referencia=0x300000002 tique=1755 indice=3
+
+[supervisor] REDE_REINICIADA geracao_antiga=3 geracao_nova=4 automatico=1 referencia_antiga=0x300000002 referencia_nova=0x400000002
+Nova instancia criada; aguardando inicializacao do driver.
+raiz> 
+[teste-rz022-supervisor] REINICIADO antiga=0x300000002 nova=0x400000002 tique=1755
+
+[rede] SERVICO_PRONTO CPL=3 IPv4=10.0.2.15 UDP=7777 geracao=4
+raiz> ping 10.0.2.2
+Solicitando ping a 10.0.2.2 por IPC...
+raiz> 
+[rede] PING OK 10.0.2.2 seq=1
+raiz> 

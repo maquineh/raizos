@@ -1,0 +1,5 @@
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.03s
+     Running `target\debug\ferramentas.exe testar-prazo-empate`
+Evidências: <raiz-os>\evidencias/teste-prazo-empate-1794748241068193700
+Erro: Falha declarada pela fixture: [teste-prazo-empate] FALHA_SEGUNDO_RETORNO erro=0xfffffffffffffff6
+error: process didn't exit successfully: `target\debug\ferramentas.exe testar-prazo-empate` (exit code: 1)

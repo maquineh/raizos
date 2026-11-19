@@ -1,0 +1,5 @@
+# Ensaio T03-12 — RX real e controle supervisor
+
+Resultado: **FALHOU**. `Tempo esgotado aguardando "recusa kernel do ID 16 por quota da origem rede" após 15 segundos`
+
+O log do host registra somente os datagramas submetidos ao stdin de rede local; não prova entrega ao convidado. Logs: `serial.log`, `qemu-stderr.log`, `estimulo-host.log`.

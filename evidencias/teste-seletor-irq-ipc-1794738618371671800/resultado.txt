@@ -1,0 +1,1 @@
+APROVADO: o seletor real observou IRQ4 e IPC elegíveis em duas chamadas consecutivas; escolheu IPC com preferir_irq=0 e IRQ com preferir_irq=1. A sequência IRQ foi confirmada pelo terminal e a segunda IPC permaneceu na FIFO até ser recebida. Isso demonstra somente esta sobreposição finita, não justiça sob fluxo ilimitado.

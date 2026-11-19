@@ -1,0 +1,5 @@
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.03s
+     Running `target\debug\ferramentas.exe testar-ciclo-espera`
+Evidencias: <raiz-os>\evidencias/teste-ciclo-espera-1794752431397843200
+Erro: Prazo da rede nova tambem expirou
+error: process didn't exit successfully: `target\debug\ferramentas.exe testar-ciclo-espera` (exit code: 1)

@@ -1,0 +1,140 @@
+[2J[01;01H[=3h[2J[01;01H[2J[01;01H[=3h[2J[01;01H[2J[01;01H[=3h[2J[01;01HBdsDxe: loading Boot0001 "UEFI QEMU HARDDISK QM00001 " from PciRoot(0x0)/Pci(0x1,0x1)/Ata(Primary,Master,0x0)
+BdsDxe: starting Boot0001 "UEFI QEMU HARDDISK QM00001 " from PciRoot(0x0)/Pci(0x1,0x1)/Ata(Primary,Master,0x0)
+Raiz OS 0.2.0 - carregador proprio em Rust
+ELF validado; segmentos e pilha preparados.
+Encerrando servicos de boot do UEFI...
+
+[boot] EXIT_BOOT_SERVICES_OK
+[microkernel] Raiz OS: nucleo proprio Rust.
+[microkernel] PCI atribuido ao servico 2: BDF=0x300 MMIO=0x81040000
+[microkernel] SERVICO_CARREGADO id=1 referencia=0x100000001 ELF=49232 bytes fisico=0x20ae000 CR3=0x2cae000
+[microkernel] SERVICO_CARREGADO id=2 referencia=0x100000002 ELF=103808 bytes fisico=0x24ae000 CR3=0x2cce000
+[microkernel] SERVICO_CARREGADO id=3 referencia=0x100000003 ELF=8280 bytes fisico=0x22ae000 CR3=0x2cbe000
+[microkernel] PRONTO: 3 processos CPL3; CR3 distintos; W^X/NX; IPC; PIT 100Hz; ABI 2.
+RAIZ OS / 0.2.0 / MICROKERNEL / x86_64
+Sistema operacional proprio, escrito em Rust.
+[terminal] Servico isolado iniciado: CPL=3
+[ok] Console, framebuffer e teclado fora do kernel.
+[ok] IPC int80; paginas por processo; privilegios por servico.
+Digite ajuda. Use ping 10.0.2.2 para testar a rede.
+[teste] TERMINAL_PRONTO
+raiz> 
+[supervisor] SERVICO_PRONTO CPL=3 modo=manual limite=4
+raiz> 
+[rede] SERVICO_PRONTO CPL=3 IPv4=10.0.2.15 UDP=7777 geracao=1
+raiz> processos
+terminal=1 rede=1 tiques=50
+supervisor=1 geracao_rede=1 referencia_rede=0x100000002 referencia_terminal=0x100000001
+Estados: 1=executavel 2=falhou 3=finalizado 0=inexistente.
+raiz> ping 10.0.2.2
+Solicitando ping a 10.0.2.2 por IPC...
+raiz> 
+[rede] PING OK 10.0.2.2 seq=1
+raiz> guardar-referencia
+[teste] REFERENCIA_GUARDADA geracao=1 referencia=0x100000002
+raiz> falhar-rede
+Solicitando falha controlada ao servico de rede...
+raiz> 
+[microkernel] SERVICO_FALHOU id=2 vetor=6 erro=0x0 RIP=0x40001918 CR2=0x0 referencia=0x100000002
+eco TERMINAL_VIVO_ANTES_REINICIO
+TERMINAL_VIVO_ANTES_REINICIO
+raiz> processos
+terminal=1 rede=2 tiques=528
+supervisor=1 geracao_rede=1 referencia_rede=0x100000002 referencia_terminal=0x100000001
+Estados: 1=executavel 2=falhou 3=finalizado 0=inexistente.
+raiz> reiniciar-rede
+raiz> [microkernel] SERVICO_REINICIADO id=2 antiga=0x100000002 nova=0x200000002 arena_antiga=0x24ae000 arena_nova=0x26ae000 purgadas=0
+[microkernel] DMA_QUARENTENA referencia=0x100000002 arena=0x24ae000 bytes=2097152
+
+[supervisor] REDE_REINICIADA geracao_antiga=1 geracao_nova=2 automatico=0 referencia_antiga=0x100000002 referencia_nova=0x200000002
+Nova instancia criada; aguardando inicializacao do driver.
+raiz> 
+[rede] SERVICO_PRONTO CPL=3 IPv4=10.0.2.15 UDP=7777 geracao=2
+raiz> processos
+terminal=1 rede=1 tiques=654
+supervisor=1 geracao_rede=2 referencia_rede=0x200000002 referencia_terminal=0x100000001
+Estados: 1=executavel 2=falhou 3=finalizado 0=inexistente.
+raiz> teste-referencia
+[teste] REFERENCIA_ANTIGA_ENVIO_OK
+[teste] REFERENCIA_ANTIGA_ESTADO_OK
+raiz> teste-supervisor
+[teste] SUPERVISOR_REINICIAR_NEGADO_OK
+[teste] SUPERVISOR_ENCERRAR_NEGADO_OK
+raiz> processos
+terminal=1 rede=1 tiques=880
+supervisor=1 geracao_rede=2 referencia_rede=0x200000002 referencia_terminal=0x100000001
+Estados: 1=executavel 2=falhou 3=finalizado 0=inexistente.
+raiz> ping 10.0.2.2
+Solicitando ping a 10.0.2.2 por IPC...
+raiz> 
+[rede] PING OK 10.0.2.2 seq=1
+raiz> supervisao auto
+raiz> 
+[supervisor] MODO auto reinicios=1 ultimo_erro=0x0 limite=4
+raiz> violar-memoria
+Rede tentara ler pagina supervisor; esperado: page fault.
+raiz> 
+[microkernel] SERVICO_FALHOU id=2 vetor=14 erro=0x5 RIP=0x400009a2 CR2=0x2000000 referencia=0x200000002
+[microkernel] SERVICO_REINICIADO id=2 antiga=0x200000002 nova=0x300000002 arena_antiga=0x26ae000 arena_nova=0x28ae000 purgadas=0
+[microkernel] DMA_QUARENTENA referencia=0x200000002 arena=0x26ae000 bytes=2097152
+
+[supervisor] REDE_REINICIADA geracao_antiga=2 geracao_nova=3 automatico=1 referencia_antiga=0x200000002 referencia_nova=0x300000002
+Nova instancia criada; aguardando inicializacao do driver.
+raiz> 
+[rede] SERVICO_PRONTO CPL=3 IPv4=10.0.2.15 UDP=7777 geracao=3
+raiz> eco RECUPERACAO_AUTOMATICA_OK
+RECUPERACAO_AUTOMATICA_OK
+raiz> processos
+terminal=1 rede=1 tiques=1446
+supervisor=1 geracao_rede=3 referencia_rede=0x300000002 referencia_terminal=0x100000001
+Estados: 1=executavel 2=falhou 3=finalizado 0=inexistente.
+raiz> ping 10.0.2.2
+Solicitando ping a 10.0.2.2 por IPC...
+raiz> 
+[rede] PING OK 10.0.2.2 seq=1
+raiz> parar-rede
+raiz> [microkernel] SERVICO_ENCERRADO id=2 referencia=0x300000002 purgadas=0
+
+[supervisor] REDE_PARADA geracao=3
+raiz> 
+[supervisor] MODO manual reinicios=2 ultimo_erro=0x0 limite=4
+raiz> supervisao
+raiz> 
+[supervisor] MODO manual reinicios=2 ultimo_erro=0x0 limite=4
+raiz> processos
+terminal=1 rede=3 tiques=1713
+supervisor=1 geracao_rede=3 referencia_rede=0x300000002 referencia_terminal=0x100000001
+Estados: 1=executavel 2=falhou 3=finalizado 0=inexistente.
+raiz> eco TERMINAL_VIVO_REDE_PARADA
+TERMINAL_VIVO_REDE_PARADA
+raiz> reiniciar-rede
+raiz> [microkernel] SERVICO_REINICIADO id=2 antiga=0x300000002 nova=0x400000002 arena_antiga=0x28ae000 arena_nova=0x2aae000 purgadas=0
+[microkernel] DMA_QUARENTENA referencia=0x300000002 arena=0x28ae000 bytes=2097152
+
+[supervisor] REDE_REINICIADA geracao_antiga=3 geracao_nova=4 automatico=0 referencia_antiga=0x300000002 referencia_nova=0x400000002
+Nova instancia criada; aguardando inicializacao do driver.
+raiz> 
+[rede] SERVICO_PRONTO CPL=3 IPv4=10.0.2.15 UDP=7777 geracao=4
+raiz> processos
+terminal=1 rede=1 tiques=1991
+supervisor=1 geracao_rede=4 referencia_rede=0x400000002 referencia_terminal=0x100000001
+Estados: 1=executavel 2=falhou 3=finalizado 0=inexistente.
+raiz> ping 10.0.2.2
+Solicitando ping a 10.0.2.2 por IPC...
+raiz> 
+[rede] PING OK 10.0.2.2 seq=1
+raiz> reiniciar-rede
+raiz> 
+[supervisor] RECURSOS_ESGOTADOS operacao=9 geracao=4
+Limite de arenas/recuperacoes do boot atingido; consulte processos.
+raiz> processos
+terminal=1 rede=1 tiques=2223
+supervisor=1 geracao_rede=4 referencia_rede=0x400000002 referencia_terminal=0x100000001
+Estados: 1=executavel 2=falhou 3=finalizado 0=inexistente.
+raiz> ping 10.0.2.2
+Solicitando ping a 10.0.2.2 por IPC...
+raiz> 
+[rede] PING OK 10.0.2.2 seq=2
+raiz> eco QUOTA_REDE_PRESERVADA_OK
+QUOTA_REDE_PRESERVADA_OK
+raiz> 

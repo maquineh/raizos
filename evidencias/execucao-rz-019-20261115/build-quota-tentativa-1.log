@@ -1,0 +1,11 @@
+   Compiling ferramentas v0.2.0 (<raiz-os>\ferramentas)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 1.26s
+     Running `target\debug\ferramentas.exe compilar --teste-quota`
+Compilando serviços de terminal, rede e supervisão...
+   Compiling servico-terminal v0.2.0 (<raiz-os>\servicos\terminal)
+    Finished `release` profile [optimized + debuginfo] target(s) in 1.76s
+Compilando microkernel com os ELFs dos serviços incorporados...
+error: the package 'nucleo' does not contain this feature: teste-quota
+help: packages with the missing feature: servico-terminal, servico-rede, servico-supervisor
+Erro: A compilação do microkernel falhou
+error: process didn't exit successfully: `target\debug\ferramentas.exe compilar --teste-quota` (exit code: 1)

@@ -1,0 +1,9 @@
+# Comparação de consultas vazias — revisão atual RZ-025
+
+Resultado: **APROVADO**. Perfil QEMU/TCG, `pc`/i440fx, 1 CPU, 256 MiB, OVMF e e1000. Janela de 100 tiques (`inicio=61`, `fim=161`, `decorrido=100`).
+
+Métricas CPL3, com as mesmas definições da fixture de base 0.2: 99 chamadas reais `receber()` que retornaram `None`, e 99 voltas completas sem IPC consumido nem byte serial/PS2 lido. A amostra encerrou somente no delta exato de 100 tiques; ultrapassar a janela resulta em falha. No loop atual, IPC retirado pelo multiplexador fica em `ipc_pendente` e é marcado como trabalho ao ser consumido (também marcamos a atividade ao retornar IPC no multiplexador). O loop 0.2 não tem esse estágio de entrega pendente.
+
+Limites: `receber()` retorna `None` para consulta sem mensagem sem distinguir outras falhas não decodificadas como mensagem. A contagem de voltas sem trabalho não equivale a ciclos de CPU, utilização, energia, latência ou desempenho: o terminal atual usa IRQ4/espera multiplexada, e o loop 0.2 consulta/polla de forma diferente. As métricas identificam pontos do loop observados na janela, não custo equivalente entre revisões.
+
+Evidências: `serial.log`, `qemu-stderr.log` e `comando.log`. Duração do harness: 4.357 s.

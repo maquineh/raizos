@@ -1,0 +1,6 @@
+1185c0bc1077811a78edae2086427ee0f93295617e23afba86b916fc512db246  saida/raiz-os.img
+7692acd4ed269dccdf156afe6950b85fc1612a77e4e8c8eaa04a889a498a178d  saida/esp/EFI/BOOT/BOOTX64.EFI
+e29605fb73ba66b2d95775d2ec25ac2687a1a21e4d806b1660bfc2ad80fee9bc  saida/teste-irq/raiz-os.img
+308fd445dd7a5d57c48a2e48154fe901d30b0ef26de1d2d936b2a6d1c4944a0e  saida/teste-irq/esp/EFI/BOOT/BOOTX64.EFI
+7eade63c98a02f22eb6b30fcf6b2af1e150d31f8cb7aec3bd1b7d3ca6155b2fc  saida/teste-cancelamento-aplicacao/raiz-os.img
+44e1c21106bf479e67d394814ccbb2763f072c25a10b37ba436579139e5fab98  saida/teste-cancelamento-aplicacao/esp/EFI/BOOT/BOOTX64.EFI

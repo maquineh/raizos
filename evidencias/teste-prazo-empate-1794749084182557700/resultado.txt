@@ -1,0 +1,5 @@
+# T03-05 — empate lógico de prazo e IPC
+
+Resultado: **APROVADO** para uma espera finita e um envio da rede autorizado, no perfil QEMU/TCG de 1 CPU. O log correlaciona a deadline registrada pelo kernel, a expiração e a admissão real da mensagem no mesmo valor de `TIQUES`, seguida por retorno `TEMPO` e recebimento da IPC em chamada posterior. Isso demonstra somente este interleaving controlado; não demonstra todas as intercalações, justiça para fluxo ilimitado ou comportamento em hardware físico. A mensagem pode ter permanecido na FIFO ou acordado a segunda recepção; o ensaio não distingue essas duas rotas.
+
+Evidências: `serial.log`, `qemu-stderr.log` e `comando.log`.

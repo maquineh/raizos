@@ -1,0 +1,10 @@
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.03s
+     Running `target\debug\ferramentas.exe compilar --teste-rx-orcamento`
+Compilando serviços de terminal, rede e supervisão...
+    Finished `release` profile [optimized + debuginfo] target(s) in 0.04s
+Compilando microkernel com os ELFs dos serviços incorporados...
+    Finished `release` profile [optimized + debuginfo] target(s) in 0.04s
+Compilando carregador UEFI com o kernel incorporado...
+    Finished `release` profile [optimized + debuginfo] target(s) in 0.03s
+Pronto: <raiz-os>\saida/teste-rx-orcamento\raiz-os.img (128 MiB; carregador de 971776 bytes).
+GPT, FAT32 e bytes do carregador foram conferidos após a gravação.

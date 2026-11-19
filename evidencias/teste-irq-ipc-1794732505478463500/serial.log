@@ -1,0 +1,211 @@
+[2J[01;01H[=3h[2J[01;01H[2J[01;01H[=3h[2J[01;01H[2J[01;01H[=3h[2J[01;01HBdsDxe: loading Boot0001 "UEFI QEMU HARDDISK QM00001 " from PciRoot(0x0)/Pci(0x1,0x1)/Ata(Primary,Master,0x0)
+BdsDxe: starting Boot0001 "UEFI QEMU HARDDISK QM00001 " from PciRoot(0x0)/Pci(0x1,0x1)/Ata(Primary,Master,0x0)
+Raiz OS 0.2.0 - carregador proprio em Rust
+ELF validado; segmentos e pilha preparados.
+Encerrando servicos de boot do UEFI...
+
+[boot] EXIT_BOOT_SERVICES_OK
+[microkernel] Raiz OS: nucleo proprio Rust.
+[microkernel] PCI atribuido ao servico 2: BDF=0x300 MMIO=0x81040000
+[microkernel] SERVICO_CARREGADO id=1 referencia=0x100000001 ELF=49232 bytes fisico=0x20b3000 CR3=0x2cb3000
+[microkernel] SERVICO_CARREGADO id=2 referencia=0x100000002 ELF=103808 bytes fisico=0x24b3000 CR3=0x2cd3000
+[microkernel] SERVICO_CARREGADO id=3 referencia=0x100000003 ELF=8280 bytes fisico=0x22b3000 CR3=0x2cc3000
+[microkernel] PRONTO: 3 processos CPL3; CR3 distintos; W^X/NX; IPC; PIT 100Hz; ABI 2.
+RAIZ OS / 0.2.0 / MICROKERNEL / x86_64
+Sistema operacional proprio, escrito em Rust.
+[terminal] Servico isolado iniciado: CPL=3
+[ok] Console, framebuffer e teclado fora do kernel.
+[ok] IPC int80; paginas por processo; privilegios por servico.
+Digite ajuda. Use ping 10.0.2.2 para testar a rede.
+[teste] TERMINAL_PRONTO
+raiz> 
+[supervisor] SERVICO_PRONTO CPL=3 modo=manual limite=4
+raiz> 
+[rede] SERVICO_PRONTO CPL=3 IPv4=10.0.2.15 UDP=7777 geracao=1
+raiz> 
+[teste-irq-ipc] BYTE_IRQ
+t
+[teste-irq-ipc] BYTE_IRQ
+e
+[teste-irq-ipc] BYTE_IRQ
+s
+[teste-irq-ipc] BYTE_IRQ
+t
+[teste-irq-ipc] BYTE_IRQ
+e
+[teste-irq-ipc] BYTE_IRQ
+-
+[teste-irq-ipc] BYTE_IRQ
+i
+[teste-irq-ipc] BYTE_IRQ
+r
+[teste-irq-ipc] BYTE_IRQ
+q
+[teste-irq-ipc] BYTE_IRQ
+-
+[teste-irq-ipc] BYTE_IRQ
+i
+[teste-irq-ipc] BYTE_IRQ
+p
+[teste-irq-ipc] BYTE_IRQ
+c
+[teste-irq-ipc] BYTE_IRQ
+
+raiz> 
+[teste-irq-ipc] CARGA_PRONTA CPL3
+
+[teste-irq-ipc] IRQ4 seq=15
+
+[teste-irq-ipc] BYTE_IRQ
+e
+[teste-irq-ipc] RETENCAO_FIM
+
+[teste-irq-ipc] IPC_DURANTE_IRQ seq=1
+
+[teste-irq-ipc] IPC_DURANTE_IRQ seq=2
+
+[teste-irq-ipc] IPC_DURANTE_IRQ seq=3
+
+[teste-irq-ipc] IPC_DURANTE_IRQ seq=4
+
+[teste-irq-ipc] IPC_DURANTE_IRQ seq=5
+
+[teste-irq-ipc] IPC_DURANTE_IRQ seq=6
+
+[teste-irq-ipc] IPC_DURANTE_IRQ seq=7
+
+[teste-irq-ipc] IPC_DURANTE_IRQ seq=8
+
+[teste-irq-ipc] BYTE_IRQ
+c
+[teste-irq-ipc] BYTE_IRQ
+o
+[teste-irq-ipc] BYTE_IRQ
+ 
+[teste-irq-ipc] BYTE_IRQ
+I
+[teste-irq-ipc] BYTE_IRQ
+R
+[teste-irq-ipc] BYTE_IRQ
+Q
+[teste-irq-ipc] BYTE_IRQ
+I
+[teste-irq-ipc] BYTE_IRQ
+P
+[teste-irq-ipc] BYTE_IRQ
+C
+[teste-irq-ipc] BYTE_IRQ
+_
+[teste-irq-ipc] BYTE_IRQ
+0
+[teste-irq-ipc] BYTE_IRQ
+1
+[teste-irq-ipc] IRQ4 seq=16
+
+[teste-irq-ipc] BYTE_IRQ
+2
+[teste-irq-ipc] BYTE_IRQ
+3
+[teste-irq-ipc] BYTE_IRQ
+4
+[teste-irq-ipc] BYTE_IRQ
+5
+[teste-irq-ipc] IRQ4 seq=17
+
+[teste-irq-ipc] IRQ4 seq=18
+
+[teste-irq-ipc] BYTE_IRQ
+6
+[teste-irq-ipc] BYTE_IRQ
+7
+[teste-irq-ipc] BYTE_IRQ
+8
+[teste-irq-ipc] BYTE_IRQ
+9
+[teste-irq-ipc] IRQ4 seq=19
+
+[teste-irq-ipc] IRQ4 seq=20
+
+[teste-irq-ipc] BYTE_IRQ
+_
+[teste-irq-ipc] BYTE_IRQ
+A
+[teste-irq-ipc] BYTE_IRQ
+B
+[teste-irq-ipc] BYTE_IRQ
+C
+[teste-irq-ipc] IRQ4 seq=21
+
+[teste-irq-ipc] IRQ4 seq=22
+
+[teste-irq-ipc] BYTE_IRQ
+D
+[teste-irq-ipc] BYTE_IRQ
+E
+[teste-irq-ipc] BYTE_IRQ
+F
+[teste-irq-ipc] BYTE_IRQ
+G
+[teste-irq-ipc] IRQ4 seq=23
+
+[teste-irq-ipc] IRQ4 seq=24
+
+[teste-irq-ipc] BYTE_IRQ
+H
+[teste-irq-ipc] BYTE_IRQ
+I
+[teste-irq-ipc] BYTE_IRQ
+J
+[teste-irq-ipc] BYTE_IRQ
+K
+[teste-irq-ipc] IRQ4 seq=25
+
+[teste-irq-ipc] IRQ4 seq=26
+
+[teste-irq-ipc] BYTE_IRQ
+L
+[teste-irq-ipc] BYTE_IRQ
+M
+[teste-irq-ipc] BYTE_IRQ
+N
+[teste-irq-ipc] BYTE_IRQ
+O
+[teste-irq-ipc] IRQ4 seq=27
+
+[teste-irq-ipc] IRQ4 seq=28
+
+[teste-irq-ipc] BYTE_IRQ
+P
+[teste-irq-ipc] BYTE_IRQ
+Q
+[teste-irq-ipc] BYTE_IRQ
+R
+[teste-irq-ipc] BYTE_IRQ
+S
+[teste-irq-ipc] IRQ4 seq=29
+
+[teste-irq-ipc] IRQ4 seq=30
+
+[teste-irq-ipc] BYTE_IRQ
+T
+[teste-irq-ipc] BYTE_IRQ
+U
+[teste-irq-ipc] BYTE_IRQ
+V
+[teste-irq-ipc] BYTE_IRQ
+W
+[teste-irq-ipc] IRQ4 seq=31
+
+[teste-irq-ipc] IRQ4 seq=32
+
+[teste-irq-ipc] BYTE_IRQ
+X
+[teste-irq-ipc] BYTE_IRQ
+Y
+[teste-irq-ipc] BYTE_IRQ
+Z
+[teste-irq-ipc] BYTE_IRQ
+
+IRQIPC_0123456789_ABCDEFGHIJKLMNOPQRSTUVWXYZ
+raiz> 
+[teste-irq-ipc] IRQ4 seq=33

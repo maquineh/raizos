@@ -1,0 +1,1 @@
+FALHOU: Snapshot DRIVER_ATIVO gen4 ausente, duplicado ou malformado

@@ -1,0 +1,1 @@
+FALHOU: Tempo esgotado aguardando "[teste-uart] RECHECAGEM_COM_DADOS" após 10 segundos

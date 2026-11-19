@@ -1,0 +1,12 @@
+da14a5b4528b58cafe0f415ff2d17bf027d11a213a37dc3e99adb08f34ac510b  saida/raiz-os.img
+ca8581a23346677956c843a4cc6ad342e5d52c4bd2eba850ae86c680b0ac6872  saida/esp/EFI/BOOT/BOOTX64.EFI
+fd55649c0eab00713dcedd30485bceeb22dfc4207fb9c1f7974f7abf4fa16818  saida/teste-ciclo-espera/raiz-os.img
+27de15bc8d23e87803afc5c9b31f3531e73a92166f18aefeadb51b77a8de8cbd  saida/teste-ciclo-espera/esp/EFI/BOOT/BOOTX64.EFI
+11f51f8908864a0bbca2bc0200600b0377713ea72a82d18ac141add89ea1444e  saida/teste-observacao/raiz-os.img
+9e279fc834a90ddc36e0f151241aa5ec9845df8f23ab6443156cdb5b7a6adab9  saida/teste-observacao/esp/EFI/BOOT/BOOTX64.EFI
+9283fd9f99cb7ebc6cb5df4a034a317e04bff9608409d5ef276a94bd0eaa2c01  saida/teste-prazo/raiz-os.img
+4f648b7fba45055f082fd6fa13d8e0c82753ae2bb8b200805917b8f2c72819a2  saida/teste-prazo/esp/EFI/BOOT/BOOTX64.EFI
+0ee5caf943ae73a0aa0aee144daf087530246df503913fb9fc5ef0a272a8f35e  saida/teste-prazo-idle/raiz-os.img
+08cd71fd1e90bdc813c3eae56112f0e936e532ded43ef3c728057e7013335476  saida/teste-prazo-idle/esp/EFI/BOOT/BOOTX64.EFI
+3b6a070d030cc1eb34015687676f7e4321ba7afa2d107a8f411d3d76bf461831  saida/teste-receber-bloqueante/raiz-os.img
+c51bba5c4cd62ad435645890d36626f314959320556baf2affc151eeba7c4a23  saida/teste-receber-bloqueante/esp/EFI/BOOT/BOOTX64.EFI

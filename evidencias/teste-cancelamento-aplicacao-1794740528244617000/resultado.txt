@@ -1,0 +1,7 @@
+# Ensaio T03-24 — cancelamento local após envio aceito
+
+Imagem opt-in; QEMU/TCG, pc/i440fx, 1 CPU, 256 MiB, OVMF e e1000.
+
+Resultado: **APROVADO**. O cliente obteve aceitação IPC para dois IDs e recebeu confirmação de que o serviço de rede recebeu ambos. Cancelou localmente o primeiro, manteve o segundo ativo e liberou respostas em ordem inversa à dos pedidos: primeiro a resposta correlacionada ao ativo, depois a resposta tardia do cancelado. A primeira concluiu a operação ativa; a tardia foi correlacionada e ignorada, mantendo o estado local cancelado.
+
+Limite: o cancelamento demonstrado pertence à política local do cliente. O protocolo de teste não pede ao servidor para desfazer ou compensar efeitos, nem demonstra rollback, idempotência ou comportamento de outros clientes. Logs: `serial.log` e `qemu-stderr.log`.

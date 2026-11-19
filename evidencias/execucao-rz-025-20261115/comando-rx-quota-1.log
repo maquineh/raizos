@@ -1,0 +1,5 @@
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.03s
+     Running `target\debug\ferramentas.exe testar-rx-quota`
+Evidências: <raiz-os>\evidencias/teste-rx-quota-1794750846647830200
+Erro: Tempo esgotado aguardando "recusa kernel do ID 16 por quota da origem rede" após 15 segundos
+error: process didn't exit successfully: `target\debug\ferramentas.exe testar-rx-quota` (exit code: 1)

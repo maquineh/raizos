@@ -1,0 +1,1 @@
+APROVADO: cenário irq4; observação delimitada no serial.log.

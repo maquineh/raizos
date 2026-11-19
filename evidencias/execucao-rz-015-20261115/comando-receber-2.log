@@ -1,0 +1,4 @@
+   Compiling ferramentas v0.2.0 (<raiz-os>\ferramentas)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 1.15s
+     Running `target\debug\ferramentas.exe testar-receber-bloqueante`
+Evidencias: <raiz-os>\evidencias/teste-receber-bloqueante-1794722072073175400

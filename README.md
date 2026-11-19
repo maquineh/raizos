@@ -15,8 +15,13 @@ roadmap, backlog e próximo marco. O [guia de contribuição](CONTRIBUINDO.md)
 explica como preparar o ambiente e trabalhar no código. As instruções para
 agentes estão em [AGENTS.md](AGENTS.md).
 
-A versão 0.3 tem [especificação proposta](docs/projeto/ESPECIFICACAO-0.3.md).
+A versão 0.3 tem [especificação](docs/projeto/ESPECIFICACAO-0.3.md) e decisões de espera nas ADRs 003 a 012. Os recortes RZ-014 a RZ-022 foram implementados e validados dentro dos escopos registrados; o [resumo RZ-022](evidencias/execucao-rz-022-20261115/RESUMO.md) reúne a integração final, regressões e limites. RZ-023 está concluído no escopo do aceite original, com 12 comandos opt-in após rebuild, testes host e cinco boots normais documentados no [resumo](evidencias/execucao-rz-023-20261115/RESUMO.md) e na [matriz T03](evidencias/execucao-rz-023-20261115/MATRIZ.md). RZ-024 foi concluído no recorte controlado de idle/despertar; consulte o [resumo](evidencias/execucao-rz-024-20261115/RESUMO.md) para contagens observadas e limites. Permanecem lacunas por cenário na matriz; nem todos os T03 estão demonstrados e o marco 0.3 continua incompleto.
 O código e a imagem deste pacote permanecem na versão 0.2.0, ABI 2.
+
+RZ-019 está concluído no recorte implementado: a [ADR 009](docs/ADR-009-LIMITES-IPC.md) limita cada caixa a 16 mensagens e cada origem lógica na caixa do terminal a 15; inscrição e espera têm slots estruturais por processo. Os 29 testes do núcleo passaram no host; as regressões normais em QEMU passaram. RZ-020 está concluído no recorte de IRQ4 exclusiva. O [ensaio de quota em QEMU](evidencias/teste-quota-1794725073649578100/resultado.txt) passou para 15 envios da rede, recusa do 16º, reserva ao supervisor, FIFO e readmissão após drenagem. A ordem inversa e liberação após uma retirada ou purga foram testadas no host, não nesse ensaio de VM. O [resumo da execução](evidencias/execucao-rz-019-20261115/RESUMO.md) reúne construção normal, verificação de imagem e os cinco boots de regressão.
+
+
+RZ-020 está concluído no recorte de IRQ4 exclusiva: a [ADR 010](docs/ADR-010-NOTIFICACAO-IRQ4.md) acrescenta à ABI 2 uma associação exclusiva de IRQ4 ao terminal, notificação coalescida separada da fila IPC e confirmação por sequência. No [ensaio opt-in em QEMU](evidencias/teste-irq-1794725963506321900/resultado.txt), IRQ4 acordou o terminal a partir de idle CPL 0; foram observadas negação a outro serviço, recusas de sequência incorreta e duplicada, rechecagem e rearme. Com B pendente e sem confirmação por 50 tiques, a máscara foi observada em duas amostras, o contador de entradas permaneceu igual e o timer avançou; C chegou após o rearme. Coalescência foi testada no host, não demonstrada nesse ensaio QEMU. Isso não demonstra ausência absoluta de tempestades nem suporte a hardware físico. A construção normal, verificação de imagem e três comandos de regressão em QEMU (cinco boots) passaram. Naquela execução o terminal normal ainda usava polling. SMP e IRQ compartilhada não foram demonstrados. Os ensaios reconstruídos de quota, vida e prazo-idle também passaram; o [resumo da execução RZ-020](evidencias/execucao-rz-020-20261115/RESUMO.md) reúne logs, hashes e limites.
 
 ## O que esta entrega contém
 
@@ -163,6 +168,22 @@ parada/retomada e quota esgotada sem derrubar uma rede viva. Em outro boot, veri
 recuperação de uma rede em laço. Ping e UDP são exigidos após a recuperação.
 Os relatórios conservam o resultado real de cada cenário.
 
+Para o ensaio instrumentado de idle, separado da imagem normal:
+
+```sh
+cargo raiz compilar --teste-idle
+cargo raiz testar-idle
+```
+
+O [relatório](evidencias/execucao-rz-014-20261115/final/RELATORIO-TESTE-IDLE.md) registra aprovação em QEMU. Nesse ensaio, a feature provoca o despertar. Um ensaio posterior, isolado, usa IPC real entre terminal e supervisor em CPL 3:
+
+```sh
+cargo raiz compilar --teste-ipc-bloqueante
+cargo raiz testar-ipc-bloqueante
+```
+
+A espera da [ADR 004](docs/ADR-004-ESPERA-IPC-ABI-2.md) sinaliza disponibilidade sem consumir a mensagem; uma purga pode esvaziar a fila antes de `RECEBER`. O supervisor manual usa a espera de IPC/vida da [ADR 008](docs/ADR-008-NOTIFICACOES-VIDA.md), com fallback para recepção da [ADR 005](docs/ADR-005-RECEPCAO-BLOQUEANTE.md) e espera de disponibilidade. Na integração descrita pela [ADR 012](docs/ADR-012-ESPERA-SERVICOS-RZ022.md), o automático espera evento ou prazo de backoff, e a rede usa polling RX com prazo. Kernels ABI 2 antigos retornam `CHAMADA`, com fallback cooperativo; a combinação de kernel antigo e serviço novo não foi ensaiada em VM. RZ-014 está concluído no escopo de estados, despertar e idle; RZ-015 no escopo de recepção IPC bloqueante; RZ-016 para prazos; RZ-017 para cancelamento e observação pontual; RZ-018 para inscrição persistente supervisor→rede. Veja os [resumos RZ-016](evidencias/execucao-rz-016-20261115/RESUMO.md), [RZ-017](evidencias/execucao-rz-017-20261115/RESUMO.md) e [RZ-018](evidencias/execucao-rz-018-20261115/RESUMO.md). RZ-022 e RZ-023 foram concluídos nos respectivos escopos documentados; consulte seus resumos. RZ-024 foi concluído no recorte controlado de idle/despertar, registrado no [resumo](evidencias/execucao-rz-024-20261115/RESUMO.md). Nem todos os T03 nem o marco 0.3 estão completos.
+
 Com uma VM aberta em outro terminal:
 
 ```sh
@@ -209,9 +230,12 @@ dinâmicos de propósito geral, TCP, DHCP, DNS, IPv6, TLS, SMP, USB, Wi-Fi,
 interfaces gráficas de aplicações ou instalação em hardware real.
 
 O reinício é restrito à rede e ao orçamento descrito; não restaura seu estado de
-protocolos. Terminal e supervisor ainda não são recuperáveis. O supervisor
-consulta estados e cede CPU; IPC bloqueante e notificações de morte ficam para a
-próxima etapa. O boot e a reserva de memória permanecem estáticos.
+protocolos. Terminal e supervisor ainda não são recuperáveis. Na base 0.2, o
+modo automático consultava estados e cedia CPU; a integração RZ-022 substitui
+essa consulta contínua por espera de vida/IPC e prazo de retentativa. Em modo
+manual, o supervisor pode aguardar eventos. A e1000 conserva polling RX com
+prazo, e PS/2 é consultado nos prazos do terminal. O boot e a reserva de memória
+permanecem estáticos.
 
 As permissões são fixas por serviço; não há tabela dinâmica de capabilities com
 delegação e revogação. Não há IOMMU: o driver DMA precisa ser confiável. Uma
@@ -234,3 +258,8 @@ ao produto. “Escrito em Rust” não significa “100% safe Rust” ou correç
 As evidências de 0.1 foram conservadas em `evidencias/v0.1`. Os resultados na raiz
 de `evidencias/` correspondem à execução corrente descrita no resumo.
 
+
+
+RZ-021 está concluído no recorte validado. O terminal normal agora usa IRQ4/IPC e prazo para PS/2, conforme a [ADR 011](docs/ADR-011-TERMINAL-UART.md). O [ensaio instrumentado](evidencias/teste-uart-1794726895277854900/resultado.txt) passou, inclusive na janela de rearme controlada; o ensaio normal, construção, verificação de imagem e cinco boots normais também passaram. Os ensaios adicionais de IRQ, quota, vida e prazo-idle passaram; no host passaram 31 testes do núcleo e 23 dos pacotes. O PS/2 emulado por HMP executou o comando sobre e recebeu resposta distinta. As rajadas ensaiadas foram de quatro bytes a cada 50 ms. PS/2 físico e fallback com kernel antigo não foram validados em VM; não há garantia de perda zero geral.
+
+RZ-022 está concluído no escopo validado; consulte a [ADR 012](docs/ADR-012-ESPERA-SERVICOS-RZ022.md) e o [resumo](evidencias/execucao-rz-022-20261115/RESUMO.md). RZ-023 está concluído no escopo de seu aceite original; consulte o [resumo](evidencias/execucao-rz-023-20261115/RESUMO.md) e a [matriz T03](evidencias/execucao-rz-023-20261115/MATRIZ.md) para as evidências e lacunas por cenário. RZ-024 foi concluído no recorte testado, conforme o [resumo](evidencias/execucao-rz-024-20261115/RESUMO.md). O produto continua na versão 0.2.0, ABI 2; o marco 0.3 não está concluído.

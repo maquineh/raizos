@@ -1,0 +1,5 @@
+# Ensaio T03-16 — recepção UART por fase
+
+Resultado: **APROVADO** no perfil QEMU/TCG, pc/i440fx, 1 CPU. `estimulo-host.log` registra os bytes submetidos ao stdin serial do QEMU após flush; `serial.log` registra os bytes lidos pelo terminal no RBR, com fase, ID e ordem, causas IIR amostradas antes da leitura e o bit OE do LSR por fase. O byte isolado e a rajada limitada são avaliados separadamente. O limiar RX configurado é 14 bytes (FCR 0xc7). OE é um indicador observado, não uma contagem de bytes perdidos.
+
+Limite: submissão pelo host não prova entrega pelo QEMU, e uma divergência entre submissão e leitura RBR não localiza por si só onde ocorreu perda. O ensaio não infere overrun pelo tamanho da rajada, não demonstra perda zero geral, taxa máxima ou comportamento de UART física. Logs: `serial.log`, `qemu-stderr.log` e `estimulo-host.log`.

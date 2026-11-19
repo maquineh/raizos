@@ -1,5 +1,8 @@
 //! Acesso x86 às portas de E/S. Restrito ao alvo emulado e ao modo privilegiado.
 use core::arch::asm;
+use core::sync::atomic::{AtomicU8, Ordering};
+
+static ERROS_SERIAL: AtomicU8 = AtomicU8::new(0);
 
 pub unsafe fn saida8(porta: u16, valor: u8) {
     asm!("out dx, al", in("dx") porta, in("al") valor, options(nomem, nostack, preserves_flags));
@@ -20,9 +23,32 @@ pub unsafe fn iniciar_serial() {
     saida8(0x3fc, 3);
 }
 
+// COM1 pertence ao terminal; OUT2 encaminha IRQ ao PIC no alvo pc.
+pub fn interrupcao_serial(ativa: bool) {
+    unsafe {
+        saida8(0x3fc, if ativa { 0x0b } else { 3 });
+        saida8(0x3f9, if ativa { 1 } else { 0 });
+    }
+}
+
+fn estado_serial() -> u8 {
+    let estado = unsafe { entrada8(0x3fd) };
+    // A leitura do LSR limpa indicadores de erro no 16550.
+    ERROS_SERIAL.fetch_or(estado & 0x1e, Ordering::Relaxed);
+    estado
+}
+
+pub fn retirar_erros_serial() -> u8 {
+    ERROS_SERIAL.swap(0, Ordering::Relaxed)
+}
+
+pub fn serial_pendente() -> bool {
+    estado_serial() & 1 != 0
+}
+
 pub fn byte_serial(b: u8) {
     for _ in 0..100_000 {
-        if unsafe { entrada8(0x3fd) } & 0x20 != 0 {
+        if estado_serial() & 0x20 != 0 {
             unsafe {
                 saida8(0x3f8, b);
             }
@@ -33,11 +59,17 @@ pub fn byte_serial(b: u8) {
 }
 
 pub fn ler_serial() -> Option<u8> {
-    if unsafe { entrada8(0x3fd) } & 1 != 0 {
+    if estado_serial() & 1 != 0 {
         Some(unsafe { entrada8(0x3f8) })
     } else {
         None
     }
+}
+
+#[cfg(feature = "teste-uart-rz025")]
+pub fn iir_serial_bruto() -> u8 {
+    // IIR e RBR sao consultados apenas pelo terminal; preserve todos os bits observados.
+    unsafe { entrada8(0x3fa) }
 }
 
 pub fn serial_texto(s: &str) {

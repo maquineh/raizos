@@ -1,0 +1,3 @@
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.03s
+     Running `target\debug\ferramentas.exe testar-uart-rz025`
+Evidencias: <raiz-os>\evidencias/teste-uart-rz025-1794745669826929700

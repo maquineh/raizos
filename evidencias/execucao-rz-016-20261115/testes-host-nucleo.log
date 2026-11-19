@@ -1,0 +1,28 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.32s
+     Running unittests src\lib.rs (target\debug\deps\nucleo-82fdc5a55635ef93.exe)
+
+running 21 tests
+test agendamento::testes::bloqueio_nao_altera_vida_e_despertar_so_ocorre_uma_vez ... ok
+test agendamento::testes::espera_cancelada_na_morte_nao_acorda_nova_instancia ... ok
+test agendamento::testes::espera_observa_fila_e_conclui_uma_unica_vez ... ok
+test agendamento::testes::expiracao_nao_modifica_nova_instancia_ou_resultado_ja_concluido ... ok
+test agendamento::testes::fila_admitida_acorda_sem_consumir_e_purga_ainda_pode_revogar ... ok
+test agendamento::testes::morte_cancela_disponibilidade_e_impede_despertar ... ok
+test agendamento::testes::prazo_valida_modos_limites_e_volta_do_contador ... ok
+test agendamento::testes::timeout_conclui_uma_vez_mesmo_apos_despertar_por_mensagem ... ok
+test controle::testes::admissao_desperta_somente_depois_de_inserir_e_preserva_fifo ... ok
+test controle::testes::arenas_sao_exclusivas_por_servico_e_encarnacao ... ok
+test controle::testes::empate_vence_prazo_sem_consumir_fifo_e_conclusao_anterior_persiste ... ok
+test controle::testes::fila_cheia_recusa_sem_substituir_mensagens ... ok
+test controle::testes::fila_preserva_fifo_apos_volta_do_anel ... ok
+test controle::testes::gerenciamento_exige_supervisor_e_referencia_atual_da_rede ... ok
+test controle::testes::grafo_ipc_isola_supervisor_do_driver ... ok
+test controle::testes::limpar_remove_pedidos_destinados_instancia_antiga ... ok
+test controle::testes::purga_remove_apenas_origem_revogada_em_fila_circular ... ok
+test controle::testes::recepcao_ignora_geracao_antiga_e_preserva_mensagens_atuais ... ok
+test controle::testes::recepcao_pendente_rearma_apos_revogacao_e_mantem_fifo_valida ... ok
+test controle::testes::reinicio_nao_transborda_o_limite_de_encarnacoes ... ok
+test controle::testes::validacao_recusa_referencias_de_outra_encarnacao ... ok
+
+test result: ok. 21 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+

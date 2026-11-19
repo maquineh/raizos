@@ -1,0 +1,16 @@
+0781551bc04028e642323a3b14a50899f8944b66d4621718da028d0e30b7ab5a  saida/raiz-os.img
+902d685d74fad9a15962f614578fb2cce16a7ad10591829bdc29731a3f37bf99  saida/esp/EFI/BOOT/BOOTX64.EFI
+1a8bea42b1db467ddeb31d0036e4b9b51f11a71848bd65818d286b40f20011cc  saida/teste-rz022/raiz-os.img
+e3a9f59bc84b41114ea15aa36d31ffa66be85f52ee0f266e05efa1a54e003795  saida/teste-rz022/esp/EFI/BOOT/BOOTX64.EFI
+82d685a84fda347a2b4d507cb51e4474249ffa75b3f542c560d50d0fe47e6d1e  saida/teste-ciclo-espera/raiz-os.img
+f219039b2f105583c19b94e0e30a1757c868bb6d96858f0c84d01dd87210c69a  saida/teste-ciclo-espera/esp/EFI/BOOT/BOOTX64.EFI
+cc29e103936b95f92b521d159f3efdf5a7a0aca7d84b1b5cc832cbaa06875abc  saida/teste-irq/raiz-os.img
+51babf05c156cb4f85a94ce598fafe5676f4f48799de8671ef3b8b5de934afe5  saida/teste-irq/esp/EFI/BOOT/BOOTX64.EFI
+30a11642abc2a72bbd61c03b21261c4668e54c3c824e967c8baf501c3e56ca92  saida/teste-quota/raiz-os.img
+c6180a13903c58fd626d3042a8a282bbef811fb3e7a767a8358060d641419528  saida/teste-quota/esp/EFI/BOOT/BOOTX64.EFI
+ae7c7f97dde3e3cc4f95838a022272fb82cd53ce0bff4f0b74b4df6545bc9984  saida/teste-vida/raiz-os.img
+4a4c86f1a0a431911a341d714e9c74cc5f8c60be423c18383cc59c811f48282b  saida/teste-vida/esp/EFI/BOOT/BOOTX64.EFI
+3c86ad9b3aa280dbb803d6c35a4954c8fb77858a0a90fad5549d8e971574353d  saida/teste-prazo-idle/raiz-os.img
+daf5dda3df18e7589ec5d5765d97b6a88da8324a30052aa6d12f1b6aa6e78e29  saida/teste-prazo-idle/esp/EFI/BOOT/BOOTX64.EFI
+4fa16edb65f18b3137c82f20bcfcfcdd4518de5fc81b36fcd2f480f8c427ab8e  saida/teste-uart/raiz-os.img
+cdb87c061fb2b38242a3e44f3938af188932d857ec754041f07a91e67a74b2e1  saida/teste-uart/esp/EFI/BOOT/BOOTX64.EFI

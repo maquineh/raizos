@@ -1,0 +1,32 @@
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.04s
+     Running `target\debug\ferramentas.exe compilar --teste-ciclo-espera`
+Compilando serviços de terminal, rede e supervisão...
+   Compiling contrato-boot v0.2.0 (<raiz-os>\contrato-boot)
+   Compiling servico-supervisor v0.2.0 (<raiz-os>\servicos\supervisor)
+   Compiling servico-terminal v0.2.0 (<raiz-os>\servicos\terminal)
+   Compiling servico-rede v0.2.0 (<raiz-os>\servicos\rede)
+   Compiling protocolos v0.1.0 (<raiz-os>\protocolos)
+   Compiling contrato-sistema v0.2.0 (<raiz-os>\contrato-sistema)
+   Compiling apoio-servicos v0.2.0 (<raiz-os>\apoio-servicos)
+    Finished `release` profile [optimized + debuginfo] target(s) in 3.58s
+Compilando microkernel com os ELFs dos serviços incorporados...
+   Compiling nucleo v0.2.0 (<raiz-os>\nucleo)
+warning: creating a shared reference to mutable static
+   --> nucleo\src\processos.rs:212:13
+    |
+212 |             TIQUES
+    |             ^^^^^^ shared reference to mutable static
+    |
+    = note: shared references to mutable statics are dangerous; it's undefined behavior if the static is mutated or if a mutable reference is created for it while the shared reference lives
+    = help: use a type that relies on "interior mutability" instead; to read more on this, visit <https://doc.rust-lang.org/reference/interior-mutability.html>
+    = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+    = note: `#[warn(static_mut_refs)]` (part of `#[warn(rust_2024_compatibility)]`) on by default
+
+warning: `nucleo` (bin "nucleo") generated 1 warning
+    Finished `release` profile [optimized + debuginfo] target(s) in 1.78s
+Compilando carregador UEFI com o kernel incorporado...
+   Compiling contrato-boot v0.2.0 (<raiz-os>\contrato-boot)
+   Compiling inicializador v0.2.0 (<raiz-os>\inicializador)
+    Finished `release` profile [optimized + debuginfo] target(s) in 0.47s
+Pronto: <raiz-os>\saida/teste-ciclo-espera\raiz-os.img (128 MiB; carregador de 824832 bytes).
+GPT, FAT32 e bytes do carregador foram conferidos após a gravação.

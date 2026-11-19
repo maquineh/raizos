@@ -1,0 +1,5 @@
+# T03-05 — empate lógico de prazo e IPC
+
+Resultado: **FALHOU**. `Sequência de feature, armação, registro e sonda diverge`
+
+O oráculo exige tick efetivo da expiração igual à deadline registrada e tick da admissão, além de retorno único `TEMPO` seguido da mensagem real com origem e payload esperados. Um tick perdido pelo remetente falha fechado. Isso não demonstra justiça para fluxo ilimitado nem comportamento em hardware físico. Evidências parciais: `serial.log`, `qemu-stderr.log` e `comando.log`.

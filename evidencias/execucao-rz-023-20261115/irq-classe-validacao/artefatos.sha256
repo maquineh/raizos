@@ -1,0 +1,4 @@
+e56f6094df6a773b3d60387876c5a47e63b6098c2294740bd116d83bf614ad0b  saida/raiz-os.img
+922ccf99d72c7e70911a59dcaa8ba67bdb3b4262cb1a8757e912dcbb6b4677b2  saida/esp/EFI/BOOT/BOOTX64.EFI
+78e24c9bd30c193f3d943580bca97f743170757ab9629835d2796b41e982bf45  saida/teste-irq/raiz-os.img
+44ae9a481befdc6230d6b5d4f8c857fa4592077d0af46c94fdd68c9a4e3d0ccd  saida/teste-irq/esp/EFI/BOOT/BOOTX64.EFI

@@ -1,0 +1,4 @@
+    Blocking waiting for file lock on build directory
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.74s
+     Running `target\debug\ferramentas.exe testar-irq-fifo-cheia`
+Evidências: <raiz-os>\evidencias/teste-irq-fifo-cheia-1794744290122562700
